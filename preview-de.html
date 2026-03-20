@@ -2,239 +2,308 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Vorschau — Eine Kulinarische Reise</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; overflow: hidden; }
-
-  body {
-    background: #0f0d0a;
-    font-family: 'Cinzel', serif;
-    display: flex;
-    flex-direction: column;
-  }
+  html, body { height: 100%; overflow: hidden; background: #0f0d0a; font-family: 'Cinzel', serif; }
+  body { display: flex; flex-direction: column; }
 
   /* ── TOP BAR ── */
   .topbar {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    height: 56px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 56px;
     background: rgba(15,13,10,0.97);
-    border-bottom: 1px solid rgba(200,132,58,0.2);
-    z-index: 10;
+    border-bottom: 1px solid rgba(200,132,58,0.2); z-index: 10;
   }
-
   .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #c8843a;
-    text-decoration: none;
-    border: 1px solid rgba(200,132,58,0.35);
-    padding: 7px 16px;
-    transition: all 0.2s;
-    background: none;
-    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #c8843a; text-decoration: none;
+    border: 1px solid rgba(200,132,58,0.35); padding: 7px 16px;
+    transition: all 0.2s; background: none;
   }
-  .back-btn:hover {
-    background: rgba(200,132,58,0.1);
-    border-color: rgba(200,132,58,0.6);
-    color: #d4a85c;
-  }
-  .back-btn .arrow { font-size: 0.75rem; }
-
+  .back-btn:hover { background: rgba(200,132,58,0.1); border-color: rgba(200,132,58,0.6); color: #d4a85c; }
   .topbar-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.0rem;
-    font-weight: 300;
-    color: #f0e8d8;
-    letter-spacing: 0.06em;
-    text-align: center;
-    flex: 1;
-    padding: 0 12px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.0rem; font-weight: 300; color: #f0e8d8;
+    letter-spacing: 0.06em; text-align: center; flex: 1; padding: 0 12px;
   }
-
-  .topbar-lang {
-    font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.18em;
-    color: rgba(200,132,58,0.5);
-    text-transform: uppercase;
-    min-width: 80px;
-    text-align: right;
+  .topbar-right {
+    display: flex; align-items: center; gap: 16px; min-width: 160px; justify-content: flex-end;
   }
+  .page-info {
+    font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.14em;
+    color: rgba(200,132,58,0.5); text-transform: uppercase;
+  }
+  .view-btn {
+    font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(200,132,58,0.6); background: none;
+    border: 1px solid rgba(200,132,58,0.2); padding: 4px 10px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .view-btn.active, .view-btn:hover { color: #c8843a; border-color: rgba(200,132,58,0.5); }
 
-  /* ── PDF VIEWER ── */
-  .pdf-container {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
+  /* ── VIEWER ── */
+  .viewer {
+    flex: 1; overflow-y: auto; overflow-x: hidden;
     background: #1c1914;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 20px 16px; gap: 12px;
+    -webkit-user-select: none; user-select: none;
   }
+  /* hide scrollbar visually but keep scroll */
+  .viewer::-webkit-scrollbar { width: 6px; }
+  .viewer::-webkit-scrollbar-track { background: #0f0d0a; }
+  .viewer::-webkit-scrollbar-thumb { background: rgba(200,132,58,0.2); border-radius: 3px; }
 
-  /* Native PDF embed — works on desktop */
-  .pdf-embed {
-    width: 100%;
-    height: 100%;
-    border: none;
+  .spread {
+    display: flex; gap: 2px; justify-content: center;
+    width: 100%; max-width: 1200px;
+  }
+  .spread.single { justify-content: center; }
+
+  canvas.pdf-page {
     display: block;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    max-width: 100%;
   }
 
-  /* Mobile fallback — shown only on small screens */
-  .mobile-fallback {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 32px 24px;
-    text-align: center;
-    gap: 20px;
-  }
-  .mobile-fallback .icon {
-    font-size: 3rem;
-    opacity: 0.4;
-    color: #c8843a;
-    line-height: 1;
-  }
-  .mobile-fallback p {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: #cfc0a2;
-    line-height: 1.7;
-    max-width: 300px;
-  }
-  .mobile-fallback .open-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #0f0d0a;
-    background: #c8843a;
-    padding: 14px 28px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.2s;
-  }
-  .mobile-fallback .open-btn:hover { background: #d4a85c; }
-  .mobile-fallback .note {
-    font-family: 'Cinzel', serif;
-    font-size: 0.52rem;
-    letter-spacing: 0.14em;
-    color: rgba(200,132,58,0.4);
+  /* loading state */
+  .loader {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; height: 100%; gap: 16px;
+    color: rgba(200,132,58,0.5);
+    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em;
     text-transform: uppercase;
   }
-
-  /* prevent right-click save on the container */
-  .pdf-container { -webkit-user-select: none; user-select: none; }
-
-  /* overlay to block right-click directly on iframe */
-  .pdf-shield {
-    position: absolute; inset: 0; z-index: 2;
-    pointer-events: none; /* allows scrolling/clicking through */
+  .loader-ring {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid rgba(200,132,58,0.15);
+    border-top-color: #c8843a;
+    animation: spin 0.8s linear infinite;
   }
-    .pdf-embed { display: none; }
-    .mobile-fallback { display: flex; }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ── BOTTOM BAR ── */
   .bottombar {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 24px;
-    height: 44px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 44px;
     background: rgba(15,13,10,0.97);
     border-top: 1px solid rgba(200,132,58,0.1);
   }
-  .bottombar span {
-    font-family: 'Cinzel', serif;
-    font-size: 0.5rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(200,132,58,0.35);
+  .nav-btns { display: flex; gap: 8px; }
+  .nav-btn {
+    font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #c8843a; background: none;
+    border: 1px solid rgba(200,132,58,0.3); padding: 5px 14px; cursor: pointer;
+    transition: all 0.2s;
   }
-  .bottombar .dot { color: rgba(200,132,58,0.2); }
+  .nav-btn:hover:not(:disabled) { background: rgba(200,132,58,0.1); }
+  .nav-btn:disabled { opacity: 0.25; cursor: default; }
+  .spread-info {
+    font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.14em;
+    color: rgba(200,132,58,0.4); text-transform: uppercase;
+  }
   .buy-link {
-    font-family: 'Cinzel', serif;
-    font-size: 0.5rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #c8843a;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(200,132,58,0.3);
-    padding-bottom: 1px;
+    font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #c8843a; text-decoration: none;
+    border-bottom: 1px solid rgba(200,132,58,0.3); padding-bottom: 1px;
     transition: color 0.2s;
   }
   .buy-link:hover { color: #d4a85c; }
+
+  /* mobile: single page, larger nav */
+  @media (max-width: 700px) {
+    .view-btn { display: none; }
+    .topbar-title { font-size: 0.8rem; }
+  }
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <a class="back-btn" href="https://joedcosta.com">
-    <span class="arrow">←</span> joedcosta.com
-  </a>
-  <div class="topbar-title">Eine Kulinarische Reise</div>
-  <div class="topbar-lang">Vorschau · DE</div>
+  <a class="back-btn" href="https://joedcosta.com">← joedcosta.com</a>
+  <div class="topbar-title">Eine Kulinarische Reise — Vorschau</div>
+  <div class="topbar-right">
+    <span class="page-info" id="page-info">Laden...</span>
+    <button class="view-btn active" id="btn-double" onclick="setView(2)" title="Doppelseite">⊞ 2</button>
+    <button class="view-btn" id="btn-single" onclick="setView(1)" title="Einzelseite">⊟ 1</button>
+  </div>
 </div>
 
-<!-- PDF VIEWER -->
-<div class="pdf-container">
-
-  <!-- Desktop: native browser PDF embed — 2-page view, no download -->
-  <iframe
-    class="pdf-embed"
-    src="Preview.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH&pagemode=none"
-    title="Vorschau — Eine Kulinarische Reise"
-    allowfullscreen>
-  </iframe>
-
-  <!-- Mobile: open-in-viewer fallback -->
-  <div class="mobile-fallback">
-    <div class="icon">📖</div>
-    <p>Öffnen Sie die Vorschau als PDF — alle 23 Seiten, perfekt auf Ihrem Gerät.</p>
-    <a class="open-btn" href="Preview.pdf" target="_blank">
-      Vorschau öffnen ↗
-    </a>
-    <div class="note">Öffnet als PDF in Ihrem Browser</div>
+<!-- VIEWER -->
+<div class="viewer" id="viewer">
+  <div class="loader" id="loader">
+    <div class="loader-ring"></div>
+    <span>Vorschau wird geladen…</span>
   </div>
-
 </div>
 
 <!-- BOTTOM BAR -->
 <div class="bottombar">
-  <span>© 2026 J. D'Costa Andrade</span>
-  <span class="dot">·</span>
-  <span>1. Auflage · First Edition</span>
-  <span class="dot">·</span>
+  <div class="nav-btns">
+    <button class="nav-btn" id="btn-prev" onclick="prevSpread()" disabled>← Zurück</button>
+    <button class="nav-btn" id="btn-next" onclick="nextSpread()">Weiter →</button>
+  </div>
+  <span class="spread-info" id="spread-info"></span>
   <a class="buy-link" href="https://joedcosta.com/#buy">Jetzt bestellen</a>
 </div>
 
+<!-- PDF.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-  document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'p' || e.key === 'u')) {
-      e.preventDefault();
+// Block right-click and save shortcuts
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+  if ((e.ctrlKey||e.metaKey) && ['s','p','u','a'].includes(e.key)) e.preventDefault();
+});
+
+// ── PDF.js setup ──────────────────────────────────────────
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+var pdfDoc   = null;
+var pages    = [];      // rendered canvas cache
+var viewMode = 2;       // 1 = single, 2 = double
+var spreadIdx = 0;      // current spread index (0-based)
+var totalSpreads = 0;
+var viewer   = document.getElementById('viewer');
+var loader   = document.getElementById('loader');
+
+// ── Load PDF ─────────────────────────────────────────────
+pdfjsLib.getDocument('Preview.pdf').promise.then(function(pdf) {
+  pdfDoc = pdf;
+  loader.style.display = 'none';
+  buildSpreads();
+  renderSpread(0);
+}).catch(function(err) {
+  loader.innerHTML = '<span style="color:#c07060;">Fehler beim Laden der Vorschau.</span>';
+  console.error(err);
+});
+
+// ── Build spread list ────────────────────────────────────
+function buildSpreads() {
+  var n = pdfDoc.numPages;
+  totalSpreads = (viewMode === 1)
+    ? n
+    : Math.ceil(n / 2);
+  updateNav();
+}
+
+// ── Render a spread ──────────────────────────────────────
+function renderSpread(idx) {
+  spreadIdx = idx;
+  viewer.innerHTML = '';
+
+  var n = pdfDoc.numPages;
+  var spread = document.createElement('div');
+  spread.className = 'spread' + (viewMode === 1 ? ' single' : '');
+  viewer.appendChild(spread);
+
+  // which pages to show
+  var pageNums = [];
+  if (viewMode === 1) {
+    pageNums = [idx + 1];
+  } else {
+    // page 1 always alone (cover), then pairs
+    if (idx === 0) {
+      pageNums = [1];
+    } else {
+      var left  = idx * 2;       // e.g. spread 1 → pages 2,3
+      var right = idx * 2 + 1;
+      if (left  <= n) pageNums.push(left);
+      if (right <= n) pageNums.push(right);
     }
+  }
+
+  // compute scale to fit viewport
+  var viewerW = viewer.clientWidth - 32;
+  var scaleTarget = (viewMode === 2 && pageNums.length === 2)
+    ? (viewerW / 2 - 8)   // half width each
+    : viewerW;             // full width
+
+  Promise.all(pageNums.map(function(num) {
+    return pdfDoc.getPage(num);
+  })).then(function(pdfPages) {
+    // use first page to determine scale
+    pdfPages[0].getViewport({scale:1}).then
+      ? pdfPages[0].getViewport({scale:1})
+      : null;
+
+    var vp0 = pdfPages[0].getViewport({scale: 1});
+    var scale = Math.min(scaleTarget / vp0.width, 1.8);
+
+    // limit height to viewer height
+    var viewerH = viewer.clientHeight - 40;
+    var scaledH = vp0.height * scale;
+    if (scaledH > viewerH) scale = scale * (viewerH / scaledH);
+
+    pdfPages.forEach(function(page) {
+      var vp = page.getViewport({scale: scale});
+      var canvas = document.createElement('canvas');
+      canvas.className = 'pdf-page';
+      canvas.width  = vp.width;
+      canvas.height = vp.height;
+      spread.appendChild(canvas);
+
+      page.render({ canvasContext: canvas.getContext('2d'), viewport: vp });
+    });
   });
+
+  updateNav();
+}
+
+// ── Navigation ───────────────────────────────────────────
+function prevSpread() {
+  if (spreadIdx > 0) renderSpread(spreadIdx - 1);
+}
+function nextSpread() {
+  if (spreadIdx < totalSpreads - 1) renderSpread(spreadIdx + 1);
+}
+
+function updateNav() {
+  var n = pdfDoc ? pdfDoc.numPages : 0;
+  totalSpreads = (viewMode === 1) ? n : Math.ceil(n / 2);
+
+  document.getElementById('btn-prev').disabled = (spreadIdx === 0);
+  document.getElementById('btn-next').disabled = (spreadIdx >= totalSpreads - 1);
+
+  // page info
+  var pageNums = currentPageNums();
+  document.getElementById('page-info').textContent =
+    'S. ' + pageNums.join('–') + ' / ' + n;
+  document.getElementById('spread-info').textContent =
+    (spreadIdx + 1) + ' / ' + totalSpreads;
+}
+
+function currentPageNums() {
+  if (!pdfDoc) return [];
+  var n = pdfDoc.numPages;
+  if (viewMode === 1) return [spreadIdx + 1];
+  if (spreadIdx === 0) return [1];
+  var left = spreadIdx * 2, right = spreadIdx * 2 + 1;
+  return right <= n ? [left, right] : [left];
+}
+
+// ── View mode toggle ─────────────────────────────────────
+function setView(mode) {
+  viewMode = mode;
+  document.getElementById('btn-single').className = 'view-btn' + (mode===1?' active':'');
+  document.getElementById('btn-double').className = 'view-btn' + (mode===2?' active':'');
+  buildSpreads();
+  // stay on roughly same page
+  var page = currentPageNums()[0] || 1;
+  var newIdx = (mode === 1) ? page - 1 : (page <= 1 ? 0 : Math.ceil(page / 2));
+  renderSpread(Math.min(newIdx, totalSpreads - 1));
+}
+
+// re-render on resize
+window.addEventListener('resize', function() {
+  renderSpread(spreadIdx);
+});
 </script>
 </body>
 </html>

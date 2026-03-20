@@ -316,70 +316,114 @@
       gap: 0; align-items: stretch;
     }
 
-    /* hardcover book mockup */
+    /* hardcover standing book mockup */
     .preview-page-stack {
       position: relative; min-height: 360px;
       display: flex; align-items: center; justify-content: center;
-      padding: 32px 28px 32px 36px;
+      padding: 24px 16px 24px 40px;
+      perspective: 1200px;
     }
 
     .hardcover {
-      position: relative; width: 200px; height: 280px;
-      transform: perspective(900px) rotateY(-18deg);
+      position: relative;
+      width: 190px; height: 270px;
       transform-style: preserve-3d;
-      filter: drop-shadow(-12px 16px 40px rgba(0,0,0,0.75));
+      transform: rotateY(-30deg);
+      filter: drop-shadow(-16px 20px 48px rgba(0,0,0,0.8));
+      transition: transform 0.4s ease;
     }
+    .hardcover:hover { transform: rotateY(-20deg); }
 
-    /* front face — cover image */
+    /* front cover */
     .hardcover-front {
       position: absolute; inset: 0;
-      background: #1a0e05;
-      border-radius: 2px 4px 4px 2px;
       overflow: hidden;
+      border-radius: 0 3px 3px 0;
       backface-visibility: hidden;
     }
     .hardcover-front img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
+      object-fit: cover; object-position: top center;
       display: block;
     }
-    /* subtle gloss sheen */
+    /* gloss sheen on cover */
     .hardcover-front::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(120deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(0,0,0,0.15) 100%);
+      background: linear-gradient(
+        110deg,
+        rgba(255,255,255,0.12) 0%,
+        rgba(255,255,255,0.04) 30%,
+        transparent 60%,
+        rgba(0,0,0,0.18) 100%
+      );
       pointer-events: none;
     }
 
-    /* spine */
+    /* spine — thick, dark, with title */
     .hardcover-spine {
       position: absolute;
-      top: 0; bottom: 0; left: -22px;
-      width: 22px;
-      background: linear-gradient(to right, #0a0603, #1a0e05 60%, #120905);
-      border-radius: 2px 0 0 2px;
-      transform: rotateY(-90deg);
+      top: 0; bottom: 0;
+      left: -42px; width: 42px;
+      background: linear-gradient(to right,
+        #0a0703 0%, #1a1108 25%, #221508 60%, #0f0a04 100%);
       transform-origin: right center;
+      transform: rotateY(-90deg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
     }
-    .hardcover-spine::after {
+    /* subtle spine highlight */
+    .hardcover-spine::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.06) 0%, transparent 40%);
+      background: linear-gradient(to right,
+        rgba(255,255,255,0.0) 0%,
+        rgba(255,255,255,0.06) 40%,
+        rgba(255,255,255,0.0) 100%);
+    }
+    .spine-title {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(200,132,58,0.7);
+      white-space: nowrap;
+      position: relative; z-index: 1;
     }
 
-    /* pages block (right edge) */
+    /* top edge */
+    .hardcover-top {
+      position: absolute;
+      bottom: 100%; left: 0; right: 0;
+      height: 16px;
+      background: linear-gradient(to bottom,
+        #1a1108, #2a1e0c);
+      transform-origin: bottom center;
+      transform: rotateX(90deg);
+    }
+
+    /* pages — right edge showing paper */
     .hardcover-pages {
       position: absolute;
-      top: 3px; bottom: 3px; right: -10px;
-      width: 10px;
+      top: 4px; bottom: 4px; right: -14px; width: 14px;
       background: repeating-linear-gradient(
         to bottom,
-        #f0e8d8 0px, #e8dfc8 1px,
-        #f0e8d8 2px
+        #f5edd8 0px, #ede4cc 1.5px,
+        #f5edd8 3px
       );
       border-radius: 0 2px 2px 0;
-      transform: rotateY(90deg);
       transform-origin: left center;
+      transform: rotateY(90deg);
+    }
+    /* page shadow */
+    .hardcover-pages::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to right, rgba(0,0,0,0.25), transparent);
     }
 
     .preview-card-text {
@@ -767,7 +811,10 @@
     <div class="preview-card-inner">
       <div class="preview-page-stack">
         <div class="hardcover">
-          <div class="hardcover-spine"></div>
+          <div class="hardcover-top"></div>
+          <div class="hardcover-spine">
+            <span class="spine-title">Eine Kulinarische Reise · J. D'Costa Andrade</span>
+          </div>
           <div class="hardcover-front">
             <img src="https://res.cloudinary.com/djzg1ulup/image/upload/v1771739932/Front__Cover_jgrhgf.jpg" alt="Cover"/>
           </div>
