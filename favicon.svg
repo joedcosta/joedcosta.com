@@ -3,7 +3,7 @@
     <clipPath id="c"><rect width="32" height="32" rx="2"/></clipPath>
   </defs>
   <image clip-path="url(#c)"
-    href="Cover.png"
+    href="images/Cover.png"
     x="0" y="0" width="32" height="32"
     preserveAspectRatio="xMidYMid slice"/>
   <rect x="0.5" y="0.5" width="31" height="31" rx="1.5" fill="none" stroke="#c8843a" stroke-width="1"/>
