@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#ffffff"/>
-  <rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="#c8843a" stroke-width="1"/>
-  <text x="16" y="14" font-family="Georgia,serif" font-size="6.5" fill="#c8843a" text-anchor="middle" letter-spacing="0.8">A CULINARY</text>
-  <rect x="5" y="16.5" width="22" height="0.7" fill="#c8843a" opacity="0.5"/>
-  <text x="16" y="24" font-family="Georgia,serif" font-size="6.5" fill="#c8843a" text-anchor="middle" letter-spacing="0.8">JOURNEY</text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <clipPath id="c"><rect width="32" height="32" rx="2"/></clipPath>
+  </defs>
+  <!-- Book cover image fills the entire favicon -->
+  <image clip-path="url(#c)"
+    href="https://res.cloudinary.com/djzg1ulup/image/upload/v1771739932/Front__Cover_jgrhgf.jpg"
+    x="0" y="0" width="32" height="32"
+    preserveAspectRatio="xMidYMid slice"/>
+  <!-- thin gold border -->
+  <rect x="0.5" y="0.5" width="31" height="31" rx="1.5" fill="none" stroke="#c8843a" stroke-width="1"/>
 </svg>
