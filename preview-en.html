@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vorschau — Eine Kulinarische Reise</title>
+<title>Preview — A Culinary Journey</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-<meta property="og:title" content="Vorschau — Eine Kulinarische Reise"/>
-<meta property="og:description" content="23 Seiten kostenlos lesen. Cover, Inhaltsverzeichnis, Einführung und zwei vollständige Kapitel."/>
+<meta property="og:title" content="Preview — A Culinary Journey"/>
+<meta property="og:description" content="23 pages free to read. Cover, table of contents, introduction and two full chapters."/>
 <meta property="og:image" content="https://joedcosta.com/og-image.png"/>
-<meta property="og:url" content="https://joedcosta.com/preview-de.html"/>
+<meta property="og:url" content="https://joedcosta.com/preview-en.html"/>
 <meta property="og:type" content="website"/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet"/>
 <style>
@@ -137,34 +137,34 @@
 
 <div class="topbar">
   <a class="back-btn" href="https://joedcosta.com">&#8592; joedcosta.com</a>
-  <div class="topbar-title">Eine Kulinarische Reise — Vorschau</div>
+  <div class="topbar-title">A Culinary Journey — Preview</div>
   <div class="topbar-right">
-    <span class="page-info" id="page-info">Laden…</span>
-    <button class="view-btn active" id="btn-double" onclick="setView(2)">&#8859; Doppel</button>
-    <button class="view-btn" id="btn-single" onclick="setView(1)">&#8863; Einzel</button>
+    <span class="page-info" id="page-info">Loading…</span>
+    <button class="view-btn active" id="btn-double" onclick="setView(2)">&#8859; Doppel#8859; Double</button>
+    <button class="view-btn" id="btn-single" onclick="setView(1)">&#8863; Einzel#8863; Single</button>
   </div>
 </div>
 
 <div class="viewer" id="viewer">
   <div class="loader" id="loader">
     <div class="loader-ring"></div>
-    <span>Vorschau wird geladen…</span>
+    <span>Loading preview…</span>
   </div>
 </div>
 
 <div class="mobile-gate">
-  <p>Öffnen Sie die Vorschau direkt in Ihrem Browser. Alle 23 Seiten, optimal auf Ihrem Gerät.</p>
-  <a class="open-btn" href="Preview-DE.pdf">Vorschau öffnen &#8599;</a>
-  <div class="note">Öffnet als PDF in Safari / Chrome</div>
+  <p>Open the preview directly in your browser. All 23 pages, perfectly on your device.</p>
+  <a class="open-btn" href="Preview-EN.pdf">Open Preview &#8599;</a>
+  <div class="note">Opens as PDF in Safari / Chrome</div>
 </div>
 
 <div class="bottombar">
   <div class="nav-btns">
-    <button class="nav-btn" id="btn-prev" onclick="prevSpread()" disabled>&#8592; Zurück</button>
-    <button class="nav-btn" id="btn-next" onclick="nextSpread()">Weiter &#8594;</button>
+    <button class="nav-btn" id="btn-prev" onclick="prevSpread()" disabled>&#8592; Zurück#8592; Back</button>
+    <button class="nav-btn" id="btn-next" onclick="nextSpread()">Next Weiter &#8594;#8594;</button>
   </div>
   <span class="spread-counter" id="spread-info"></span>
-  <a class="buy-link" href="https://joedcosta.com/#buy">Jetzt bestellen</a>
+  <a class="buy-link" href="https://joedcosta.com/#buy">Order Now</a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -185,7 +185,7 @@ var totalSpreads = 0;
 var viewer = document.getElementById('viewer');
 var loader = document.getElementById('loader');
 
-pdfjsLib.getDocument('Preview-DE.pdf').promise.then(function(pdf){
+pdfjsLib.getDocument('Preview-EN.pdf').promise.then(function(pdf){
   pdfDoc = pdf;
   loader.style.display = 'none';
   calcTotalSpreads();
@@ -257,7 +257,7 @@ function updateNav(){
   document.getElementById('btn-prev').disabled = (spreadIdx===0);
   document.getElementById('btn-next').disabled = (spreadIdx>=totalSpreads-1);
   var pages = spreadToPageNums(spreadIdx);
-  var label = pages.length ? 'S. '+pages.join('–')+' / '+n : '';
+  var label = pages.length ? 'P. '+pages.join('–')+' / '+n : '';
   document.getElementById('page-info').textContent = label;
   document.getElementById('spread-info').textContent = label;
 }
