@@ -491,95 +491,36 @@
       .preview-card-text { padding: 28px 20px; border-left: none; border-top: 1px solid rgba(200,132,58,0.12); }
     }
 
-    /* ── EDITIONS ── */
-    .editions {
-      background: var(--ink-mid); padding: 100px 120px;
+    /* ── LANGUAGES (now first in shop flow) ── */
+    .languages {
+      background: var(--ink); padding: 100px 120px;
       border-top: 1px solid rgba(200,132,58,0.1);
+      text-align: center;
     }
-    .editions-header { text-align: center; margin-bottom: 60px; }
-    .editions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .edition-card {
-      background: var(--ink-soft); padding: 44px 36px;
-      border: 1px solid rgba(200,132,58,0.08);
-      transition: border-color 0.3s, transform 0.3s; position: relative;
-    }
-    .edition-card:hover { border-color: rgba(200,132,58,0.35); transform: translateY(-4px); z-index: 2; }
-    .edition-icon { width: 44px; height: 44px; margin-bottom: 22px; color: var(--saffron); }
-    .edition-type {
-      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 8px;
-    }
-    .edition-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
-      color: var(--parchment); margin-bottom: 12px; font-style: italic;
-    }
-    .edition-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 26px; }
-    .platform-arrow { color: var(--saffron); font-size: 0.8rem; }
-    .avail-badge {
-      position: absolute; top: 16px; right: 16px;
-      font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.14em;
-      text-transform: uppercase; padding: 3px 8px;
-    }
-    .avail-badge.now { background: rgba(200,132,58,0.15); color: var(--saffron); border: 1px solid rgba(200,132,58,0.3); }
-    .avail-badge.pre  { background: rgba(139,58,42,0.15); color: #c07060; border: 1px solid rgba(139,58,42,0.35); }
-
-    /* ── BUY DIRECT ── */
-    .buy-direct {
-      background: linear-gradient(135deg, #1e1508 0%, #2a1c0c 50%, #181208 100%);
-      padding: 80px 120px; text-align: center;
-      border-top: 1px solid rgba(200,132,58,0.2);
-      border-bottom: 1px solid rgba(200,132,58,0.2);
-      position: relative; overflow: hidden;
-    }
-    .buy-direct::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(200,132,58,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .buy-direct h2 {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.2vw, 2.8rem);
-      font-style: italic; font-weight: 300; color: var(--parchment);
-      margin-bottom: 12px; position: relative;
-    }
-    .buy-direct > p { font-size: 0.95rem; color: var(--warm-sand); margin-bottom: 40px; position: relative; }
-    .buy-format-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px; max-width: 900px; margin: 0 auto; position: relative;
-    }
-    .buy-format-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(200,132,58,0.15);
-      padding: 32px 24px; transition: border-color 0.3s, background 0.3s; position: relative;
-    }
-    .buy-format-card:hover { border-color: rgba(200,132,58,0.4); background: rgba(200,132,58,0.04); }
-    .buy-format-card h3 {
-      font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--gold-light); margin-bottom: 8px;
-    }
-    .buy-format-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
-    .preorder-ribbon {
-      position: absolute; top: 0; left: 0; right: 0;
-      background: rgba(139,58,42,0.75); padding: 5px;
-      font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--parchment); text-align: center;
-    }
-    .buy-format-card.has-ribbon { padding-top: 44px; }
-
-    /* ── LANGUAGES ── */
-    .languages { background: var(--ink); padding: 100px 120px; text-align: center; }
     .languages-header { margin-bottom: 52px; }
     .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
     .lang-card {
       background: var(--ink-mid); padding: 44px 28px;
-      border: 1px solid rgba(200,132,58,0.08); transition: all 0.3s;
+      border: 1px solid rgba(200,132,58,0.08);
+      cursor: pointer; transition: all 0.3s;
       position: relative; overflow: hidden;
     }
     .lang-card::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
       background: var(--saffron); transform: scaleX(0); transition: transform 0.3s;
     }
-    .lang-card:hover::after { transform: scaleX(1); }
-    .lang-card:hover { border-color: rgba(200,132,58,0.22); }
+    .lang-card:hover::after, .lang-card.active-lang::after { transform: scaleX(1); }
+    .lang-card:hover, .lang-card.active-lang {
+      border-color: rgba(200,132,58,0.35);
+      background: rgba(200,132,58,0.04);
+    }
+    .lang-card .lang-cta {
+      margin-top: 18px; font-family: 'Cinzel', serif; font-size: 0.52rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--saffron); opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .lang-card:hover .lang-cta { opacity: 1; }
     .lang-glyph {
       font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-style: italic;
       font-weight: 600; color: rgba(200,132,58,0.2); margin-bottom: 14px; line-height: 1;
@@ -597,7 +538,79 @@
       letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; display: inline-block;
     }
     .lang-avail.now { color: var(--saffron); border: 1px solid rgba(200,132,58,0.3); }
-    .lang-avail.pre  { color: #c07060; border: 1px solid rgba(139,58,42,0.35); }
+    .lang-avail.pre { color: #c07060; border: 1px solid rgba(139,58,42,0.35); }
+
+    /* ── SHOP: merged editions + buy ── */
+    .shop {
+      background: linear-gradient(160deg, #1a1208 0%, #221608 50%, #161008 100%);
+      padding: 100px 120px;
+      border-top: 1px solid rgba(200,132,58,0.15);
+      position: relative; overflow: hidden;
+    }
+    .shop::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,132,58,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .shop-header { text-align: center; margin-bottom: 64px; position: relative; }
+    .shop-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; max-width: 1060px; margin: 0 auto; position: relative;
+    }
+    .shop-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(200,132,58,0.12);
+      padding: 48px 36px 40px;
+      display: flex; flex-direction: column;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .shop-card:hover {
+      border-color: rgba(200,132,58,0.42);
+      background: rgba(200,132,58,0.04);
+      transform: translateY(-4px); z-index: 2;
+    }
+    .shop-card.has-ribbon { padding-top: 60px; }
+    .shop-ribbon {
+      position: absolute; top: 0; left: 0; right: 0;
+      background: rgba(139,58,42,0.8); padding: 6px;
+      font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--parchment); text-align: center;
+    }
+    .shop-badge {
+      font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 3px 9px; display: inline-block;
+      margin-bottom: 20px; align-self: flex-start;
+    }
+    .shop-badge.now { background: rgba(200,132,58,0.15); color: var(--saffron); border: 1px solid rgba(200,132,58,0.3); }
+    .shop-badge.pre { background: rgba(139,58,42,0.15); color: #c07060; border: 1px solid rgba(139,58,42,0.35); }
+    .shop-icon { width: 44px; height: 44px; margin-bottom: 22px; color: var(--saffron); flex-shrink: 0; }
+    .shop-type {
+      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--saffron); margin-bottom: 6px;
+    }
+    .shop-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 300;
+      font-style: italic; color: var(--parchment); margin-bottom: 14px; line-height: 1.15;
+    }
+    .shop-desc {
+      font-size: 0.88rem; line-height: 1.75; color: var(--text-muted);
+      margin-bottom: 32px; flex: 1;
+    }
+    .shop-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600; cursor: pointer;
+      padding: 14px 28px; text-decoration: none; transition: all 0.25s;
+      border: none; align-self: stretch; text-align: center;
+    }
+    .shop-btn.primary { background: var(--saffron); color: var(--ink); }
+    .shop-btn.primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .shop-btn.preorder {
+      background: transparent; color: var(--warm-sand);
+      border: 1px solid rgba(200,132,58,0.35);
+    }
+    .shop-btn.preorder:hover { border-color: var(--gold-light); color: var(--gold-light); background: rgba(200,132,58,0.06); }
 
     /* ── AUTHOR ── */
     .author {
@@ -674,9 +687,8 @@
       .hero-text { padding: 56px 48px; }
       .hero-text::before { display: none; }
       .about { grid-template-columns: 1fr; padding: 80px 48px; gap: 48px; }
-      .preview, .editions, .languages, .buy-direct { padding: 80px 48px; }
-      .editions-grid { grid-template-columns: 1fr; }
-      .buy-format-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .preview, .shop, .languages, .buy-direct { padding: 80px 48px; }
+      .shop-grid { grid-template-columns: 1fr; }
       .lang-grid { grid-template-columns: 1fr 1fr; }
       .author { grid-template-columns: 1fr; padding: 80px 48px; gap: 36px; }
       .author-portrait-wrap { width: 200px; }
@@ -692,7 +704,7 @@
       .hamburger { display: flex; }             /* show burger button */
       .mobile-drawer { display: block; }        /* allow drawer to animate in */
       .hero-text { padding: 44px 20px; }
-      .about,.preview,.editions,.languages,.buy-direct,.author { padding: 60px 20px; }
+      .about,.preview,.shop,.languages,.author { padding: 60px 20px; }
       .quote-band { padding: 48px 20px; }
       footer { padding: 48px 20px 28px; }
       .hero-title-l1 { white-space: normal; }
@@ -733,10 +745,9 @@
   <ul class="nav-links">
     <li><a href="#about"     id="nav-about"     onclick="navScrollTo('about');     return false;">Das Buch</a></li>
     <li><a href="#preview"   id="nav-preview"   onclick="navScrollTo('preview');   return false;">Vorschau</a></li>
-    <li><a href="#editions"  id="nav-editions"  onclick="navScrollTo('editions');  return false;">Ausgaben</a></li>
-    <li><a href="#languages" id="nav-languages" onclick="navScrollTo('languages'); return false;">Sprachen</a></li>
-    <li><a href="#author"    id="nav-author"    onclick="navScrollTo('author');    return false;">Autor</a></li>
+    <li><a href="#languages" id="nav-editions"  onclick="navScrollTo('languages'); return false;">Ausgaben</a></li>
     <li><a href="#buy"       id="nav-buy"       onclick="navScrollTo('buy');       return false;">Bestellen</a></li>
+    <li><a href="#author"    id="nav-author"    onclick="navScrollTo('author');    return false;">Autor</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:10px;">
     <div class="lang-switcher">
@@ -757,10 +768,9 @@
   <ul>
     <li><a href="#about"     id="mob-about"     onclick="navScrollTo('about');     return false;">Das Buch</a></li>
     <li><a href="#preview"   id="mob-preview"   onclick="navScrollTo('preview');   return false;">Vorschau</a></li>
-    <li><a href="#editions"  id="mob-editions"  onclick="navScrollTo('editions');  return false;">Ausgaben</a></li>
-    <li><a href="#languages" id="mob-languages" onclick="navScrollTo('languages'); return false;">Sprachen</a></li>
-    <li><a href="#author"    id="mob-author"    onclick="navScrollTo('author');    return false;">Autor</a></li>
+    <li><a href="#languages" id="mob-editions"  onclick="navScrollTo('languages'); return false;">Ausgaben</a></li>
     <li><a href="#buy"       id="mob-buy"       onclick="navScrollTo('buy');       return false;">Bestellen</a></li>
+    <li><a href="#author"    id="mob-author"    onclick="navScrollTo('author');    return false;">Autor</a></li>
   </ul>
 </div>
 <div class="drawer-overlay" id="drawer-overlay"></div>
@@ -862,121 +872,106 @@
   </div>
 </section>
 
-<!-- EDITIONS -->
-<section class="editions reveal" id="editions">
-  <div class="editions-header">
-    <span class="section-kicker" id="ed-kicker">Verfügbar als</span>
-    <h2 class="section-heading" id="ed-heading">Wählen Sie Ihre <em>Ausgabe</em></h2>
-  </div>
-  <div class="editions-grid">
-
-    <!-- E-BOOK -->
-    <div class="edition-card">
-      <span class="avail-badge now" id="eb-badge">Jetzt verfügbar</span>
-      <svg class="edition-icon" viewBox="0 0 48 48" fill="none">
-        <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="16" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="1.2"/>
-        <line x1="16" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="1.2"/>
-        <line x1="16" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="1.2"/>
-      </svg>
-      <div class="edition-type" id="ed-ebook-type">E-Book</div>
-      <div class="edition-title" id="ed-ebook-title">Digitale Ausgabe</div>
-      <p class="edition-desc" id="ed-ebook-desc">Sofortiger Zugriff auf allen Geräten. EPUB-Format, kompatibel mit allen Readern.</p>
-    </div>
-
-    <!-- PRINT -->
-    <div class="edition-card">
-      <span class="avail-badge pre" id="pr-badge">Pre-Order · Mai 2026</span>
-      <svg class="edition-icon" viewBox="0 0 48 48" fill="none">
-        <rect x="10" y="4" width="26" height="40" rx="1" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="14" y="4" width="3" height="40" fill="currentColor" opacity="0.15"/>
-        <line x1="18" y1="14" x2="30" y2="14" stroke="currentColor" stroke-width="1"/>
-        <line x1="18" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="1"/>
-        <line x1="18" y1="26" x2="26" y2="26" stroke="currentColor" stroke-width="1"/>
-      </svg>
-      <div class="edition-type" id="ed-print-type">Gedruckt</div>
-      <div class="edition-title" id="ed-print-title">Druckausgabe</div>
-      <p class="edition-desc" id="ed-print-desc">Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
-    </div>
-
-    <!-- AUDIO -->
-    <div class="edition-card">
-      <span class="avail-badge pre" id="au-badge">Pre-Order · Mai 2026</span>
-      <svg class="edition-icon" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5"/>
-        <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="1"/>
-        <line x1="24" y1="19" x2="24" y2="8" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M14 30 Q10 24 14 18" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M34 18 Q38 24 34 30" stroke="currentColor" stroke-width="1.2"/>
-      </svg>
-      <div class="edition-type" id="ed-audio-type">Hörbuch</div>
-      <div class="edition-title" id="ed-audio-title">Audio-Ausgabe</div>
-      <p class="edition-desc" id="ed-audio-desc">Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- BUY DIRECT -->
-<div class="buy-direct reveal" id="buy">
-  <h2 id="buy-heading">Direkt hier bestellen</h2>
-  <p id="buy-desc">Alle Formate übersichtlich an einem Ort.</p>
-  <div class="buy-format-grid">
-
-    <div class="buy-format-card">
-      <h3 id="buy-ebook-h">E-Book</h3>
-      <p id="buy-ebook-p">Sofort auf allen Geräten verfügbar.</p>
-      <a id="buy-btn-ebook" class="btn-primary" target="_blank">Jetzt kaufen</a>
-    </div>
-
-    <div class="buy-format-card has-ribbon">
-      <div class="preorder-ribbon" id="buy-print-ribbon">Pre-Order · Mai 2026 · 10% Rabatt</div>
-      <h3 id="buy-print-h">Druckausgabe</h3>
-      <p id="buy-print-p">Erscheint Mai 2026. Jetzt vorbestellen und 10% sparen.</p>
-      <a id="buy-btn-print" class="btn-preorder" target="_blank">Vorbestellen</a>
-    </div>
-
-    <div class="buy-format-card has-ribbon">
-      <div class="preorder-ribbon" id="buy-ribbon">Pre-Order · Mai 2026 · 10% Rabatt</div>
-      <h3 id="buy-audio-h">Hörbuch</h3>
-      <p id="buy-audio-p">Erscheint Mai 2026. Jetzt vorbestellen und 10% sparen.</p>
-      <a id="buy-btn-audio" class="btn-preorder" target="_blank">Vorbestellen</a>
-    </div>
-
-  </div>
-</div>
-
-<!-- LANGUAGES -->
+<!-- STEP 1: LANGUAGES -->
 <section class="languages reveal" id="languages">
   <div class="languages-header">
     <span class="section-kicker" id="lang-kicker">Erhältlich in</span>
     <h2 class="section-heading" id="lang-heading">Vier <em>Sprachen</em></h2>
   </div>
   <div class="lang-grid">
-    <div class="lang-card">
+
+    <div class="lang-card" onclick="selectLang('de')" role="button" tabindex="0" aria-label="Deutsch">
       <div class="lang-glyph">DE</div>
       <div class="lang-name">Deutsch</div>
       <div class="lang-title">Eine Kulinarische Reise<br><small style="font-size:.85em;color:var(--text-muted)">Geschichten &amp; Erzählungen</small></div>
       <span class="lang-avail now" id="lang-avail-de">Jetzt verfügbar</span>
+      <div class="lang-cta" id="lang-cta-de">Auswählen ↓</div>
     </div>
-    <div class="lang-card">
+
+    <div class="lang-card" onclick="selectLang('en')" role="button" tabindex="0" aria-label="English">
       <div class="lang-glyph">EN</div>
       <div class="lang-name">English</div>
       <div class="lang-title">A Culinary Journey<br><small style="font-size:.85em;color:var(--text-muted)">Stories &amp; Tales</small></div>
       <span class="lang-avail pre" id="lang-avail-en">Pre-Order · May 2026</span>
+      <div class="lang-cta" id="lang-cta-en">Select ↓</div>
     </div>
-    <div class="lang-card">
+
+    <div class="lang-card" onclick="selectLang('es')" role="button" tabindex="0" aria-label="Español">
       <div class="lang-glyph">ES</div>
       <div class="lang-name">Español</div>
       <div class="lang-title">Un Viaje Culinario<br><small style="font-size:.85em;color:var(--text-muted)">Historias y Relatos</small></div>
       <span class="lang-avail pre" id="lang-avail-es">Pre-Order · Mayo 2026</span>
+      <div class="lang-cta" id="lang-cta-es">Seleccionar ↓</div>
     </div>
-    <div class="lang-card">
+
+    <div class="lang-card" onclick="selectLang('pt')" role="button" tabindex="0" aria-label="Português">
       <div class="lang-glyph">PT</div>
       <div class="lang-name">Português</div>
       <div class="lang-title">Uma Jornada Culinária<br><small style="font-size:.85em;color:var(--text-muted)">Histórias e Narrativas</small></div>
       <span class="lang-avail pre" id="lang-avail-pt">Pré-encomenda · Maio 2026</span>
+      <div class="lang-cta" id="lang-cta-pt">Selecionar ↓</div>
     </div>
+
+  </div>
+</section>
+
+<!-- STEP 2+3: UNIFIED SHOP (editions + buy) -->
+<section class="shop reveal" id="buy">
+  <div class="shop-header">
+    <span class="section-kicker" id="ed-kicker">Verfügbar als</span>
+    <h2 class="section-heading" id="ed-heading">Wählen Sie Ihre <em>Ausgabe</em></h2>
+  </div>
+  <div class="shop-grid">
+
+    <!-- E-BOOK -->
+    <div class="shop-card">
+      <span class="shop-badge now" id="eb-badge">Jetzt verfügbar</span>
+      <svg class="shop-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="16" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="16" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="16" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <div class="shop-type" id="ed-ebook-type">E-Book</div>
+      <div class="shop-title" id="ed-ebook-title">Digitale Ausgabe</div>
+      <p class="shop-desc" id="ed-ebook-desc">Sofortiger Zugriff auf allen Geräten. EPUB-Format, kompatibel mit allen Readern.</p>
+      <a id="buy-btn-ebook" class="shop-btn primary" target="_blank">Jetzt kaufen</a>
+    </div>
+
+    <!-- PRINT -->
+    <div class="shop-card has-ribbon">
+      <div class="shop-ribbon" id="buy-print-ribbon">Pre-Order · Mai 2026 · 10% Rabatt</div>
+      <span class="shop-badge pre" id="pr-badge">Pre-Order · Mai 2026</span>
+      <svg class="shop-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="10" y="4" width="26" height="40" rx="1" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="14" y="4" width="3" height="40" fill="currentColor" opacity="0.15"/>
+        <line x1="18" y1="14" x2="30" y2="14" stroke="currentColor" stroke-width="1"/>
+        <line x1="18" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="1"/>
+        <line x1="18" y1="26" x2="26" y2="26" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <div class="shop-type" id="ed-print-type">Gedruckt</div>
+      <div class="shop-title" id="ed-print-title">Druckausgabe</div>
+      <p class="shop-desc" id="ed-print-desc">Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
+      <a id="buy-btn-print" class="shop-btn preorder" target="_blank">Vorbestellen</a>
+    </div>
+
+    <!-- AUDIO -->
+    <div class="shop-card has-ribbon">
+      <div class="shop-ribbon" id="buy-ribbon">Pre-Order · Mai 2026 · 10% Rabatt</div>
+      <span class="shop-badge pre" id="au-badge">Pre-Order · Mai 2026</span>
+      <svg class="shop-icon" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="1"/>
+        <line x1="24" y1="19" x2="24" y2="8" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M14 30 Q10 24 14 18" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M34 18 Q38 24 34 30" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <div class="shop-type" id="ed-audio-type">Hörbuch</div>
+      <div class="shop-title" id="ed-audio-title">Audio-Ausgabe</div>
+      <p class="shop-desc" id="ed-audio-desc">Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
+      <a id="buy-btn-audio" class="shop-btn preorder" target="_blank">Vorbestellen</a>
+    </div>
+
   </div>
 </section>
 
@@ -1098,7 +1093,30 @@ function navScrollTo(id) {
 })();
 
 // ============================================================
-// SCROLL REVEAL
+// SELECT LANGUAGE — switches UI + scrolls to shop
+// ============================================================
+function selectLang(lang) {
+  setLang(lang);
+  // highlight active lang card
+  document.querySelectorAll('.lang-card').forEach(function(c) {
+    c.classList.remove('active-lang');
+  });
+  var cards = document.querySelectorAll('.lang-card');
+  var idx = ['de','en','es','pt'].indexOf(lang);
+  if (idx >= 0 && cards[idx]) cards[idx].classList.add('active-lang');
+  // smooth scroll to shop section
+  setTimeout(function() { navScrollTo('buy'); }, 80);
+}
+
+// keyboard accessibility for lang cards
+document.querySelectorAll('.lang-card').forEach(function(card) {
+  card.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.click();
+    }
+  });
+});
 // ============================================================
 var revObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
@@ -1113,10 +1131,8 @@ document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(function(el) 
 var T = {
   de: {
     'nav-title': 'Eine Kulinarische Reise',
-    'nav-about': 'Das Buch', 'nav-preview': 'Vorschau', 'nav-editions': 'Ausgaben',
-    'nav-languages': 'Sprachen', 'nav-author': 'Autor', 'nav-buy': 'Bestellen',
-    'mob-about': 'Das Buch', 'mob-preview': 'Vorschau', 'mob-editions': 'Ausgaben',
-    'mob-languages': 'Sprachen', 'mob-author': 'Autor', 'mob-buy': 'Bestellen',
+    'nav-about': 'Das Buch', 'nav-preview': 'Vorschau', 'nav-editions': 'Ausgaben', 'nav-buy': 'Bestellen', 'nav-author': 'Autor',
+    'mob-about': 'Das Buch', 'mob-preview': 'Vorschau', 'mob-editions': 'Ausgaben', 'mob-buy': 'Bestellen', 'mob-author': 'Autor',
     'hero-eyebrow': 'Eine Kulinarische Reise · 1. Auflage · First Edition · 2026',
     'hero-l1': 'Eine <em>Kulinarische Reise</em>',
     'hero-l2': 'Geschichten &amp; Erzählungen',
@@ -1152,6 +1168,7 @@ var T = {
     'lang-avail-en': 'Pre-Order · Mai 2026',
     'lang-avail-es': 'Pre-Order · Mai 2026',
     'lang-avail-pt': 'Pre-Order · Mai 2026',
+    'lang-cta-de': 'Auswählen ↓', 'lang-cta-en': 'Auswählen ↓', 'lang-cta-es': 'Auswählen ↓', 'lang-cta-pt': 'Auswählen ↓',
     'btn-order': 'Jetzt bestellen',
     'btn-preview': 'Vorschau lesen',
     'auth-kicker': 'Über den Autor', 'auth-location': 'Barcelona, Spanien',
@@ -1160,10 +1177,8 @@ var T = {
   },
   en: {
     'nav-title': 'A Culinary Journey',
-    'nav-about': 'The Book', 'nav-preview': 'Preview', 'nav-editions': 'Editions',
-    'nav-languages': 'Languages', 'nav-author': 'Author', 'nav-buy': 'Order',
-    'mob-about': 'The Book', 'mob-preview': 'Preview', 'mob-editions': 'Editions',
-    'mob-languages': 'Languages', 'mob-author': 'Author', 'mob-buy': 'Order',
+    'nav-about': 'The Book', 'nav-preview': 'Preview', 'nav-editions': 'Editions', 'nav-buy': 'Order', 'nav-author': 'Author',
+    'mob-about': 'The Book', 'mob-preview': 'Preview', 'mob-editions': 'Editions', 'mob-buy': 'Order', 'mob-author': 'Author',
     'hero-eyebrow': 'A Culinary Journey · 1st Edition · Translation · 2026',
     'hero-l1': 'A <em>Culinary Journey</em>',
     'hero-l2': 'Stories &amp; Tales',
@@ -1199,6 +1214,7 @@ var T = {
     'lang-avail-en': 'Pre-Order · May 2026',
     'lang-avail-es': 'Pre-Order · May 2026',
     'lang-avail-pt': 'Pre-Order · May 2026',
+    'lang-cta-de': 'Select ↓', 'lang-cta-en': 'Select ↓', 'lang-cta-es': 'Select ↓', 'lang-cta-pt': 'Select ↓',
     'btn-order': 'Order Now',
     'btn-preview': 'Read Preview',
     'auth-kicker': 'About the Author', 'auth-location': 'Barcelona, Spain',
@@ -1207,10 +1223,8 @@ var T = {
   },
   es: {
     'nav-title': 'Un Viaje Culinario',
-    'nav-about': 'El Libro', 'nav-preview': 'Vista Previa', 'nav-editions': 'Ediciones',
-    'nav-languages': 'Idiomas', 'nav-author': 'Autor', 'nav-buy': 'Pedir',
-    'mob-about': 'El Libro', 'mob-preview': 'Vista Previa', 'mob-editions': 'Ediciones',
-    'mob-languages': 'Idiomas', 'mob-author': 'Autor', 'mob-buy': 'Pedir',
+    'nav-about': 'El Libro', 'nav-preview': 'Vista Previa', 'nav-editions': 'Ediciones', 'nav-buy': 'Pedir', 'nav-author': 'Autor',
+    'mob-about': 'El Libro', 'mob-preview': 'Vista Previa', 'mob-editions': 'Ediciones', 'mob-buy': 'Pedir', 'mob-author': 'Autor',
     'hero-eyebrow': 'Un Viaje Culinario · 1ª Edición · Traducción · 2026',
     'hero-l1': 'Un <em>Viaje Culinario</em>',
     'hero-l2': 'Historias y Relatos',
@@ -1246,6 +1260,7 @@ var T = {
     'lang-avail-en': 'Pre-Orden · Mayo 2026',
     'lang-avail-es': 'Pre-Orden · Mayo 2026',
     'lang-avail-pt': 'Pre-Orden · Mayo 2026',
+    'lang-cta-de': 'Seleccionar ↓', 'lang-cta-en': 'Seleccionar ↓', 'lang-cta-es': 'Seleccionar ↓', 'lang-cta-pt': 'Seleccionar ↓',
     'btn-order': 'Pedir ahora',
     'btn-preview': 'Leer Vista Previa',
     'auth-kicker': 'Sobre el Autor', 'auth-location': 'Barcelona, España',
@@ -1254,10 +1269,8 @@ var T = {
   },
   pt: {
     'nav-title': 'Uma Jornada Culinária',
-    'nav-about': 'O Livro', 'nav-preview': 'Amostra', 'nav-editions': 'Edições',
-    'nav-languages': 'Idiomas', 'nav-author': 'Autor', 'nav-buy': 'Encomendar',
-    'mob-about': 'O Livro', 'mob-preview': 'Amostra', 'mob-editions': 'Edições',
-    'mob-languages': 'Idiomas', 'mob-author': 'Autor', 'mob-buy': 'Encomendar',
+    'nav-about': 'O Livro', 'nav-preview': 'Amostra', 'nav-editions': 'Edições', 'nav-buy': 'Encomendar', 'nav-author': 'Autor',
+    'mob-about': 'O Livro', 'mob-preview': 'Amostra', 'mob-editions': 'Edições', 'mob-buy': 'Encomendar', 'mob-author': 'Autor',
     'hero-eyebrow': 'Uma Jornada Culinária · 1ª Edição · Tradução · 2026',
     'hero-l1': 'Uma <em>Jornada Culinária</em>',
     'hero-l2': 'Histórias e Narrativas',
@@ -1293,6 +1306,7 @@ var T = {
     'lang-avail-en': 'Pré-encomenda · Maio 2026',
     'lang-avail-es': 'Pré-encomenda · Maio 2026',
     'lang-avail-pt': 'Pré-encomenda · Maio 2026',
+    'lang-cta-de': 'Selecionar ↓', 'lang-cta-en': 'Selecionar ↓', 'lang-cta-es': 'Selecionar ↓', 'lang-cta-pt': 'Selecionar ↓',
     'btn-order': 'Encomendar agora',
     'btn-preview': 'Ler Amostra',
     'auth-kicker': 'Sobre o Autor', 'auth-location': 'Barcelona, Espanha',
