@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Muestra de Audio — Un Viaje Culinario</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+<meta property="og:title" content="Muestra de Audio — Un Viaje Culinario"/>
+<meta property="og:description" content="Escucha gratis un extracto del audiolibro."/>
+<meta property="og:image" content="https://joedcosta.com/og-image.png"/>
+<meta property="og:url" content="https://joedcosta.com/preview-audio-es.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:       #0f0d0a;
+    --ink-mid:   #1c1914;
+    --ink-soft:  #2e2820;
+    --parchment: #f0e8d8;
+    --sand:      #cfc0a2;
+    --saffron:   #c8843a;
+    --gold:      #d4a85c;
+    --muted:     #7a6e60;
+    --terra:     #8b3a2a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--ink); color: var(--parchment); font-family: 'EB Garamond', serif; }
+  body { display: flex; flex-direction: column; overflow-x: hidden; }
+
+  /* grain */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; height: 60px; background: rgba(15,13,10,0.98);
+    border-bottom: 1px solid rgba(200,132,58,0.2); z-index: 10;
+  }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--sand); text-decoration: none;
+    border: 1px solid rgba(200,132,58,0.35); padding: 8px 16px;
+    transition: all 0.2s; background: none;
+  }
+  .back-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .topbar-title {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.05rem; font-weight: 300; color: var(--parchment);
+    flex: 1; text-align: center; padding: 0 16px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .buy-link {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink);
+    background: var(--saffron); padding: 8px 16px;
+    text-decoration: none; white-space: nowrap; transition: background 0.2s;
+  }
+  .buy-link:hover { background: var(--gold); }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 48px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+  main::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,132,58,0.06) 0%, transparent 70%);
+  }
+
+  /* cover + player wrap */
+  .player-wrap {
+    max-width: 560px; width: 100%; position: relative; z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+
+  /* cover art */
+  .cover-art {
+    width: 160px; height: 160px; margin: 0 auto 28px;
+    position: relative; flex-shrink: 0;
+  }
+  .cover-art img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top;
+    display: block;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.8);
+  }
+  /* spinning disc animation when playing */
+  .cover-art.playing img {
+    border-radius: 50%;
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .cover-art::after {
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid rgba(200,132,58,0.25);
+    pointer-events: none;
+  }
+
+  /* kicker */
+  .audio-kicker {
+    font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--saffron);
+    text-align: center; margin-bottom: 10px;
+  }
+
+  /* title */
+  .audio-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 300; font-style: italic; color: var(--parchment);
+    text-align: center; line-height: 1.15; margin-bottom: 6px;
+  }
+
+  .audio-author {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 32px;
+  }
+
+  /* ornament */
+  .ornament {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  }
+  .ornament::before, .ornament::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(200,132,58,0.4));
+  }
+  .ornament::after { background: linear-gradient(to left, transparent, rgba(200,132,58,0.4)); }
+  .ornament span { color: var(--saffron); font-size: 0.7rem; }
+
+  /* ── AUDIO PLAYER ── */
+  .player-card {
+    background: var(--ink-mid); border: 1px solid rgba(200,132,58,0.18);
+    padding: 32px 32px 28px; margin-bottom: 28px;
+  }
+
+  .track-info {
+    margin-bottom: 24px;
+  }
+  .track-label {
+    font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--saffron); margin-bottom: 5px;
+  }
+  .track-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+    font-style: italic; color: var(--parchment);
+  }
+
+  /* progress bar */
+  .progress-wrap {
+    position: relative; height: 2px; background: rgba(200,132,58,0.15);
+    margin-bottom: 8px; cursor: pointer; border-radius: 1px;
+  }
+  .progress-bar {
+    height: 100%; background: var(--saffron); border-radius: 1px;
+    width: 0%; transition: width 0.1s linear; pointer-events: none;
+  }
+  .progress-wrap:hover .progress-bar { background: var(--gold); }
+  /* scrub handle */
+  .progress-wrap::after {
+    content: ''; position: absolute; top: -5px; left: 0%;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--saffron); transform: translateX(-50%);
+    transition: left 0.1s linear; opacity: 0; pointer-events: none;
+  }
+  .progress-wrap:hover::after { opacity: 1; }
+
+  /* time */
+  .time-row {
+    display: flex; justify-content: space-between;
+    font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.12em;
+    color: var(--muted); margin-bottom: 24px;
+  }
+
+  /* controls */
+  .controls {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+  }
+  .ctrl-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--sand); transition: color 0.2s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6px;
+  }
+  .ctrl-btn:hover { color: var(--gold); transform: scale(1.1); }
+  .ctrl-btn svg { width: 20px; height: 20px; }
+
+  /* play button — larger */
+  .play-btn {
+    width: 52px; height: 52px;
+    background: var(--saffron); border: none; border-radius: 50%;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center; color: var(--ink);
+    flex-shrink: 0;
+  }
+  .play-btn:hover { background: var(--gold); transform: scale(1.05); }
+  .play-btn svg { width: 20px; height: 20px; }
+
+  /* volume */
+  .volume-wrap {
+    display: flex; align-items: center; gap: 8px; margin-top: 20px;
+  }
+  .volume-wrap svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
+  input[type="range"] {
+    -webkit-appearance: none; flex: 1; height: 2px;
+    background: rgba(200,132,58,0.2); border-radius: 1px; cursor: pointer; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--saffron); cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 10px; height: 10px;
+    border-radius: 50%; background: var(--saffron); cursor: pointer; border: none;
+  }
+
+  /* excerpt note */
+  .excerpt-note {
+    font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    text-align: center; margin-bottom: 28px;
+  }
+  .excerpt-note span { color: rgba(200,132,58,0.5); }
+
+  /* ── CTA ── */
+  .audio-cta {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .cta-primary {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 15px 32px;
+    background: var(--saffron); color: var(--ink);
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; font-weight: 600;
+    text-decoration: none; transition: background 0.2s, transform 0.2s;
+  }
+  .cta-primary:hover { background: var(--gold); transform: translateY(-2px); }
+  .cta-secondary {
+    font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); text-align: center;
+  }
+  .cta-secondary a { color: var(--saffron); text-decoration: none; border-bottom: 1px solid rgba(200,132,58,0.3); }
+  .cta-secondary a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .topbar { padding: 0 16px; }
+    .topbar-title { font-size: 0.85rem; }
+    main { padding: 32px 16px 48px; }
+    .player-card { padding: 24px 20px; }
+    .cover-art { width: 120px; height: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a class="back-btn" href="https://joedcosta.com">← Volver</a>
+  <div class="topbar-title">Un Viaje Culinario — Muestra de Audio</div>
+  <a class="buy-link" href="coming-soon.html?lang=es&format=audio">Reservar ↗</a>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="player-wrap">
+
+    <!-- Cover -->
+    <div class="cover-art" id="cover-art">
+      <img src="images/Cover-ES.jpg" alt="Un Viaje Culinario"/>
+    </div>
+
+    <!-- Meta -->
+    <div class="audio-kicker">Muestra de Audio · Escuchar gratis</div>
+    <h1 class="audio-title">Un Viaje Culinario</h1>
+    <div class="audio-author">J. D'Costa Andrade · Audiolibro 2026</div>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <!-- Player card -->
+    <div class="player-card">
+      <div class="track-info">
+        <div class="track-label">Muestra</div>
+        <div class="track-name">Capítulo 1 — La Base de Todos los Platos</div>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="time-row">
+        <span id="time-current">0:00</span>
+        <span id="time-total">--:--</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <!-- Rewind 10s -->
+        <button class="ctrl-btn" id="btn-rewind" title="10 Sekunden zurück">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5H1"/>
+            <text x="8" y="16" font-size="6" fill="currentColor" stroke="none" font-family="sans-serif">10</text>
+          </svg>
+        </button>
+        <!-- Play/Pause -->
+        <button class="play-btn" id="btn-play" title="Wiedergabe">
+          <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+            <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+        <!-- Forward 10s -->
+        <button class="ctrl-btn" id="btn-forward" title="10 Sekunden vor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.49-5H23"/>
+            <text x="8" y="16" font-size="6" fill="currentColor" stroke="none" font-family="sans-serif">10</text>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Volume -->
+      <div class="volume-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+        <input type="range" id="volume" min="0" max="1" step="0.05" value="0.85"/>
+      </div>
+    </div>
+
+    <p class="excerpt-note">
+      <span>✦</span> &nbsp; ✦ &nbsp; Extracto de audio &nbsp;·&nbsp; 2 minutos &nbsp;·&nbsp; Audiolibro completo en <span>mayo 2026</span>
+    </p>
+
+    <!-- CTA -->
+    <div class="audio-cta">
+      <a class="cta-primary" href="coming-soon.html?lang=es&format=audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Reservar ahora — 10% de descuento
+      </a>
+      <p class="cta-secondary">
+        Erscheint Mai 2026 &nbsp;·&nbsp;
+        <a href="https://joedcosta.com">Volver a la página del libro</a>
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<!-- HIDDEN AUDIO ELEMENT -->
+<!--
+  ════════════════════════════════════════════════════════
+  ARCHIVO DE AUDIO — súbelo como:
+      preview-audio.mp3
+  to the root of your GitHub repository.
+
+  Recommended export settings:
+      Format:   MP3
+      Bitrate:  128 kbps
+      Channels: Mono (spoken word — mono is fine)
+      Duration: 2 minutes max (≈ 1.9 MB)
+  ════════════════════════════════════════════════════════
+-->
+<audio id="audio-player" preload="metadata">
+  <source src="preview-audio.mp3" type="audio/mpeg"/>
+  Tu navegador no soporta audio.
+</audio>
+
+<script>
+(function() {
+  var audio    = document.getElementById('audio-player');
+  var btnPlay  = document.getElementById('btn-play');
+  var iconPlay = document.getElementById('icon-play');
+  var iconPause= document.getElementById('icon-pause');
+  var progressBar = document.getElementById('progress-bar');
+  var progressWrap= document.getElementById('progress-wrap');
+  var timeCurr = document.getElementById('time-current');
+  var timeTotal= document.getElementById('time-total');
+  var volume   = document.getElementById('volume');
+  var coverArt = document.getElementById('cover-art');
+
+  // format seconds → M:SS
+  function fmt(s) {
+    if (isNaN(s)) return '--:--';
+    var m = Math.floor(s / 60);
+    var sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  // set initial volume
+  audio.volume = parseFloat(volume.value);
+
+  // metadata loaded → show total time
+  audio.addEventListener('loadedmetadata', function() {
+    timeTotal.textContent = fmt(audio.duration);
+  });
+
+  // play / pause toggle
+  btnPlay.addEventListener('click', function() {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', function() {
+    iconPlay.style.display  = 'none';
+    iconPause.style.display = 'block';
+    coverArt.classList.add('playing');
+  });
+  audio.addEventListener('pause', function() {
+    iconPlay.style.display  = 'block';
+    iconPause.style.display = 'none';
+    coverArt.classList.remove('playing');
+  });
+  audio.addEventListener('ended', function() {
+    iconPlay.style.display  = 'block';
+    iconPause.style.display = 'none';
+    coverArt.classList.remove('playing');
+  });
+
+  // time update → move progress bar and handle
+  audio.addEventListener('timeupdate', function() {
+    if (!audio.duration) return;
+    var pct = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = pct + '%';
+    progressWrap.style.setProperty('--pct', pct + '%');
+    timeCurr.textContent = fmt(audio.currentTime);
+    // move scrub handle via CSS pseudo-element trick
+    progressWrap.style.cssText = progressWrap.style.cssText; // force repaint
+    // update handle via after pseudo's left (use a real element instead)
+    var handle = document.getElementById('scrub-handle');
+    if (handle) handle.style.left = pct + '%';
+  });
+
+  // click on progress bar → seek
+  progressWrap.addEventListener('click', function(e) {
+    if (!audio.duration) return;
+    var rect = progressWrap.getBoundingClientRect();
+    var pct  = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+
+  // rewind / forward
+  document.getElementById('btn-rewind').addEventListener('click', function() {
+    audio.currentTime = Math.max(0, audio.currentTime - 10);
+  });
+  document.getElementById('btn-forward').addEventListener('click', function() {
+    audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10);
+  });
+
+  // volume
+  volume.addEventListener('input', function() {
+    audio.volume = parseFloat(volume.value);
+  });
+})();
+</script>
+
+</body>
+</html>
