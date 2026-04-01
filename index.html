@@ -592,7 +592,7 @@ footer{background:#0a0806;padding:52px 120px 36px;border-top:1px solid rgba(200,
         <a href="https://www.instagram.com/joses.table" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
-        <a href="mmailto:book@joedcosta.com" aria-label="Email" class="social-icon">
+        <a href="mailto:book@joedcosta.com" aria-label="Email" class="social-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
         <a href="https://joestable.clandestino.kitchen/" target="_blank" rel="noopener" aria-label="Website" class="social-icon">
@@ -810,37 +810,13 @@ function navScrollTo(id){
   document.getElementById('drawer-overlay').classList.remove('is-open');
   document.getElementById('hamburger').classList.remove('is-open');
 }
-// ============================================================
-// NEWSLETTER — posts to Google Sheets via fetch
-// ============================================================
-function submitNewsletter(e) {
-  e.preventDefault();
-  var email = document.getElementById('foot-nl-input').value.trim();
-  var confirm = document.getElementById('foot-nl-confirm');
-  var btn = document.getElementById('foot-nl-btn');
-  if (!email) return;
-  btn.disabled = true;
-  btn.textContent = '…';
-  // Replace SHEET_URL with your Google Apps Script web app URL
-  var SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
-  fetch(SHEET_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, lang: document.documentElement.lang, ts: new Date().toISOString() })
-  }).then(function() {
-    document.getElementById('foot-nl-input').value = '';
-    confirm.style.display = 'block';
-    confirm.textContent = document.getElementById('foot-nl-confirm').dataset.ok ||
-      'Thank you! We will be in touch.';
-    btn.disabled = false;
-    btn.textContent = '→';
-  }).catch(function() {
-    confirm.style.display = 'block';
-    confirm.textContent = 'Something went wrong. Please try again.';
-    btn.disabled = false;
-    btn.textContent = '→';
-  });
+function submitNewsletter(){
+  const input=document.getElementById('ft-nl-input');
+  const confirm=document.getElementById('ft-nl-confirm');
+  if(input.value&&input.value.includes('@')){
+    confirm.textContent=T[currentLang].footer.nlConfirm;
+    confirm.style.display='block';input.value='';
+  }
 }
 // Hamburger
 document.getElementById('hamburger').addEventListener('click',function(){
