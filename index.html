@@ -2,859 +2,372 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Culinary Journey</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Culinary Journey — J. D'Costa Andrade</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.webp" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.webp" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="description" content="Eine Kulinarische Reise — Geschichten &amp; Erzählungen von J. D'Costa Andrade. Die Basis aller Speisen." />
+<meta name="author" content="J. D'Costa Andrade" />
+<meta property="og:site_name" content="joedcosta.com" />
+<meta property="og:type" content="book" />
+<meta property="og:url" content="https://joedcosta.com/" />
+<meta property="og:title" content="Eine Kulinarische Reise — J. D'Costa Andrade" />
+<meta property="og:description" content="Geschichten &amp; Erzählungen · Die Basis aller Speisen. A Culinary Journey by J. D'Costa Andrade." />
+<meta property="og:image" content="https://joedcosta.com/og-image.webp" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Eine Kulinarische Reise — A Culinary Journey by J. D'Costa Andrade" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:locale:alternate" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://joedcosta.com/" />
+<meta name="twitter:title" content="Eine Kulinarische Reise — J. D'Costa Andrade" />
+<meta name="twitter:description" content="Geschichten &amp; Erzählungen · Die Basis aller Speisen. A Culinary Journey." />
+<meta name="twitter:image" content="https://joedcosta.com/og-image.webp" />
+<meta name="twitter:image:alt" content="Eine Kulinarische Reise — A Culinary Journey by J. D'Costa Andrade" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink: #0f0d0a; --ink-mid: #1c1914; --ink-soft: #2e2820;
+  --parchment: #f0e8d8; --warm-sand: #cfc0a2;
+  --saffron: #c8843a; --gold-light: #d4a85c; --text-muted: #7a6e60;
+  --terracotta: #8b3a2a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--ink);color:var(--parchment);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;height:60px;background:rgba(15,13,10,0.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(200,132,58,0.15)}
+.nav-title{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold-light)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-family:'Cinzel',serif;color:var(--warm-sand);transition:color 0.2s}
+.nav-links a:hover{color:var(--gold-light)}
+.lang-switcher{display:flex;gap:6px}
+.lang-btn{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;font-family:'Cinzel',serif;color:var(--warm-sand);
+  cursor:pointer;padding:4px 9px;border:1px solid transparent;transition:all 0.2s;background:none}
+.lang-btn:hover,.lang-btn.active{color:var(--gold-light);border-color:rgba(200,132,58,0.4)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;
+  padding:4px;width:32px;height:32px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--warm-sand);border-radius:2px;
+  transition:transform 0.28s ease,opacity 0.28s ease;transform-origin:center}
+.hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.is-open span:nth-child(2){opacity:0}
+.hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-drawer{display:none;position:fixed;top:60px;left:0;right:0;z-index:490;background:rgba(15,13,10,0.98);
+  backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,132,58,0.18);
+  transform:translateY(-6px);opacity:0;transition:transform 0.28s ease,opacity 0.28s ease;pointer-events:none}
+.mobile-drawer.is-open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-drawer ul{list-style:none;padding:6px 0 14px}
+.mobile-drawer ul li a{display:block;padding:14px 28px;font-family:'Cinzel',serif;font-size:0.7rem;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--warm-sand);
+  border-bottom:1px solid rgba(200,132,58,0.07);transition:color 0.2s,padding-left 0.2s}
+.mobile-drawer ul li:last-child a{border-bottom:none}
+.mobile-drawer ul li a:hover{color:var(--gold-light);padding-left:36px}
+.drawer-overlay{display:none;position:fixed;inset:0;top:60px;z-index:480;background:rgba(0,0,0,0.45)}
+.mobile-drawer-lang{display:flex;gap:6px;padding:12px 28px 18px;border-top:1px solid rgba(200,132,58,0.07)}
+.drawer-overlay.is-open{display:block}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:60px}
+.hero-visual{position:relative;overflow:hidden;min-height:640px;background:var(--ink-mid)}
+.hero-cover-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 8s ease}
+.hero:hover .hero-cover-img{transform:scale(1.03)}
+.hero-visual::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 60%,rgba(15,13,10,0.9) 100%),linear-gradient(to top,rgba(15,13,10,0.45) 0%,transparent 35%);
+  pointer-events:none}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:80px 64px 80px 60px;position:relative}
+.hero-text::before{content:'';position:absolute;left:0;top:18%;bottom:18%;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(200,132,58,0.45) 30%,rgba(200,132,58,0.45) 70%,transparent)}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--saffron);margin-bottom:18px}
+.hero-author{font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:0.14em;color:var(--warm-sand);
+  margin-bottom:14px;text-transform:uppercase;font-weight:400}
+.hero-title-block{margin-bottom:10px}
+.hero-title-l1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4.2vw,4rem);font-weight:300;
+  line-height:1.0;color:var(--parchment);white-space:nowrap}
+.hero-title-l1 em{font-style:italic;font-weight:600;color:var(--gold-light)}
+.hero-title-l2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2vw,1.6rem);font-style:italic;
+  font-weight:400;color:var(--warm-sand);margin-top:4px;line-height:1.2}
+.hero-title-l3{font-family:'Cormorant Garamond',serif;font-size:clamp(0.9rem,1.4vw,1.2rem);font-style:italic;
+  font-weight:300;color:var(--text-muted);margin-top:3px;line-height:1.2}
+.ornament-line{display:flex;align-items:center;gap:14px;margin:28px 0}
+.ornament-line::before,.ornament-line::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(200,132,58,0.45))}
+.ornament-line::after{background:linear-gradient(to left,transparent,rgba(200,132,58,0.45))}
+.ornament-line span{font-size:0.85rem;color:var(--saffron)}
+.hero-desc{font-size:1.02rem;line-height:1.8;color:var(--warm-sand);margin-bottom:36px;font-style:italic;max-width:420px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:var(--saffron);color:var(--ink);
+  font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;
+  cursor:pointer;transition:background 0.25s,transform 0.2s;border:none}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1px solid rgba(200,132,58,0.4);
+  color:var(--warm-sand);font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.16em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.25s}
+.btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.scroll-hint{position:absolute;bottom:28px;right:40px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase}
+.scroll-hint::after{content:'';width:1px;height:36px;background:linear-gradient(to bottom,var(--saffron),transparent);
+  animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:0.3;transform:scaleY(0.5)}}
+/* QUOTE */
+.quote-band{background:var(--ink-mid);padding:68px 120px;text-align:center;
+  border-top:1px solid rgba(200,132,58,0.14);border-bottom:1px solid rgba(200,132,58,0.14);
+  position:relative;overflow:hidden}
+.quote-band::before{content:'\201C';position:absolute;top:-30px;left:60px;font-family:'Cormorant Garamond',serif;
+  font-size:18rem;color:rgba(200,132,58,0.05);line-height:1;pointer-events:none}
+.quote-band blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.6vw,2.2rem);font-style:italic;
+  font-weight:300;line-height:1.55;color:var(--parchment);max-width:820px;margin:0 auto 20px;position:relative;z-index:1}
+.quote-attr{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron)}
+/* ABOUT */
+.about{padding:100px 120px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;background:var(--ink)}
+.book-mockup-wrap{max-width:320px;margin:0 auto;position:relative}
+.book-mockup-wrap::after{content:'';position:absolute;bottom:-14px;right:-14px;left:14px;top:14px;
+  border:1px solid rgba(200,132,58,0.18);z-index:0}
+.book-mockup-wrap img{width:100%;display:block;position:relative;z-index:1;box-shadow:10px 16px 56px rgba(0,0,0,0.75)}
+.book-mockup-wrap::before{content:'';position:absolute;left:0;top:14px;bottom:-14px;width:10px;
+  background:linear-gradient(to right,rgba(0,0,0,0.55),transparent);z-index:2}
+.section-kicker{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--saffron);margin-bottom:14px;display:block}
+.section-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,2.8vw,2.8rem);font-weight:300;
+  line-height:1.15;color:var(--parchment);margin-bottom:26px}
+.section-heading em{font-style:italic;font-weight:600;color:var(--gold-light)}
+.body-text{font-size:1.02rem;line-height:1.88;color:var(--warm-sand);margin-bottom:18px}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.tag{font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--saffron);border:1px solid rgba(200,132,58,0.28);padding:5px 11px}
+/* PREVIEW */
+.preview{background:var(--ink-soft);padding:100px 120px;border-top:1px solid rgba(200,132,58,0.1)}
+.preview-header{text-align:center;margin-bottom:52px}
+.preview-card{max-width:860px;margin:0 auto;border:1px solid rgba(200,132,58,0.18);background:var(--ink-mid)}
+.preview-card-inner{display:grid;grid-template-columns:280px 1fr;gap:0;align-items:stretch}
+.preview-page-stack{position:relative;min-height:360px;display:flex;align-items:center;justify-content:center;
+  padding:24px 16px 24px 40px;perspective:1200px}
+.hardcover{position:relative;width:190px;height:270px;transform-style:preserve-3d;transform:rotateY(-30deg);
+  filter:drop-shadow(-16px 20px 48px rgba(0,0,0,0.8));transition:transform 0.4s ease}
+.hardcover:hover{transform:rotateY(-20deg)}
+.hardcover-front{position:absolute;inset:0;overflow:hidden;border-radius:0 3px 3px 0;backface-visibility:hidden}
+.hardcover-front img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.hardcover-front::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(110deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0.04) 30%,transparent 60%,rgba(0,0,0,0.18) 100%);
+  pointer-events:none}
+.hardcover-spine{position:absolute;top:0;bottom:0;left:-42px;width:42px;
+  background:linear-gradient(to right,#0a0703 0%,#1a1108 25%,#221508 60%,#0f0a04 100%);
+  transform-origin:right center;transform:rotateY(-90deg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.hardcover-spine::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.06) 40%,rgba(255,255,255,0) 100%)}
+.spine-title{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-family:'Cinzel',serif;
+  font-size:0.48rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,132,58,0.7);
+  white-space:nowrap;position:relative;z-index:1}
+.hardcover-top{position:absolute;bottom:100%;left:0;right:0;height:16px;
+  background:linear-gradient(to bottom,#1a1108,#2a1e0c);transform-origin:bottom center;transform:rotateX(90deg)}
+.hardcover-pages{position:absolute;top:4px;bottom:4px;right:-14px;width:14px;
+  background:repeating-linear-gradient(to bottom,#f5edd8 0px,#ede4cc 1.5px,#f5edd8 3px);
+  border-radius:0 2px 2px 0;transform-origin:left center;transform:rotateY(90deg)}
+.hardcover-pages::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(to right,rgba(0,0,0,0.25),transparent)}
+.preview-card-text{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;
+  border-left:1px solid rgba(200,132,58,0.12)}
+.preview-card-kicker{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.24em;
+  text-transform:uppercase;color:var(--saffron);margin-bottom:12px}
+.preview-card-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;
+  font-style:italic;color:var(--parchment);line-height:1.2;margin-bottom:18px}
+.preview-card-desc{font-size:0.95rem;line-height:1.8;color:var(--warm-sand);margin-bottom:32px}
+.preview-open-btn{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:0.62rem;
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);background:var(--saffron);padding:13px 28px;
+  font-weight:600;text-decoration:none;transition:background 0.2s,transform 0.2s;align-self:flex-start}
+.preview-open-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+/* LANGUAGES */
+.languages{background:var(--ink);padding:100px 120px;border-top:1px solid rgba(200,132,58,0.1);text-align:center}
+.languages-header{margin-bottom:52px}
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.lang-card{background:var(--ink-mid);padding:0;border:1px solid rgba(200,132,58,0.08);
+  cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden}
+.lang-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--saffron);transform:scaleX(0);transition:transform 0.3s}
+.lang-card:hover::after,.lang-card.active-lang::after{transform:scaleX(1)}
+.lang-card:hover,.lang-card.active-lang{border-color:rgba(200,132,58,0.35);background:rgba(200,132,58,0.04)}
+.lang-card-cover{width:100%;margin-bottom:16px;overflow:hidden;border:1px solid rgba(200,132,58,0.12);box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.lang-card-cover img{width:100%;display:block;object-fit:cover;object-position:top;aspect-ratio:3/4;transition:transform 0.4s ease}
+.lang-card:hover .lang-card-cover img{transform:scale(1.03)}
+.lang-card .lang-cta{margin-top:18px;font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--saffron);opacity:0;transition:opacity 0.25s}
+.lang-card:hover .lang-cta{opacity:1}
+.lang-card-body{padding:20px 24px 28px}
+.lang-name{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:7px}
+.lang-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--warm-sand);line-height:1.45}
+.lang-avail{margin-top:14px;font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.14em;
+  text-transform:uppercase;padding:4px 10px;display:inline-block}
+.lang-avail.now{color:var(--saffron);border:1px solid rgba(200,132,58,0.3)}
+.lang-avail.pre{color:#c07060;border:1px solid rgba(139,58,42,0.35)}
+/* SHOP */
+.shop{background:linear-gradient(160deg,#1a1208 0%,#221608 50%,#161008 100%);padding:100px 120px;
+  border-top:1px solid rgba(200,132,58,0.15);position:relative;overflow:hidden}
+.shop::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(200,132,58,0.06) 0%,transparent 70%);pointer-events:none}
+.shop-header{text-align:center;margin-bottom:64px;position:relative}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1060px;margin:0 auto;position:relative}
+.shop-card{background:rgba(255,255,255,0.025);border:1px solid rgba(200,132,58,0.12);padding:48px 36px 40px;
+  display:flex;flex-direction:column;transition:border-color 0.3s,background 0.3s,transform 0.3s;position:relative}
+.shop-card:hover{border-color:rgba(200,132,58,0.42);background:rgba(200,132,58,0.04);transform:translateY(-4px);z-index:2}
+.shop-card.has-ribbon{padding-top:60px}
+.shop-ribbon{position:absolute;top:0;left:0;right:0;background:rgba(139,58,42,0.8);padding:6px;
+  font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--parchment);text-align:center}
+.shop-card.has-ribbon .shop-badge{display:none}
+.shop-badge{font-family:'Cinzel',serif;font-size:0.48rem;letter-spacing:0.14em;text-transform:uppercase;
+  padding:3px 9px;display:inline-block;margin-bottom:20px;align-self:flex-start}
+.shop-badge.now{background:rgba(200,132,58,0.15);color:var(--saffron);border:1px solid rgba(200,132,58,0.3)}
+.shop-badge.pre{background:rgba(139,58,42,0.15);color:#c07060;border:1px solid rgba(139,58,42,0.35)}
+.shop-icon{width:44px;height:44px;margin-bottom:22px;color:var(--saffron);flex-shrink:0}
+.shop-type{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:6px}
+.shop-title{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;font-style:italic;
+  color:var(--parchment);margin-bottom:14px;line-height:1.15}
+.shop-desc{font-size:0.88rem;line-height:1.75;color:var(--text-muted);margin-bottom:8px;flex:1}
+.shop-price{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:600;color:var(--parchment);margin-bottom:4px;letter-spacing:0.04em}
+.shop-price-note{font-size:0.75rem;color:var(--text-muted);font-style:italic;margin-bottom:24px}
+.shop-btn{display:inline-flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:0.65rem;
+  letter-spacing:0.18em;text-transform:uppercase;font-weight:600;cursor:pointer;
+  padding:14px 28px;text-decoration:none;transition:all 0.25s;border:none;align-self:stretch;text-align:center}
+.shop-btn.primary{background:var(--saffron);color:var(--ink)}
+.shop-btn.primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.shop-btn.preorder{background:transparent;color:var(--warm-sand);border:1px solid rgba(200,132,58,0.35)}
+.shop-btn.preorder:hover{border-color:var(--gold-light);color:var(--gold-light);background:rgba(200,132,58,0.06)}
+.shop-btn.sample{background:transparent;color:var(--text-muted);border:1px solid rgba(200,132,58,0.2);margin-bottom:8px}
+.shop-btn.sample:hover{border-color:rgba(200,132,58,0.5);color:var(--warm-sand)}
+/* AUTHOR */
+.author{background:var(--ink-soft);padding:100px 120px;display:grid;grid-template-columns:260px 1fr;
+  gap:72px;align-items:start;border-top:1px solid rgba(200,132,58,0.1)}
+.author-portrait-wrap{position:relative;width:260px;flex-shrink:0}
+.author-portrait-wrap::after{content:'';position:absolute;bottom:-12px;right:-12px;left:12px;top:12px;
+  border:1px solid rgba(200,132,58,0.18);z-index:0}
+.author-portrait-wrap img{width:100%;display:block;position:relative;z-index:1;filter:sepia(12%) contrast(1.04)}
+.author-kicker{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--saffron);margin-bottom:10px;display:block}
+.author-name{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--parchment);margin-bottom:6px;font-style:italic}
+.author-location{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase;margin-bottom:22px}
+.author-bio{font-size:1.02rem;line-height:1.9;color:var(--warm-sand)}
+.author-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+/* FOOTER */
+footer{background:#0a0806;padding:52px 120px 36px;border-top:1px solid rgba(200,132,58,0.1)}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;
+  margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid rgba(200,132,58,0.07)}
+.footer-brand{flex:1;max-width:340px}
+.footer-book-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;font-weight:300;color:var(--parchment);margin-bottom:3px}
+.footer-book-sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text-muted);font-size:0.9rem;margin-bottom:3px}
+.footer-author-tag{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:0.18em;color:rgba(200,132,58,0.45);text-transform:uppercase;margin-top:10px}
+.footer-newsletter{margin-top:28px}
+.footer-nl-label{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--saffron);margin-bottom:10px}
+.footer-nl-form{display:flex;gap:0}
+.footer-nl-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(200,132,58,0.25);border-right:none;
+  padding:10px 14px;color:var(--parchment);font-family:'EB Garamond',serif;font-size:0.9rem;outline:none;transition:border-color 0.2s}
+.footer-nl-input:focus{border-color:rgba(200,132,58,0.55)}
+.footer-nl-input::placeholder{color:var(--text-muted)}
+.footer-nl-btn{background:var(--saffron);color:var(--ink);border:none;padding:10px 18px;cursor:pointer;font-size:1rem;transition:background 0.2s}
+.footer-nl-btn:hover{background:var(--gold-light)}
+.footer-nl-confirm{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--saffron);margin-top:8px}
+.footer-col{min-width:120px}
+.footer-col h5{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--saffron);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col ul li a{font-size:0.83rem;color:var(--text-muted);transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--warm-sand)}
+.footer-social{display:flex;gap:14px;margin-top:4px;flex-wrap:wrap}
+.social-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+  border:1px solid rgba(200,132,58,0.2);color:var(--text-muted);transition:all 0.2s;border-radius:2px}
+.social-icon svg{width:16px;height:16px}
+.social-icon:hover{color:var(--gold-light);border-color:rgba(200,132,58,0.5);background:rgba(200,132,58,0.06)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-bottom p{font-family:'Cinzel',serif;font-size:0.56rem;letter-spacing:0.12em;color:rgba(200,132,58,0.3);text-transform:uppercase}
+#about,#preview,#buy,#languages,#author{scroll-margin-top:68px}
+/* REVEAL — safe fallback: sections visible by default, animate in when JS fires */
+.reveal,.reveal-l,.reveal-r{opacity:1;transform:none;transition:opacity .8s ease,transform .8s ease}
+.reveal.will-animate{opacity:0;transform:translateY(28px)}
+.reveal-l.will-animate{opacity:0;transform:translateX(-28px)}
+.reveal-r.will-animate{opacity:0;transform:translateX(28px)}
+.reveal.in,.reveal-l.in,.reveal-r.in{opacity:1;transform:none}
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr}.hero-visual{min-height:60vw;max-height:75vh}
+  .hero-text{padding:56px 48px}.hero-text::before{display:none}
+  .about{grid-template-columns:1fr;padding:80px 48px;gap:48px}
+  .preview,.shop,.languages{padding:80px 48px}
+  .shop-grid{grid-template-columns:1fr}
+  .lang-grid{grid-template-columns:1fr 1fr}
+  .author{grid-template-columns:1fr;padding:80px 48px;gap:36px}
+  .author-portrait-wrap{width:200px}
+  footer{padding:52px 48px 36px}
+  .footer-inner{flex-direction:column;gap:36px}.footer-brand{max-width:100%}
+  .quote-band{padding:60px 48px}
+}
+@media(max-width:640px){
+  nav{padding:0 20px}.nav-links{display:none}.hamburger{display:flex}.mobile-drawer{display:block}
+  .hero-text{padding:44px 20px}
+  .about,.preview,.shop,.languages,.author{padding:60px 20px}
+  .quote-band{padding:48px 20px}
+  footer{padding:48px 20px 28px}
+  .hero-title-l1{white-space:normal}.hero-actions{flex-direction:column}
+  .preview-card-inner{grid-template-columns:1fr}
+  .preview-page-stack{min-height:220px}
+  .preview-card-text{padding:28px 20px;border-left:none;border-top:1px solid rgba(200,132,58,0.12)}
+}
 
-  <!-- ── FAVICONS ── -->
-  <link rel="icon" type="image/x-icon"       href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
-  <link rel="icon" type="image/svg+xml"      href="favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="manifest"                        href="site.webmanifest" />
-
-  <!-- ── SEO ── -->
-  <meta name="description" content="Eine Kulinarische Reise — Geschichten &amp; Erzählungen von J. D'Costa Andrade. Die Basis aller Speisen." />
-  <meta name="author" content="J. D'Costa Andrade" />
-
-  <!-- ── OPEN GRAPH (Facebook, WhatsApp, LinkedIn, iMessage) ── -->
-  <meta property="og:site_name"   content="joedcosta.com" />
-  <meta property="og:type"        content="book" />
-  <meta property="og:url"         content="https://joedcosta.com/" />
-  <meta property="og:title"       content="Eine Kulinarische Reise — J. D'Costa Andrade" />
-  <meta property="og:description" content="Geschichten &amp; Erzählungen · Die Basis aller Speisen. A Culinary Journey by J. D'Costa Andrade." />
-  <meta property="og:image"       content="https://joedcosta.com/og-image.png" />
-  <meta property="og:image:type"  content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt"   content="Eine Kulinarische Reise — A Culinary Journey by J. D'Costa Andrade" />
-  <meta property="og:locale"      content="de_DE" />
-  <meta property="og:locale:alternate" content="en_GB" />
-
-  <!-- ── TWITTER / X ── -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:url"         content="https://joedcosta.com/" />
-  <meta name="twitter:title"       content="Eine Kulinarische Reise — J. D'Costa Andrade" />
-  <meta name="twitter:description" content="Geschichten &amp; Erzählungen · Die Basis aller Speisen. A Culinary Journey." />
-  <meta name="twitter:image"       content="https://joedcosta.com/og-image.png" />
-  <meta name="twitter:image:alt"   content="Eine Kulinarische Reise — A Culinary Journey by J. D'Costa Andrade" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --ink:        #0f0d0a;
-      --ink-mid:    #1c1914;
-      --ink-soft:   #2e2820;
-      --parchment:  #f0e8d8;
-      --warm-sand:  #cfc0a2;
-      --saffron:    #c8843a;
-      --gold-light: #d4a85c;
-      --text-muted: #7a6e60;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'EB Garamond', Georgia, serif;
-      background: var(--ink);
-      color: var(--parchment);
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.022;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 52px; height: 60px;
-      background: rgba(15,13,10,0.96);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(200,132,58,0.15);
-    }
-    .nav-title {
-      font-family: 'Cinzel', serif; font-size: 0.7rem;
-      letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-light);
-    }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
-      font-family: 'Cinzel', serif; color: var(--warm-sand); transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold-light); }
-    .lang-switcher { display: flex; gap: 6px; }
-    .lang-btn {
-      font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-family: 'Cinzel', serif; color: var(--warm-sand); cursor: pointer;
-      padding: 4px 9px; border: 1px solid transparent;
-      transition: all 0.2s; background: none;
-    }
-    .lang-btn:hover, .lang-btn.active { color: var(--gold-light); border-color: rgba(200,132,58,0.4); }
-
-    /* ── HAMBURGER — hidden on desktop, shown on mobile ── */
-    .hamburger {
-      display: none;
-      flex-direction: column; justify-content: center; gap: 5px;
-      background: none; border: none; cursor: pointer;
-      padding: 4px; width: 32px; height: 32px; flex-shrink: 0;
-    }
-    .hamburger span {
-      display: block; width: 20px; height: 1.5px;
-      background: var(--warm-sand); border-radius: 2px;
-      transition: transform 0.28s ease, opacity 0.28s ease;
-      transform-origin: center;
-    }
-    .hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.is-open span:nth-child(2) { opacity: 0; }
-    .hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    /* ── MOBILE DRAWER — hidden until .is-open ── */
-    .mobile-drawer {
-      display: none; /* revealed by media query below */
-      position: fixed; top: 60px; left: 0; right: 0; z-index: 490;
-      background: rgba(15,13,10,0.98);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(200,132,58,0.18);
-      transform: translateY(-6px); opacity: 0;
-      transition: transform 0.28s ease, opacity 0.28s ease;
-      pointer-events: none;
-    }
-    .mobile-drawer.is-open {
-      transform: translateY(0); opacity: 1; pointer-events: all;
-    }
-    .mobile-drawer ul { list-style: none; padding: 6px 0 14px; }
-    .mobile-drawer ul li a {
-      display: block; padding: 14px 28px;
-      font-family: 'Cinzel', serif; font-size: 0.7rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-sand);
-      border-bottom: 1px solid rgba(200,132,58,0.07);
-      transition: color 0.2s, padding-left 0.2s;
-    }
-    .mobile-drawer ul li:last-child a { border-bottom: none; }
-    .mobile-drawer ul li a:hover { color: var(--gold-light); padding-left: 36px; }
-
-    /* dim overlay behind drawer */
-    .drawer-overlay {
-      display: none;
-      position: fixed; inset: 0; top: 60px; z-index: 480;
-      background: rgba(0,0,0,0.45);
-    }
-    .drawer-overlay.is-open { display: block; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-      position: relative; overflow: hidden; padding-top: 60px;
-    }
-    .hero-visual {
-      position: relative; overflow: hidden; min-height: 640px;
-      background: var(--ink-mid);
-    }
-    .hero-cover-img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: center top; display: block;
-      transition: transform 8s ease;
-    }
-    .hero:hover .hero-cover-img { transform: scale(1.03); }
-    .hero-visual::after {
-      content: ''; position: absolute; inset: 0;
-      background:
-        linear-gradient(to right, transparent 60%, rgba(15,13,10,0.9) 100%),
-        linear-gradient(to top, rgba(15,13,10,0.45) 0%, transparent 35%);
-      pointer-events: none;
-    }
-    .hero-edition-badge {
-      position: absolute; bottom: 36px; left: 36px; z-index: 3;
-      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-family: 'Cinzel', serif; color: var(--saffron);
-      border: 1px solid rgba(200,132,58,0.4); padding: 7px 14px;
-      background: rgba(15,13,10,0.6); backdrop-filter: blur(4px);
-    }
-    .hero-text {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 80px 64px 80px 60px; position: relative;
-    }
-    .hero-text::before {
-      content: ''; position: absolute; left: 0; top: 18%; bottom: 18%; width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(200,132,58,0.45) 30%, rgba(200,132,58,0.45) 70%, transparent);
-    }
-    .hero-eyebrow {
-      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.26em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 18px;
-    }
-    .hero-author {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
-      letter-spacing: 0.14em; color: var(--warm-sand); margin-bottom: 14px;
-      text-transform: uppercase; font-weight: 400;
-    }
-    .hero-title-block { margin-bottom: 10px; }
-    .hero-title-l1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 4.2vw, 4rem);
-      font-weight: 300; line-height: 1.0;
-      color: var(--parchment); white-space: nowrap;
-    }
-    .hero-title-l1 em { font-style: italic; font-weight: 600; color: var(--gold-light); }
-    .hero-title-l2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
-      font-style: italic; font-weight: 400;
-      color: var(--warm-sand); margin-top: 4px; line-height: 1.2;
-    }
-    .hero-title-l3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.9rem, 1.4vw, 1.2rem);
-      font-style: italic; font-weight: 300;
-      color: var(--text-muted); margin-top: 3px; line-height: 1.2;
-    }
-    .ornament-line {
-      display: flex; align-items: center; gap: 14px; margin: 28px 0;
-    }
-    .ornament-line::before, .ornament-line::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(to right, transparent, rgba(200,132,58,0.45));
-    }
-    .ornament-line::after { background: linear-gradient(to left, transparent, rgba(200,132,58,0.45)); }
-    .ornament-line span { font-size: 0.85rem; color: var(--saffron); }
-    .hero-desc {
-      font-size: 1.02rem; line-height: 1.8; color: var(--warm-sand);
-      margin-bottom: 36px; font-style: italic; max-width: 420px;
-    }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    /* BUTTONS */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 32px; background: var(--saffron); color: var(--ink);
-      font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.16em;
-      text-transform: uppercase; font-weight: 600; cursor: pointer;
-      transition: background 0.25s, transform 0.2s; border: none;
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 26px; border: 1px solid rgba(200,132,58,0.4);
-      color: var(--warm-sand); font-family: 'Cinzel', serif; font-size: 0.65rem;
-      letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: all 0.25s;
-    }
-    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
-    .btn-preorder {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 26px; border: 1px solid rgba(200,132,58,0.25);
-      color: var(--text-muted); font-family: 'Cinzel', serif; font-size: 0.65rem;
-      letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
-      transition: all 0.25s; position: relative;
-    }
-    .btn-preorder::after {
-      content: 'PRE-ORDER'; position: absolute; top: -10px; right: -4px;
-      font-size: 0.45rem; letter-spacing: 0.14em; background: var(--terracotta, #8b3a2a);
-      color: var(--parchment); padding: 2px 6px; font-family: 'Cinzel', serif;
-    }
-    .btn-preorder:hover { border-color: var(--saffron); color: var(--warm-sand); }
-
-    .scroll-hint {
-      position: absolute; bottom: 28px; right: 40px;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: var(--text-muted); font-family: 'Cinzel', serif;
-      font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase;
-    }
-    .scroll-hint::after {
-      content: ''; width: 1px; height: 36px;
-      background: linear-gradient(to bottom, var(--saffron), transparent);
-      animation: scrollLine 2s ease-in-out infinite;
-    }
-    @keyframes scrollLine {
-      0%,100% { opacity:1; transform:scaleY(1); }
-      50%      { opacity:0.3; transform:scaleY(0.5); }
-    }
-
-    /* ── QUOTE BAND ── */
-    .quote-band {
-      background: var(--ink-mid); padding: 68px 120px; text-align: center;
-      border-top: 1px solid rgba(200,132,58,0.14);
-      border-bottom: 1px solid rgba(200,132,58,0.14);
-      position: relative; overflow: hidden;
-    }
-    .quote-band::before {
-      content: '\201C'; position: absolute; top: -30px; left: 60px;
-      font-family: 'Cormorant Garamond', serif; font-size: 18rem;
-      color: rgba(200,132,58,0.05); line-height: 1; pointer-events: none;
-    }
-    .quote-band blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.4rem, 2.6vw, 2.2rem); font-style: italic; font-weight: 300;
-      line-height: 1.55; color: var(--parchment); max-width: 820px; margin: 0 auto 20px;
-      position: relative; z-index: 1;
-    }
-    .quote-attr {
-      font-family: 'Cinzel', serif; font-size: 0.62rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron);
-    }
-
-    /* ── ABOUT ── */
-    .about {
-      padding: 100px 120px; display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center; background: var(--ink);
-    }
-    .book-mockup-wrap {
-      max-width: 320px; margin: 0 auto; position: relative;
-    }
-    .book-mockup-wrap::after {
-      content: ''; position: absolute;
-      bottom: -14px; right: -14px; left: 14px; top: 14px;
-      border: 1px solid rgba(200,132,58,0.18); z-index: 0;
-    }
-    .book-mockup-wrap img {
-      width: 100%; display: block; position: relative; z-index: 1;
-      box-shadow: 10px 16px 56px rgba(0,0,0,0.75);
-    }
-    .book-mockup-wrap::before {
-      content: ''; position: absolute; left: 0; top: 14px; bottom: -14px; width: 10px;
-      background: linear-gradient(to right, rgba(0,0,0,0.55), transparent);
-      z-index: 2;
-    }
-    .section-kicker {
-      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.24em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 14px; display: block;
-    }
-    .section-heading {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 2.8vw, 2.8rem);
-      font-weight: 300; line-height: 1.15; color: var(--parchment); margin-bottom: 26px;
-    }
-    .section-heading em { font-style: italic; font-weight: 600; color: var(--gold-light); }
-    .body-text { font-size: 1.02rem; line-height: 1.88; color: var(--warm-sand); margin-bottom: 18px; }
-    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-    .tag {
-      font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--saffron);
-      border: 1px solid rgba(200,132,58,0.28); padding: 5px 11px;
-    }
-
-    /* ── PREVIEW CARD ── */
-    .preview { background: var(--ink-soft); padding: 100px 120px; border-top: 1px solid rgba(200,132,58,0.1); }
-    .preview-header { text-align: center; margin-bottom: 52px; }
-
-    .preview-card {
-      max-width: 860px; margin: 0 auto;
-      border: 1px solid rgba(200,132,58,0.18);
-      background: var(--ink-mid);
-    }
-    .preview-card-inner {
-      display: grid; grid-template-columns: 280px 1fr;
-      gap: 0; align-items: stretch;
-    }
-
-    /* hardcover standing book mockup */
-    .preview-page-stack {
-      position: relative; min-height: 360px;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px 16px 24px 40px;
-      perspective: 1200px;
-    }
-
-    .hardcover {
-      position: relative;
-      width: 190px; height: 270px;
-      transform-style: preserve-3d;
-      transform: rotateY(-30deg);
-      filter: drop-shadow(-16px 20px 48px rgba(0,0,0,0.8));
-      transition: transform 0.4s ease;
-    }
-    .hardcover:hover { transform: rotateY(-20deg); }
-
-    /* front cover */
-    .hardcover-front {
-      position: absolute; inset: 0;
-      overflow: hidden;
-      border-radius: 0 3px 3px 0;
-      backface-visibility: hidden;
-    }
-    .hardcover-front img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top center;
-      display: block;
-    }
-    /* gloss sheen on cover */
-    .hardcover-front::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        110deg,
-        rgba(255,255,255,0.12) 0%,
-        rgba(255,255,255,0.04) 30%,
-        transparent 60%,
-        rgba(0,0,0,0.18) 100%
-      );
-      pointer-events: none;
-    }
-
-    /* spine — thick, dark, with title */
-    .hardcover-spine {
-      position: absolute;
-      top: 0; bottom: 0;
-      left: -42px; width: 42px;
-      background: linear-gradient(to right,
-        #0a0703 0%, #1a1108 25%, #221508 60%, #0f0a04 100%);
-      transform-origin: right center;
-      transform: rotateY(-90deg);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    /* subtle spine highlight */
-    .hardcover-spine::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to right,
-        rgba(255,255,255,0.0) 0%,
-        rgba(255,255,255,0.06) 40%,
-        rgba(255,255,255,0.0) 100%);
-    }
-    .spine-title {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      font-family: 'Cinzel', serif;
-      font-size: 0.48rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(200,132,58,0.7);
-      white-space: nowrap;
-      position: relative; z-index: 1;
-    }
-
-    /* top edge */
-    .hardcover-top {
-      position: absolute;
-      bottom: 100%; left: 0; right: 0;
-      height: 16px;
-      background: linear-gradient(to bottom,
-        #1a1108, #2a1e0c);
-      transform-origin: bottom center;
-      transform: rotateX(90deg);
-    }
-
-    /* pages — right edge showing paper */
-    .hardcover-pages {
-      position: absolute;
-      top: 4px; bottom: 4px; right: -14px; width: 14px;
-      background: repeating-linear-gradient(
-        to bottom,
-        #f5edd8 0px, #ede4cc 1.5px,
-        #f5edd8 3px
-      );
-      border-radius: 0 2px 2px 0;
-      transform-origin: left center;
-      transform: rotateY(90deg);
-    }
-    /* page shadow */
-    .hardcover-pages::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(to right, rgba(0,0,0,0.25), transparent);
-    }
-
-    .preview-card-text {
-      padding: 48px 44px; display: flex; flex-direction: column; justify-content: center;
-      border-left: 1px solid rgba(200,132,58,0.12);
-    }
-    .preview-card-kicker {
-      font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.24em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 12px;
-    }
-    .preview-card-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300;
-      font-style: italic; color: var(--parchment); line-height: 1.2; margin-bottom: 18px;
-    }
-    .preview-card-desc {
-      font-size: 0.95rem; line-height: 1.8; color: var(--warm-sand); margin-bottom: 32px;
-    }
-    .preview-open-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--ink);
-      background: var(--saffron); padding: 13px 28px;
-      font-weight: 600; text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-      align-self: flex-start;
-    }
-    .preview-open-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-    @media (max-width: 640px) {
-      .preview-card-inner { grid-template-columns: 1fr; }
-      .preview-page-stack { min-height: 220px; }
-      .preview-card-text { padding: 28px 20px; border-left: none; border-top: 1px solid rgba(200,132,58,0.12); }
-    }
-
-    /* ── LANGUAGES (now first in shop flow) ── */
-    .languages {
-      background: var(--ink); padding: 100px 120px;
-      border-top: 1px solid rgba(200,132,58,0.1);
-      text-align: center;
-    }
-    .languages-header { margin-bottom: 52px; }
-    .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-    .lang-card {
-      background: var(--ink-mid); padding: 0;
-      border: 1px solid rgba(200,132,58,0.08);
-      cursor: pointer; transition: all 0.3s;
-      position: relative; overflow: hidden;
-    }
-    .lang-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--saffron); transform: scaleX(0); transition: transform 0.3s;
-    }
-    .lang-card:hover::after, .lang-card.active-lang::after { transform: scaleX(1); }
-    .lang-card:hover, .lang-card.active-lang {
-      border-color: rgba(200,132,58,0.35);
-      background: rgba(200,132,58,0.04);
-    }
-    /* cover image in language card */
-    .lang-card-cover {
-      width: 100%; margin-bottom: 16px; overflow: hidden;
-      border: 1px solid rgba(200,132,58,0.12);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-    }
-    .lang-card-cover img {
-      width: 100%; display: block;
-      object-fit: cover; object-position: top;
-      aspect-ratio: 3/4;
-      transition: transform 0.4s ease;
-    }
-    .lang-card:hover .lang-card-cover img { transform: scale(1.03); }
-    .lang-card .lang-cta {
-      margin-top: 18px; font-family: 'Cinzel', serif; font-size: 0.52rem;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--saffron); opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .lang-card:hover .lang-cta { opacity: 1; }
-    .lang-card-body {
-      padding: 20px 24px 28px;
-    }
-    .lang-glyph {
-      font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-style: italic;
-      font-weight: 600; color: rgba(200,132,58,0.2); margin-bottom: 14px; line-height: 1;
-    }
-    .lang-name {
-      font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 7px;
-    }
-    .lang-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
-      font-style: italic; color: var(--warm-sand); line-height: 1.45;
-    }
-    .lang-avail {
-      margin-top: 14px; font-family: 'Cinzel', serif; font-size: 0.5rem;
-      letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; display: inline-block;
-    }
-    .lang-avail.now { color: var(--saffron); border: 1px solid rgba(200,132,58,0.3); }
-    .lang-avail.pre { color: #c07060; border: 1px solid rgba(139,58,42,0.35); }
-
-    /* ── SHOP: merged editions + buy ── */
-    .shop {
-      background: linear-gradient(160deg, #1a1208 0%, #221608 50%, #161008 100%);
-      padding: 100px 120px;
-      border-top: 1px solid rgba(200,132,58,0.15);
-      position: relative; overflow: hidden;
-    }
-    .shop::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,132,58,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .shop-header { text-align: center; margin-bottom: 64px; position: relative; }
-    .shop-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; max-width: 1060px; margin: 0 auto; position: relative;
-    }
-    .shop-card {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(200,132,58,0.12);
-      padding: 48px 36px 40px;
-      display: flex; flex-direction: column;
-      transition: border-color 0.3s, background 0.3s, transform 0.3s;
-      position: relative;
-    }
-    .shop-card:hover {
-      border-color: rgba(200,132,58,0.42);
-      background: rgba(200,132,58,0.04);
-      transform: translateY(-4px); z-index: 2;
-    }
-    .shop-card.has-ribbon { padding-top: 60px; }
-    .shop-ribbon {
-      position: absolute; top: 0; left: 0; right: 0;
-      background: rgba(139,58,42,0.8); padding: 6px;
-      font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--parchment); text-align: center;
-    }
-    .shop-badge {
-      font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.14em;
-      text-transform: uppercase; padding: 3px 9px; display: inline-block;
-      margin-bottom: 20px; align-self: flex-start;
-    }
-    .shop-badge.now { background: rgba(200,132,58,0.15); color: var(--saffron); border: 1px solid rgba(200,132,58,0.3); }
-    .shop-badge.pre { background: rgba(139,58,42,0.15); color: #c07060; border: 1px solid rgba(139,58,42,0.35); }
-    .shop-icon { width: 44px; height: 44px; margin-bottom: 22px; color: var(--saffron); flex-shrink: 0; }
-    .shop-type {
-      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 6px;
-    }
-    .shop-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 300;
-      font-style: italic; color: var(--parchment); margin-bottom: 14px; line-height: 1.15;
-    }
-    .shop-desc {
-      font-size: 0.88rem; line-height: 1.75; color: var(--text-muted);
-      margin-bottom: 32px; flex: 1;
-    }
-    .shop-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em;
-      text-transform: uppercase; font-weight: 600; cursor: pointer;
-      padding: 14px 28px; text-decoration: none; transition: all 0.25s;
-      border: none; align-self: stretch; text-align: center;
-    }
-    .shop-btn.primary { background: var(--saffron); color: var(--ink); }
-    .shop-btn.primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .shop-btn.preorder {
-      background: transparent; color: var(--warm-sand);
-      border: 1px solid rgba(200,132,58,0.35);
-    }
-    .shop-btn.preorder:hover { border-color: var(--gold-light); color: var(--gold-light); background: rgba(200,132,58,0.06); }
-
-    /* ── AUTHOR ── */
-    .author {
-      background: var(--ink-soft); padding: 100px 120px;
-      display: grid; grid-template-columns: 260px 1fr;
-      gap: 72px; align-items: start;
-      border-top: 1px solid rgba(200,132,58,0.1);
-    }
-    .author-portrait-wrap { position: relative; width: 260px; flex-shrink: 0; }
-    .author-portrait-wrap::after {
-      content: ''; position: absolute;
-      bottom: -12px; right: -12px; left: 12px; top: 12px;
-      border: 1px solid rgba(200,132,58,0.18); z-index: 0;
-    }
-    .author-portrait-wrap img {
-      width: 100%; display: block; position: relative; z-index: 1;
-      filter: sepia(12%) contrast(1.04);
-    }
-    .author-kicker {
-      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.24em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 10px; display: block;
-    }
-    .author-name {
-      font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300;
-      color: var(--parchment); margin-bottom: 6px; font-style: italic;
-    }
-    .author-location {
-      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em;
-      color: var(--text-muted); text-transform: uppercase; margin-bottom: 22px;
-    }
-    .author-bio { font-size: 1.02rem; line-height: 1.9; color: var(--warm-sand); }
-    .author-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #0a0806; padding: 52px 120px 36px;
-      border-top: 1px solid rgba(200,132,58,0.1);
-    }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      gap: 48px; margin-bottom: 44px; padding-bottom: 44px;
-      border-bottom: 1px solid rgba(200,132,58,0.07);
-    }
-    .footer-brand { flex: 1; max-width: 340px; }
-    .footer-book-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
-      font-style: italic; font-weight: 300; color: var(--parchment); margin-bottom: 3px;
-    }
-    .footer-book-sub {
-      font-family: 'Cormorant Garamond', serif; font-style: italic;
-      color: var(--text-muted); font-size: 0.9rem; margin-bottom: 3px;
-    }
-    .footer-author-tag {
-      font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.18em;
-      color: rgba(200,132,58,0.45); text-transform: uppercase; margin-top: 10px;
-    }
-    /* newsletter */
-    .footer-newsletter { margin-top: 28px; }
-    .footer-nl-label {
-      font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 10px;
-    }
-    .footer-nl-form { display: flex; gap: 0; }
-    .footer-nl-input {
-      flex: 1; background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(200,132,58,0.25); border-right: none;
-      padding: 10px 14px; color: var(--parchment);
-      font-family: 'EB Garamond', serif; font-size: 0.9rem;
-      outline: none; transition: border-color 0.2s;
-    }
-    .footer-nl-input:focus { border-color: rgba(200,132,58,0.55); }
-    .footer-nl-input::placeholder { color: var(--text-muted); }
-    .footer-nl-btn {
-      background: var(--saffron); color: var(--ink);
-      border: none; padding: 10px 18px; cursor: pointer;
-      font-size: 1rem; transition: background 0.2s;
-    }
-    .footer-nl-btn:hover { background: var(--gold-light); }
-    .footer-nl-confirm {
-      font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--saffron); margin-top: 8px;
-    }
-    /* footer cols */
-    .footer-col { min-width: 120px; }
-    .footer-col h5 {
-      font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--saffron); margin-bottom: 14px;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-col ul li a { font-size: 0.83rem; color: var(--text-muted); transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--warm-sand); }
-    /* social icons */
-    .footer-social { display: flex; gap: 14px; margin-top: 4px; flex-wrap: wrap; }
-    .social-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(200,132,58,0.2);
-      color: var(--text-muted); transition: all 0.2s; border-radius: 2px;
-    }
-    .social-icon svg { width: 16px; height: 16px; }
-    .social-icon:hover { color: var(--gold-light); border-color: rgba(200,132,58,0.5); background: rgba(200,132,58,0.06); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-    .footer-bottom p { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.12em; color: rgba(200,132,58,0.3); text-transform: uppercase; }
-
-    /* ── NAV ANCHOR OFFSET ── */
-    #about, #preview, #buy, #languages, #author { scroll-margin-top: 68px; }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal      { opacity:0; transform:translateY(28px);  transition:opacity .8s ease,transform .8s ease; }
-    .reveal-l    { opacity:0; transform:translateX(-28px); transition:opacity .8s ease,transform .8s ease; }
-    .reveal-r    { opacity:0; transform:translateX(28px);  transition:opacity .8s ease,transform .8s ease; }
-    .reveal.in, .reveal-l.in, .reveal-r.in { opacity:1; transform:none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1100px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-visual { min-height: 60vw; max-height: 75vh; }
-      .hero-text { padding: 56px 48px; }
-      .hero-text::before { display: none; }
-      .about { grid-template-columns: 1fr; padding: 80px 48px; gap: 48px; }
-      .preview, .shop, .languages, .buy-direct { padding: 80px 48px; }
-      .shop-grid { grid-template-columns: 1fr; }
-      .lang-grid { grid-template-columns: 1fr 1fr; }
-      .author { grid-template-columns: 1fr; padding: 80px 48px; gap: 36px; }
-      .author-portrait-wrap { width: 200px; }
-      footer { padding: 52px 48px 36px; }
-      .footer-inner { flex-direction: column; gap: 36px; }
-      .footer-brand { max-width: 100%; }
-      .quote-band { padding: 60px 48px; }
-    }
-
-    @media (max-width: 640px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }             /* hide desktop links */
-      .hamburger { display: flex; }             /* show burger button */
-      .mobile-drawer { display: block; }        /* allow drawer to animate in */
-      .hero-text { padding: 44px 20px; }
-      .about,.preview,.shop,.languages,.author { padding: 60px 20px; }
-      .quote-band { padding: 48px 20px; }
-      footer { padding: 48px 20px 28px; }
-      .hero-title-l1 { white-space: normal; }
-      .hero-actions { flex-direction: column; }
-    }
-
-  </style>
+</style>
 </head>
 <body>
 
-<script>
-  const CONFIG = {
-    BOOK_COVER_URL:   "images/Cover.jpg",
-    AUTHOR_PHOTO_URL: "images/Author.jpg",
-    PREVIEW_URLS: {
-      de: "preview-de.html",
-      en: "preview-en.html",
-      es: "preview-es.html",
-      pt: "preview-pt.html",
-    },
-    AUDIO_PREVIEW_URLS: {
-      de: "preview-audio-de.html",
-      en: "preview-audio-en.html",
-      es: "preview-audio-es.html",
-      pt: "preview-audio-pt.html",
-    },
-    COVERS: {
-      de: "images/Cover.jpg",
-      en: "images/Cover-EN.jpg",
-      es: "images/Cover-ES.jpg",
-      pt: "images/Cover-PT.jpg",
-    },
-    LINKS: {
-      ebook_de:  "https://www.thalia.de/shop/home/artikeldetails/A1078785572",
-      ebook_en:  "https://buy.stripe.com/dRm14n4Iwag8dZL5djawo0r",
-      ebook_es:  "https://buy.stripe.com/dRm14n4Iwag8dZL5djawo0r",
-      ebook_pt:  "https://buy.stripe.com/dRm14n4Iwag8dZL5djawo0r",
-      print_de:  "https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
-      print_en:  "https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
-      print_es:  "https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
-      print_pt:  "https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
-      audio_de:  "https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
-      audio_en:  "https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
-      audio_es:  "https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
-      audio_pt:  "https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
-    }
-  };
-</script>
 
 <!-- NAV -->
 <nav>
   <div class="nav-title" id="nav-title">Eine Kulinarische Reise</div>
   <ul class="nav-links">
-    <li><a href="#about"     id="nav-about"     onclick="navScrollTo('about');     return false;">Das Buch</a></li>
-    <li><a href="#preview"   id="nav-preview"   onclick="navScrollTo('preview');   return false;">Vorschau</a></li>
-    <li><a href="#languages" id="nav-editions"  onclick="navScrollTo('languages'); return false;">Ausgaben</a></li>
-    <li><a href="#buy"       id="nav-buy"       onclick="navScrollTo('buy');       return false;">Bestellen</a></li>
-    <li><a href="#author"    id="nav-author"    onclick="navScrollTo('author');    return false;">Autor</a></li>
+    <li><a href="#about" id="nav-about" onclick="navScrollTo('about');return false;">Das Buch</a></li>
+    <li><a href="#preview" id="nav-preview" onclick="navScrollTo('preview');return false;">Vorschau</a></li>
+    <li><a href="#languages" id="nav-editions" onclick="navScrollTo('languages');return false;">Ausgaben</a></li>
+    <li><a href="#buy" id="nav-buy" onclick="navScrollTo('buy');return false;">Bestellen</a></li>
+    <li><a href="#author" id="nav-author" onclick="navScrollTo('author');return false;">Autor</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:10px;">
     <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('de')">DE</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('es')">ES</button>
-      <button class="lang-btn" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn active" onclick="selectLang('de')">DE</button>
+      <button class="lang-btn" onclick="selectLang('en')">EN</button>
+      <button class="lang-btn" onclick="selectLang('es')">ES</button>
+      <button class="lang-btn" onclick="selectLang('pt')">PT</button>
     </div>
-    <!-- Hamburger — only visible on mobile via CSS -->
-    <button class="hamburger" id="hamburger" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- MOBILE DRAWER — rendered but hidden until .is-open -->
 <div class="mobile-drawer" id="mobile-drawer">
   <ul>
-    <li><a href="#about"     id="mob-about"     onclick="navScrollTo('about');     return false;">Das Buch</a></li>
-    <li><a href="#preview"   id="mob-preview"   onclick="navScrollTo('preview');   return false;">Vorschau</a></li>
-    <li><a href="#languages" id="mob-editions"  onclick="navScrollTo('languages'); return false;">Ausgaben</a></li>
-    <li><a href="#buy"       id="mob-buy"       onclick="navScrollTo('buy');       return false;">Bestellen</a></li>
-    <li><a href="#author"    id="mob-author"    onclick="navScrollTo('author');    return false;">Autor</a></li>
+    <li><a href="#about" id="mob-about" onclick="navScrollTo('about');return false;">Das Buch</a></li>
+    <li><a href="#preview" id="mob-preview" onclick="navScrollTo('preview');return false;">Vorschau</a></li>
+    <li><a href="#languages" id="mob-editions" onclick="navScrollTo('languages');return false;">Ausgaben</a></li>
+    <li><a href="#buy" id="mob-buy" onclick="navScrollTo('buy');return false;">Bestellen</a></li>
+    <li><a href="#author" id="mob-author" onclick="navScrollTo('author');return false;">Autor</a></li>
   </ul>
+  <div class="mobile-drawer-lang">
+    <button class="lang-btn active" onclick="selectLang('de')">DE</button>
+    <button class="lang-btn" onclick="selectLang('en')">EN</button>
+    <button class="lang-btn" onclick="selectLang('es')">ES</button>
+    <button class="lang-btn" onclick="selectLang('pt')">PT</button>
+  </div>
 </div>
 <div class="drawer-overlay" id="drawer-overlay"></div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-visual">
-    <img class="hero-cover-img" id="hero-cover-img" src="" alt="Eine Kulinarische Reise — Book Cover" />
+    <img class="hero-cover-img" id="hero-cover-img" src="images/Cover.webp" alt="Eine Kulinarische Reise — Book Cover" />
   </div>
   <div class="hero-text">
     <span class="hero-eyebrow" id="hero-eyebrow">Eine Kulinarische Reise · 1. Auflage · First Edition · 2026</span>
@@ -865,74 +378,52 @@
       <div class="hero-title-l3" id="hero-l3">die Basis aller Speisen</div>
     </div>
     <div class="ornament-line"><span>✦</span></div>
-    <p class="hero-desc" id="hero-desc">
-      Geschichten und Erzählungen, die an Tischen entstehen — über das Kochen als Sprache,
-      Erinnerung als Gewürz und die unsichtbaren Zutaten, die jedes Gericht erst vollenden.
-    </p>
+    <p class="hero-desc" id="hero-desc">Geschichten und Erzählungen, die an Tischen entstehen — über das Kochen als Sprache, Erinnerung als Gewürz und die unsichtbaren Zutaten, die jedes Gericht erst vollenden.</p>
     <div class="hero-actions">
-      <a id="btn-order" class="btn-primary" href="#buy" onclick="navScrollTo('buy'); return false;">Jetzt bestellen</a>
-      <a id="btn-preview" class="btn-outline" href="preview-de.html" target="_blank">Vorschau lesen</a>
+      <a id="btn-order" class="btn-primary" href="#buy" onclick="navScrollTo('buy');return false;">Jetzt bestellen</a>
+      <a id="btn-preview" class="btn-outline" href="preview-de.html" target="_blank" rel="noopener noreferrer">Vorschau lesen</a>
     </div>
   </div>
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- PULL QUOTE -->
-<div class="quote-band reveal">
-  <blockquote id="pull-quote">
-    „Essen ist Erinnerung. Jedes Gericht erzählt eine Geschichte — von Händen,
-    die es zubereitet haben, von Tischen, an denen es geteilt wurde."
-  </blockquote>
+<!-- QUOTE -->
+<div class="quote-band">
+  <blockquote id="pull-quote">„Essen ist Erinnerung. Jedes Gericht erzählt eine Geschichte — von Händen, die es zubereitet haben, von Tischen, an denen es geteilt wurde."</blockquote>
   <span class="quote-attr" id="pull-attr">— J. D'Costa Andrade · Eine Kulinarische Reise</span>
 </div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="reveal-l">
+  <div>
     <div class="book-mockup-wrap">
-      <img id="about-cover-img" src="" alt="Book Cover" />
+      <img id="about-cover-img" src="images/Cover.webp" alt="Book Cover" />
     </div>
   </div>
-  <div class="reveal-r">
+  <div>
     <span class="section-kicker" id="about-kicker">Über das Buch</span>
     <h2 class="section-heading" id="about-heading">„Essen ist unsere<em> Mutter,</em><br>die uns von der Wiege bis zum Grab umsorgt"</h2>
-    <p class="body-text" id="about-p1">
-      Die Geschichte eines Einwandererkindes, die Herkunft einer Sammlung der bekanntesten Gerichte der Welt. 
-      Die Entstehung eines außergewöhnlichen Tisches in Barcelona, zu dem Fortune-500-CEOs, Celebrities und Gourmets 
-      aus aller Welt pilgerten. Erzählt mit der ungefilterten Direktheit eines Anthony Bourdains.
-    </p>
-    <p class="body-text" id="about-p2">
-      Essen ist mehr als Ernährung. Es ist Erinnerung, Herkunft und Identität, untrennbar verbunden mit 
-      der Geschichte jener Menschen, die ihre Heimat verlassen mussten und sie in ihren Gerichten wiederfanden.
-      In der <em>Basis aller Speisen</em> liegt die Essenz des Lebens.
-    </p>
+    <p class="body-text" id="about-p1">Die Geschichte eines Einwandererkindes, die Herkunft einer Sammlung der bekanntesten Gerichte der Welt. Die Entstehung eines außergewöhnlichen Tisches in Barcelona, zu dem Fortune-500-CEOs, Celebrities und Gourmets aus aller Welt pilgerten. Erzählt mit der ungefilterten Direktheit eines Anthony Bourdains.</p>
+    <p class="body-text" id="about-p2">Essen ist mehr als Ernährung. Es ist Erinnerung, Herkunft und Identität, untrennbar verbunden mit der Geschichte jener Menschen, die ihre Heimat verlassen mussten und sie in ihren Gerichten wiederfanden. In der <em>Basis aller Speisen</em> liegt die Essenz des Lebens.</p>
     <div class="tag-list">
-      <span class="tag">Kulinarische Literatur</span>
-      <span class="tag">Geschichten</span>
-      <span class="tag">Weltküche</span>
-      <span class="tag">Erinnerung</span>
-      <span class="tag">Reise</span>
+      <span class="tag">Kulinarische Literatur</span><span class="tag">Geschichten</span><span class="tag">Weltküche</span><span class="tag">Erinnerung</span><span class="tag">Reise</span>
     </div>
   </div>
 </section>
 
 <!-- PREVIEW -->
-<section class="preview reveal" id="preview">
+<section class="preview" id="preview">
   <div class="preview-header">
     <span class="section-kicker" id="prev-kicker">Einblick ins Buch</span>
     <h2 class="section-heading" id="prev-heading">Lesen Sie eine <em>Vorschau</em></h2>
   </div>
-  <div class="preview-card" id="pdf-wrap">
+  <div class="preview-card">
     <div class="preview-card-inner">
       <div class="preview-page-stack">
         <div class="hardcover">
           <div class="hardcover-top"></div>
-          <div class="hardcover-spine">
-            <span class="spine-title">Eine Kulinarische Reise · J. D'Costa Andrade</span>
-          </div>
-          <div class="hardcover-front">
-            <img src="images/Cover.jpg" alt="Cover"/>
-          </div>
+          <div class="hardcover-spine"><span class="spine-title">Eine Kulinarische Reise · J. D'Costa Andrade</span></div>
+          <div class="hardcover-front"><img src="images/Cover.webp" alt="Cover"/></div>
           <div class="hardcover-pages"></div>
         </div>
       </div>
@@ -940,145 +431,131 @@
         <div class="preview-card-kicker" id="prev-card-kicker">Buchvorschau</div>
         <div class="preview-card-title" id="prev-card-title">23 Seiten — kostenlos lesen</div>
         <p class="preview-card-desc" id="prev-card-desc">Cover, Inhaltsverzeichnis, Einführung, zwei vollständige Kapitel und mehr — als PDF in Ihrem Browser.</p>
-        <a class="preview-open-btn" id="prev-open-btn" href="preview-de.html" target="_blank">
-          Vorschau öffnen ↗
-        </a>
+        <a class="preview-open-btn" id="prev-open-btn" href="preview-de.html" target="_blank" rel="noopener noreferrer">Vorschau öffnen ↗</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STEP 1: LANGUAGES -->
-<section class="languages reveal" id="languages">
+<!-- LANGUAGES -->
+<section class="languages" id="languages">
   <div class="languages-header">
     <span class="section-kicker" id="lang-kicker">Erhältlich in</span>
     <h2 class="section-heading" id="lang-heading">Vier <em>Sprachen</em></h2>
   </div>
   <div class="lang-grid">
-
     <div class="lang-card" onclick="selectLang('de')" role="button" tabindex="0" aria-label="Deutsch">
-      <div class="lang-card-cover"><img src="images/Cover.jpg" alt="Eine Kulinarische Reise"/></div>
+      <div class="lang-card-cover"><img src="images/Cover.webp" alt="Eine Kulinarische Reise"/></div>
       <div class="lang-card-body">
-      <div class="lang-name">Deutsch</div>
-      <div class="lang-title">Eine Kulinarische Reise<br><small style="font-size:.85em;color:var(--text-muted)">Geschichten &amp; Erzählungen</small></div>
-      <span class="lang-avail now" id="lang-avail-de">Jetzt verfügbar</span>
-      <div class="lang-cta" id="lang-cta-de">Auswählen ↓</div>
+        <div class="lang-name">Deutsch</div>
+        <div class="lang-title">Eine Kulinarische Reise<br><small style="font-size:.85em;color:var(--text-muted)">Geschichten &amp; Erzählungen</small></div>
+        <span class="lang-avail now" id="lang-avail-de">Jetzt verfügbar</span>
+        <div class="lang-cta" id="lang-cta-de">Auswählen ↓</div>
       </div>
     </div>
-
     <div class="lang-card" onclick="selectLang('en')" role="button" tabindex="0" aria-label="English">
-      <div class="lang-card-cover"><img src="images/Cover-EN.jpg" alt="A Culinary Journey"/></div>
+      <div class="lang-card-cover"><img src="images/Cover-EN.webp" alt="A Culinary Journey"/></div>
       <div class="lang-card-body">
-      <div class="lang-name">English</div>
-      <div class="lang-title">A Culinary Journey<br><small style="font-size:.85em;color:var(--text-muted)">Stories &amp; Tales</small></div>
-      <span class="lang-avail pre" id="lang-avail-en">Pre-Order · May 2026</span>
-      <div class="lang-cta" id="lang-cta-en">Select ↓</div>
+        <div class="lang-name">English</div>
+        <div class="lang-title">A Culinary Journey<br><small style="font-size:.85em;color:var(--text-muted)">Stories &amp; Tales</small></div>
+        <span class="lang-avail pre" id="lang-avail-en">Pre-Order · May 2026</span>
+        <div class="lang-cta" id="lang-cta-en">Select ↓</div>
       </div>
     </div>
-
     <div class="lang-card" onclick="selectLang('es')" role="button" tabindex="0" aria-label="Español">
-      <div class="lang-card-cover"><img src="images/Cover-ES.jpg" alt="Un Viaje Culinario"/></div>
+      <div class="lang-card-cover"><img src="images/Cover-ES.webp" alt="Un Viaje Culinario"/></div>
       <div class="lang-card-body">
-      <div class="lang-name">Español</div>
-      <div class="lang-title">Un Viaje Culinario<br><small style="font-size:.85em;color:var(--text-muted)">Historias y Relatos</small></div>
-      <span class="lang-avail pre" id="lang-avail-es">Pre-Order · Mayo 2026</span>
-      <div class="lang-cta" id="lang-cta-es">Seleccionar ↓</div>
+        <div class="lang-name">Español</div>
+        <div class="lang-title">Un Viaje Culinario<br><small style="font-size:.85em;color:var(--text-muted)">Historias y Relatos</small></div>
+        <span class="lang-avail pre" id="lang-avail-es">Pre-Order · Mayo 2026</span>
+        <div class="lang-cta" id="lang-cta-es">Seleccionar ↓</div>
       </div>
     </div>
-
     <div class="lang-card" onclick="selectLang('pt')" role="button" tabindex="0" aria-label="Português">
-      <div class="lang-card-cover"><img src="images/Cover-PT.jpg" alt="Uma Jornada Culinária"/></div>
+      <div class="lang-card-cover"><img src="images/Cover-PT.webp" alt="Uma Jornada Culinária"/></div>
       <div class="lang-card-body">
-      <div class="lang-name">Português</div>
-      <div class="lang-title">Uma Jornada Culinária<br><small style="font-size:.85em;color:var(--text-muted)">Histórias e Narrativas</small></div>
-      <span class="lang-avail pre" id="lang-avail-pt">Pré-encomenda · Maio 2026</span>
-      <div class="lang-cta" id="lang-cta-pt">Selecionar ↓</div>
+        <div class="lang-name">Português</div>
+        <div class="lang-title">Uma Jornada Culinária<br><small style="font-size:.85em;color:var(--text-muted)">Histórias e Narrativas</small></div>
+        <span class="lang-avail pre" id="lang-avail-pt">Pré-encomenda · Maio 2026</span>
+        <div class="lang-cta" id="lang-cta-pt">Selecionar ↓</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- STEP 2+3: UNIFIED SHOP (editions + buy) -->
-<section class="shop reveal" id="buy">
+<!-- SHOP -->
+<section class="shop" id="buy">
   <div class="shop-header">
-    <span class="section-kicker" id="ed-kicker">Verfügbar als</span>
-    <h2 class="section-heading" id="ed-heading">Wählen Sie Ihre <em>Ausgabe</em></h2>
+    <span class="section-kicker" id="shop-kicker">Verfügbar als</span>
+    <h2 class="section-heading" id="shop-heading">Wählen Sie Ihre <em>Ausgabe</em></h2>
   </div>
   <div class="shop-grid">
-
-    <!-- E-BOOK -->
-    <div class="shop-card has-ribbon">
-      <div class="shop-ribbon" id="buy-ribbon">Bestellen Sie · Jetzt · 14.99€</div>      
-      <span class="shop-badge now" id="eb-badge">Jetzt verfügbar</span>
-      <svg class="shop-icon" viewBox="0 0 48 48" fill="none">
-        <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="16" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="1.2"/>
-        <line x1="16" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="1.2"/>
-        <line x1="16" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="1.2"/>
+    
+    <!-- EBOOK -->
+    <div class="shop-card" id="card-ebook">
+      <div class="shop-ribbon" id="ribbon-ebook" style="display:none;"></div>
+      <span class="shop-badge now" id="badge-ebook">Jetzt verfügbar</span>
+      <svg class="shop-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="8" y="4" width="22" height="30" rx="2"/><rect x="14" y="10" width="22" height="30" rx="2"/>
+        <line x1="12" y1="12" x2="22" y2="12"/><line x1="12" y1="17" x2="24" y2="17"/><line x1="12" y1="22" x2="20" y2="22"/>
       </svg>
-      <div class="shop-type" id="ed-ebook-type">E-Book</div>
-      <div class="shop-title" id="ed-ebook-title">Digitale Ausgabe</div>
-      <p class="shop-desc" id="ed-ebook-desc">Sofortiger Zugriff auf allen Geräten. EPUB-Format, kompatibel mit allen Readern.</p>
-      <a id="buy-btn-ebook" class="shop-btn primary" target="_blank">Jetzt kaufen</a>
+      <div class="shop-type" id="shop-type-ebook">E-Book</div>
+      <div class="shop-title" id="shop-title-ebook">Digitale Ausgabe</div>
+      <p class="shop-desc" id="shop-desc-ebook">Sofortiger Zugriff auf allen Geräten. EPUB-Format, kompatibel mit allen Readern. Erhältlich über Thalia.</p>
+      <div class="shop-price" id="shop-price-ebook">14,99 €</div>
+      <div class="shop-price-note" id="shop-price-note-ebook"></div>
+      <a class="shop-btn primary" id="shop-btn-ebook" href="https://www.thalia.de/shop/home/artikeldetails/A1078785572" target="_blank" rel="noopener noreferrer">Jetzt kaufen</a>
     </div>
 
     <!-- AUDIO -->
-    <div class="shop-card has-ribbon">
-      <div class="shop-ribbon" id="buy-ribbon">Pre-Order mit 10% Rabatt· Mai 2026 · 12.99€</div>
-      <span class="shop-badge pre" id="au-badge">Pre-Order · Versendung erfolgt Mai 2026</span>
-      <svg class="shop-icon" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5"/>
-        <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="1"/>
-        <line x1="24" y1="19" x2="24" y2="8" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M14 30 Q10 24 14 18" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M34 18 Q38 24 34 30" stroke="currentColor" stroke-width="1.2"/>
+    <div class="shop-card has-ribbon" id="card-audio">
+      <div class="shop-ribbon" id="ribbon-audio">Pre-Order · Mai 2026 · 10% Rabatt</div>
+      <span class="shop-badge pre" id="badge-audio">Pre-Order · Mai 2026</span>
+      <svg class="shop-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="22" cy="22" r="14"/><circle cx="22" cy="22" r="5"/>
+        <path d="M22 8 A14 14 0 0 1 36 22"/><path d="M22 36 A14 14 0 0 1 8 22"/>
       </svg>
-      <div class="shop-type" id="ed-audio-type">Hörbuch</div>
-      <div class="shop-title" id="ed-audio-title">Audio-Book</div>
-      <p class="shop-desc" id="ed-audio-desc">Mit der Stimme des Autoren J.D'Costa. Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
-      <a id="audio-preview-btn" class="shop-btn" style="background:transparent;color:var(--saffron);border:1px solid rgba(200,132,58,0.25);margin-bottom:8px;font-size:0.58rem;" href="preview-audio-de.html" target="_blank">&#9654; Hörprobe anhören</a>
-      <a id="buy-btn-audio" class="shop-btn preorder" target="_blank">Vorbestellen</a>
+      <div class="shop-type" id="shop-type-audio">Hörbuch</div>
+      <div class="shop-title" id="shop-title-audio">Audio-Ausgabe</div>
+      <p class="shop-desc" id="shop-desc-audio">Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
+      <div class="shop-price" id="shop-price-audio">12,99 €</div>
+      <div class="shop-price-note" id="shop-price-note-audio">Pre-Order · 10% off</div>
+      <a class="shop-btn sample" id="shop-btn-audio-sample" href="preview-audio-de.html" target="_blank" rel="noopener noreferrer">▶ Hörprobe anhören</a>
+      <a class="shop-btn preorder" id="shop-btn-audio" href="https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s" target="_blank" rel="noopener noreferrer">Vorbestellen</a>
     </div>
 
     <!-- PRINT -->
-    <div class="shop-card has-ribbon">
-      <div class="shop-ribbon" id="buy-print-ribbon">Pre-Order mit 10% Rabatt · Mai 2026 · 39.00€</div>
-      <span class="shop-badge pre" id="pr-badge">Pre-Order · Versendung erfolgt Mai 2026</span>
-      <svg class="shop-icon" viewBox="0 0 48 48" fill="none">
-        <rect x="10" y="4" width="26" height="40" rx="1" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="14" y="4" width="3" height="40" fill="currentColor" opacity="0.15"/>
-        <line x1="18" y1="14" x2="30" y2="14" stroke="currentColor" stroke-width="1"/>
-        <line x1="18" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="1"/>
-        <line x1="18" y1="26" x2="26" y2="26" stroke="currentColor" stroke-width="1"/>
+    <div class="shop-card has-ribbon" id="card-print">
+      <div class="shop-ribbon" id="ribbon-print">Pre-Order · Mai 2026 · 10% Rabatt</div>
+      <span class="shop-badge pre" id="badge-print">Pre-Order · Mai 2026</span>
+      <svg class="shop-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="6" y="4" width="24" height="34" rx="2"/>
+        <line x1="11" y1="13" x2="24" y2="13"/><line x1="11" y1="19" x2="24" y2="19"/><line x1="11" y1="25" x2="19" y2="25"/>
+        <rect x="4" y="6" width="3" height="30" rx="1" fill="currentColor" opacity="0.3"/>
       </svg>
-      <div class="shop-type" id="ed-print-type">Gedruckt</div>
-      <div class="shop-title" id="ed-print-title">Druckausgabe</div>
-      <p class="shop-desc" id="ed-print-desc">Wunderschöne Druckausgabe auf hochwertigem Papier mit HQ Farb-Fotos. Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
-      <a id="buy-btn-print" class="shop-btn preorder" target="_blank">Vorbestellen</a>
+      <div class="shop-type" id="shop-type-print">Gedruckt</div>
+      <div class="shop-title" id="shop-title-print">Druckausgabe</div>
+      <p class="shop-desc" id="shop-desc-print">Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.</p>
+      <div class="shop-price" id="shop-price-print">39,00 €</div>
+      <div class="shop-price-note" id="shop-price-note-print">Pre-Order · ~10% off</div>
+      <a class="shop-btn preorder" id="shop-btn-print" href="https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t" target="_blank" rel="noopener noreferrer">Vorbestellen</a>
     </div>
 
   </div>
 </section>
 
 <!-- AUTHOR -->
-<section class="author reveal" id="author">
+<section class="author" id="author">
   <div class="author-portrait-wrap">
-    <img id="author-photo" src="" alt="J. D'Costa Andrade" />
+    <img id="author-img" src="images/Author.webp" alt="J. D'Costa Andrade" />
   </div>
   <div>
-    <span class="author-kicker" id="auth-kicker">Über den Autor</span>
+    <span class="author-kicker" id="author-kicker">Über den Autor</span>
     <div class="author-name">J. D'Costa Andrade</div>
-    <div class="author-location" id="auth-location">Barcelona, Spanien</div>
-    <p class="author-bio" id="auth-bio">
-      Entrepreneur, Berater, Foodie, Autor und Denker: Mit „Eine kulinarische Reise" legt er sein Erstlingswerk vor. Obwohl nicht in Deutschland geboren, ist sein Buch bewusst auf Deutsch verfasst, eine Hommage an seine Kindheit, die er dort verbracht hat. Als vielseitiger Geist verbindet er in seinem Wirken technologischen Fortschritt mit soziologischen Fragestellungen. Der Autor bezeichnet sich selbst, wenn gefragt, schmunzelnd als einen modernen Renaissance-Menschen, einen Polymath mit den Wurzeln eines Zigeuners. Heute lebt und arbeitet er von seiner Wahlheimat Spanien aus.
-    </p>
-    <div class="author-tags" id="auth-tags">
-      <span class="tag">Unternehmer</span>
-      <span class="tag">Foodie</span>
-      <span class="tag">Autor</span>
-      <span class="tag">Denker</span>
-      <span class="tag">Barcelona</span>
+    <div class="author-location" id="author-location">Barcelona, Spanien</div>
+    <p class="author-bio" id="author-bio">Entrepreneur, Berater, Foodie, Autor und Denker: Mit „Eine kulinarische Reise" legt er sein Erstlingswerk vor. Obwohl nicht in Deutschland geboren, ist sein Buch bewusst auf Deutsch verfasst, eine Hommage an seine Kindheit, die er dort verbracht hat. Als vielseitiger Geist verbindet er in seinem Wirken technologischen Fortschritt mit soziologischen Fragestellungen. Der Autor bezeichnet sich selbst, wenn gefragt, schmunzelnd als einen modernen Renaissance-Menschen, einen Polymath mit den Wurzeln eines Zigeuners. Heute lebt und arbeitet er von seiner Wahlheimat Spanien aus.</p>
+    <div class="author-tags">
+      <span class="tag">Unternehmer</span><span class="tag">Foodie</span><span class="tag">Autor</span><span class="tag">Denker</span><span class="tag">Barcelona</span>
     </div>
   </div>
 </section>
@@ -1086,32 +563,25 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-
-    <!-- Book identity -->
     <div class="footer-brand">
-      <div class="footer-book-title" id="foot-book-title">Eine Kulinarische Reise</div>
-      <div class="footer-book-sub" id="foot-book-sub">Geschichten &amp; Erzählungen · die Basis aller Speisen</div>
-      <div class="footer-author-tag">J. D&#8217;Costa Andrade &nbsp;·&nbsp; 2026</div>
-
-      <!-- Newsletter -->
+      <div class="footer-book-title" id="ft-title">Eine Kulinarische Reise</div>
+      <div class="footer-book-sub" id="ft-sub">Geschichten &amp; Erzählungen · die Basis aller Speisen</div>
+      <div class="footer-author-tag">J. D'Costa Andrade · 2026</div>
       <div class="footer-newsletter">
-        <p class="footer-nl-label" id="foot-nl-label">Stay in the loop · Newsletter</p>
-        <form class="footer-nl-form" onsubmit="submitNewsletter(event)">
-          <input type="email" id="foot-nl-input" class="footer-nl-input"
-            placeholder="your@email.com" required autocomplete="email"/>
-          <button type="submit" class="footer-nl-btn" id="foot-nl-btn">&#8594;</button>
-        </form>
-        <p class="footer-nl-confirm" id="foot-nl-confirm" style="display:none;"></p>
+        <div class="footer-nl-label" id="ft-nl-label">Stay in the loop</div>
+        <div class="footer-nl-form">
+          <input class="footer-nl-input" id="ft-nl-input" type="email" placeholder="ihre@email.com" />
+          <button class="footer-nl-btn" onclick="submitNewsletter()">→</button>
+        </div>
+        <div class="footer-nl-confirm" id="ft-nl-confirm" style="display:none;"></div>
       </div>
     </div>
-
-    <!-- Editions quick links -->
     <div class="footer-col">
-      <h5 id="foot-col-editions">Editions</h5>
+      <h5 id="ft-col1-title">Editions</h5>
       <ul>
-        <li><a id="foot-ebook" href="" target="_blank">E-Book</a></li>
-        <li><a id="foot-audio" href="" target="_blank">Audiobook</a></li>
-        <li><a id="foot-print" href="" target="_blank">Print</a></li>
+        <li><a href="#buy" onclick="navScrollTo('buy');return false;" id="ft-ebook">E-Book</a></li>
+        <li><a href="#buy" onclick="navScrollTo('buy');return false;" id="ft-print">Druck</a></li>
+        <li><a href="#buy" onclick="navScrollTo('buy');return false;" id="ft-audio">Hörbuch</a></li>
       </ul>
     </div>
 
@@ -1122,11 +592,11 @@
         <a href="https://www.instagram.com/joses.table" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
+        <a href="mmailto:book@joedcosta.com" aria-label="Email" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
         <a href="https://joestable.clandestino.kitchen/" target="_blank" rel="noopener" aria-label="Website" class="social-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-        </a>
-        <a href="mailto:book@joedcosta.com" aria-label="Email" class="social-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
       </div>
     </div>
@@ -1134,398 +604,212 @@
   </div>
 
   <div class="footer-bottom">
-    <p id="foot-copy">&copy; 2026 J. D&#8217;Costa Andrade &nbsp;&middot;&nbsp; All rights reserved</p>
-    <p>1. Auflage &nbsp;&middot;&nbsp; First Edition</p>
+    <p>© 2026 J. D'Costa Andrade · All rights reserved</p>
+    <p id="ft-edition">1. Auflage · First Edition</p>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ============================================================
-// SCROLL HELPER — avoids iOS iframe anchor redirect bug
-// ============================================================
-function navScrollTo(id) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  var navH = 68;
-  var top = el.getBoundingClientRect().top + window.pageYOffset - navH;
-  window.scrollTo({ top: top, behavior: 'smooth' });
-}
-
-// ============================================================
-// INIT
-// ============================================================
-(function init() {
-  document.getElementById('hero-cover-img').src  = CONFIG.BOOK_COVER_URL;
-  document.getElementById('about-cover-img').src = CONFIG.BOOK_COVER_URL;
-  document.getElementById('author-photo').src    = CONFIG.AUTHOR_PHOTO_URL;
-  document.getElementById('btn-preview').href    = CONFIG.PREVIEW_URLS.de;
-  document.getElementById('prev-open-btn').href  = CONFIG.PREVIEW_URLS.de;
-
-  // Set default DE links on page load
-  applyLangLinks('de');
-})();
-
-// ============================================================
-// MOBILE HAMBURGER
-// ============================================================
-(function() {
-  var burger  = document.getElementById('hamburger');
-  var drawer  = document.getElementById('mobile-drawer');
-  var overlay = document.getElementById('drawer-overlay');
-
-  function openMenu() {
-    drawer.classList.add('is-open');
-    overlay.classList.add('is-open');
-    burger.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    drawer.classList.remove('is-open');
-    overlay.classList.remove('is-open');
-    burger.classList.remove('is-open');
-    document.body.style.overflow = '';
-  }
-
-  burger.addEventListener('click', function() {
-    if (drawer.classList.contains('is-open')) { closeMenu(); } else { openMenu(); }
-  });
-  overlay.addEventListener('click', closeMenu);
-  drawer.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
-})();
-
-// ============================================================
-// SELECT LANGUAGE — switches UI + scrolls to shop
-// ============================================================
-function selectLang(lang) {
-  setLang(lang);
-  // highlight active lang card
-  document.querySelectorAll('.lang-card').forEach(function(c) {
-    c.classList.remove('active-lang');
-  });
-  var cards = document.querySelectorAll('.lang-card');
-  var idx = ['de','en','es','pt'].indexOf(lang);
-  if (idx >= 0 && cards[idx]) cards[idx].classList.add('active-lang');
-  // swap cover images for hero, about section and hardcover preview
-  var cover = CONFIG.COVERS[lang] || CONFIG.COVERS.de;
-  var heroImg = document.getElementById('hero-cover-img');
-  var aboutImg = document.getElementById('about-cover-img');
-  var hcImg = document.querySelector('.hardcover-front img');
-  if (heroImg)  heroImg.src  = cover;
-  if (aboutImg) aboutImg.src = cover;
-  if (hcImg)    hcImg.src    = cover;
-  // smooth scroll to shop section
-  setTimeout(function() { navScrollTo('buy'); }, 80);
-}
-
-// keyboard accessibility for lang cards
-document.querySelectorAll('.lang-card').forEach(function(card) {
-  card.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.click();
-    }
-  });
-});
-// ============================================================
-var revObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }
-  });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(function(el) { revObs.observe(el); });
-
-// ============================================================
-// LANGUAGE SWITCHER
-// ============================================================
-var T = {
-  de: {
-    'nav-title': 'Eine Kulinarische Reise',
-    'nav-about': 'Das Buch', 'nav-preview': 'Vorschau', 'nav-editions': 'Ausgaben', 'nav-buy': 'Bestellen', 'nav-author': 'Autor',
-    'mob-about': 'Das Buch', 'mob-preview': 'Vorschau', 'mob-editions': 'Ausgaben', 'mob-buy': 'Bestellen', 'mob-author': 'Autor',
-    'hero-eyebrow': 'Eine Kulinarische Reise · 1. Auflage · First Edition · 2026',
-    'hero-l1': 'Eine <em>Kulinarische Reise</em>',
-    'hero-l2': 'Geschichten &amp; Erzählungen',
-    'hero-l3': 'die Basis aller Speisen',
-    'hero-desc': 'Geschichten und Erzählungen, die an Tischen entstehen. Über das Kochen als Sprache, Erinnerung als Gewürz und die unsichtbaren Zutaten, die jedes Gericht erst vollenden.',
-    'pull-quote': '„Essen ist Erinnerung. Jedes Gericht erzählt eine Geschichte von Händen, die es zubereitet haben, und Tischen, an denen es geteilt wurde."',
-    'pull-attr': '— J. D\'Costa Andrade · Eine Kulinarische Reise',
-    'about-kicker': 'Über das Buch',
-    'about-heading': '„Essen ist unsere<em> Mutter,</em><br>die uns von der Wiege bis zum Grab umsorgt"',
-    'about-p1': 'Die Geschichte eines Einwandererkindes, die Herkunft einer Sammlung der bekanntesten Gerichte der Welt. Die Entstehung eines außergewöhnlichen Tisches in Barcelona, zu dem Fortune-500-CEOs, Celebrities und Gourmets aus aller Welt pilgerten. Erzählt mit der ungefilterten Direktheit eines Anthony Bourdains.',
-    'about-p2': 'Essen ist mehr als Ernährung. Es ist Erinnerung, Herkunft und Identität, untrennbar verbunden mit der Geschichte jener Menschen, die ihre Heimat verlassen mussten und sie in ihren Gerichten wiederfanden. In der <em>Basis aller Speisen</em> liegt die Essenz des Lebens.',
-    'prev-kicker': 'Einblick ins Buch', 'prev-heading': 'Lesen Sie eine <em>Vorschau</em>',
-    'prev-card-kicker': 'Buchvorschau', 'prev-card-title': '23 Seiten kostenlos lesen',
-    'prev-card-desc': 'Cover, Inhaltsverzeichnis, Einführung, zwei vollständige Kapitel und mehr als PDF in Ihrem Browser.',
-    'prev-open-btn': 'Vorschau öffnen ↗',
-    'ed-kicker': 'Verfügbar als', 'ed-heading': 'Wählen Sie Ihre <em>Ausgabe</em>',
-    'eb-badge': 'Jetzt verfügbar', 'pr-badge': 'Pre-Order · Mai 2026', 'au-badge': 'Pre-Order · Mai 2026',
-    'ed-ebook-type': 'E-Book', 'ed-ebook-title': 'Digitale Ausgabe',
-    'ed-ebook-desc': 'Sofortiger Zugriff auf allen Geräten. EPUB-Format, kompatibel mit allen Readern.',
-    'ed-print-type': 'Gedruckt', 'ed-print-title': 'Druckausgabe',
-    'ed-print-desc': 'Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.',
-    'ed-audio-type': 'Hörbuch', 'ed-audio-title': 'Audio-Ausgabe',
-    'ed-audio-desc': 'Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.',
-    'buy-heading': 'Direkt hier bestellen', 'buy-desc': 'Alle Formate übersichtlich an einem Ort.',
-    'buy-ebook-h': 'E-Book', 'buy-ebook-p': 'Sofort auf allen Geräten verfügbar.',
-    'buy-print-h': 'Druckausgabe', 'buy-print-p': 'Erscheint Mai 2026. Jetzt vorbestellen und 10% sparen.',
-    'buy-audio-h': 'Hörbuch', 'buy-audio-p': 'Erscheint Mai 2026. Jetzt vorbestellen und 10% sparen.',
-    'buy-print-ribbon': 'Pre-Order · Mai 2026 · 10% Rabatt',
-    'buy-ribbon': 'Pre-Order · Mai 2026 · 10% Rabatt',
-    'buy-btn-ebook': 'Jetzt kaufen', 'buy-btn-print': 'Vorbestellen', 'buy-btn-audio': 'Vorbestellen',
-    'audio-preview-btn': '&#9654; Hörprobe anhören',
-    'lang-kicker': 'Erhältlich in', 'lang-heading': 'Vier <em>Sprachen</em>',
-    'lang-avail-de': 'Jetzt verfügbar',
-    'lang-avail-en': 'Pre-Order · Mai 2026',
-    'lang-avail-es': 'Pre-Order · Mai 2026',
-    'lang-avail-pt': 'Pre-Order · Mai 2026',
-    'lang-cta-de': 'Auswählen ↓', 'lang-cta-en': 'Auswählen ↓', 'lang-cta-es': 'Auswählen ↓', 'lang-cta-pt': 'Auswählen ↓',
-    'btn-order': 'Jetzt bestellen',
-    'btn-preview': 'Vorschau lesen',
-    'auth-kicker': 'Über den Autor', 'auth-location': 'Barcelona, Spanien',
-    'auth-tags': '<span class="tag">Unternehmer</span><span class="tag">Foodie</span><span class="tag">Autor</span><span class="tag">Denker</span><span class="tag">Barcelona</span>',
-    'auth-bio': 'Entrepreneur, Berater, Foodie, Autor und Denker: Mit \u201eEine Kulinarische Reise\u201c legt er sein Erstlingswerk vor. Obwohl nicht in Deutschland geboren, ist sein Buch bewusst auf Deutsch verfasst, eine Hommage an seine Kindheit, die er dort verbracht hat. Als vielseitiger Geist verbindet er in seinem Wirken technologischen Fortschritt mit soziologischen Fragestellungen. Der Autor bezeichnet sich selbst, wenn gefragt, schmunzelnd als einen modernen Renaissance-Menschen, einen Polymath mit den Wurzeln eines Zigeuners. Heute lebt und arbeitet er von seiner Wahlheimat Spanien aus.',
-    'foot-book-title': 'Eine Kulinarische Reise',
-    'foot-book-sub': 'Geschichten &amp; Erzählungen &nbsp;&middot;&nbsp; die Basis aller Speisen',
-    'foot-col-editions': 'Ausgaben',
-    'foot-col-connect': 'Kontakt',
-    'foot-nl-label': 'Newsletter',
-    'foot-nl-btn': '&#8594;',
-    'foot-copy': '&copy; 2026 J. D&#8217;Costa Andrade &nbsp;&middot;&nbsp; Alle Rechte vorbehalten',
-    'foot-ebook': 'E-Book',
-    'foot-print': 'Druckausgabe',
-    'foot-audio': 'Hörbuch',
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script data-cfasync="false">
+const CONFIG = {
+  BOOK_COVER_URL:"images/Cover.webp",
+  AUTHOR_PHOTO_URL:"images/Author.webp",
+  PREVIEW_URLS:{de:"preview-de.html",en:"preview-en.html",es:"preview-es.html",pt:"preview-pt.html"},
+  AUDIO_PREVIEW_URLS:{de:"preview-audio-de.html",en:"preview-audio-en.html",es:"preview-audio-es.html",pt:"preview-audio-pt.html"},
+  COVERS:{de:"images/Cover.webp",en:"images/Cover-EN.webp",es:"images/Cover-ES.webp",pt:"images/Cover-PT.webp"},
+  LINKS:{
+    ebook_de:"https://www.thalia.de/shop/home/artikeldetails/A1078785572",
+    ebook_en:"https://buy.stripe.com/dRm14n4Iwag8dZL5djawo0r",
+    ebook_es:"https://buy.stripe.com/dRm14n4Iwag8dZL5djawo0r",
+    ebook_pt:"https://buy.stripe.com/dRm14n4Iwag8dZL5djawo0r",
+    print_de:"https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
+    print_en:"https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
+    print_es:"https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
+    print_pt:"https://buy.stripe.com/4gM8wP2Ao3RKg7TeNTawo0t",
+    audio_de:"https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
+    audio_en:"https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
+    audio_es:"https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s",
+    audio_pt:"https://buy.stripe.com/4gM3cv6QE5ZScVH5djawo0s"
   },
-  en: {
-    'nav-title': 'A Culinary Journey',
-    'nav-about': 'The Book', 'nav-preview': 'Preview', 'nav-editions': 'Editions', 'nav-buy': 'Order', 'nav-author': 'Author',
-    'mob-about': 'The Book', 'mob-preview': 'Preview', 'mob-editions': 'Editions', 'mob-buy': 'Order', 'mob-author': 'Author',
-    'hero-eyebrow': 'A Culinary Journey · 1st Edition · Translation · 2026',
-    'hero-l1': 'A <em>Culinary Journey</em>',
-    'hero-l2': 'Stories &amp; Tales',
-    'hero-l3': 'The Foundation of All Dishes',
-    'hero-desc': 'Stories born at tables. About cooking as language, memory as spice, and the invisible ingredients that make every dish truly complete.',
-    'pull-quote': '"Food is memory. Every dish tells a story of the hands that prepared it and the tables where it was shared."',
-    'pull-attr': '— J. D\'Costa Andrade · A Culinary Journey',
-    'about-kicker': 'About the Book',
-    'about-heading': '"Food is our <em>Mother,</em><br>who nurtures us from cradle to grave"',
-    'about-p1': 'The story of an immigrant child and the origin of a collection of the world\'s most iconic dishes. The rise of an extraordinary table in Barcelona, where Fortune 500 CEOs, celebrities and gourmets from around the world gathered. Told with the unfiltered directness of an Anthony Bourdain.',
-    'about-p2': 'Food is more than nourishment. It is memory, origin and identity, inextricably linked to the history of those who had to leave their homes and found them again in their dishes. In the <em>foundation of all dishes</em> lies the essence of life.',
-    'prev-kicker': 'Inside the Book', 'prev-heading': 'Read a <em>Preview</em>',
-    'prev-card-kicker': 'Book Preview', 'prev-card-title': '23 pages, free to read',
-    'prev-card-desc': 'Cover, table of contents, introduction, two full chapters and more as a PDF in your browser.',
-    'prev-open-btn': 'Open Preview ↗',
-    'ed-kicker': 'Available as', 'ed-heading': 'Choose Your <em>Edition</em>',
-    'eb-badge': 'Available now', 'pr-badge': 'Pre-Order · May 2026', 'au-badge': 'Pre-Order · May 2026',
-    'ed-ebook-type': 'E-Book', 'ed-ebook-title': 'Digital Edition',
-    'ed-ebook-desc': 'Instant access on all devices. EPUB format, compatible with all readers.',
-    'ed-print-type': 'Print', 'ed-print-title': 'Printed Edition',
-    'ed-print-desc': 'Coming May 2026. Pre-order now and save 10%.',
-    'ed-audio-type': 'Audiobook', 'ed-audio-title': 'Audio Edition',
-    'ed-audio-desc': 'Coming May 2026. Pre-order now and save 10%.',
-    'buy-heading': 'Order Directly Here', 'buy-desc': 'All formats in one place.',
-    'buy-ebook-h': 'E-Book', 'buy-ebook-p': 'Available instantly on all devices.',
-    'buy-print-h': 'Printed Edition', 'buy-print-p': 'Coming May 2026. Pre-order now and save 10%.',
-    'buy-audio-h': 'Audiobook', 'buy-audio-p': 'Coming May 2026. Pre-order now and save 10%.',
-    'buy-print-ribbon': 'Pre-Order · May 2026 · 10% Discount',
-    'buy-ribbon': 'Pre-Order · May 2026 · 10% Discount',
-    'buy-btn-ebook': 'Buy Now', 'buy-btn-print': 'Pre-Order', 'buy-btn-audio': 'Pre-Order',
-    'audio-preview-btn': '&#9654; Listen to excerpt',
-    'lang-kicker': 'Available in', 'lang-heading': 'Four <em>Languages</em>',
-    'lang-avail-de': 'Available now',
-    'lang-avail-en': 'Pre-Order · May 2026',
-    'lang-avail-es': 'Pre-Order · May 2026',
-    'lang-avail-pt': 'Pre-Order · May 2026',
-    'lang-cta-de': 'Select ↓', 'lang-cta-en': 'Select ↓', 'lang-cta-es': 'Select ↓', 'lang-cta-pt': 'Select ↓',
-    'btn-order': 'Order Now',
-    'btn-preview': 'Read Preview',
-    'auth-kicker': 'About the Author', 'auth-location': 'Barcelona, Spain',
-    'auth-tags': '<span class="tag">Entrepreneur</span><span class="tag">Foodie</span><span class="tag">Author</span><span class="tag">Thinker</span><span class="tag">Barcelona</span>',
-    'auth-bio': 'Entrepreneur, Consultant, Foodie, Author, and Thinker: With A Culinary Journey, he presents his debut work. Although not born in Germany, his book is intentionally written in German, a tribute to the childhood he spent there. As a versatile mind, his work bridges the gap between technological progress and sociological inquiry. When asked, the author describes himself with a smile as a modern-day Renaissance man: a polymath with the roots of a gypsy. Today, he lives and works from his adopted home in Spain.',
-    'foot-book-title': 'A Culinary Journey',
-    'foot-book-sub': 'Stories &amp; Tales &nbsp;&middot;&nbsp; The Foundation of All Dishes',
-    'foot-col-editions': 'Editions',
-    'foot-col-connect': 'Connect',
-    'foot-nl-label': 'Newsletter',
-    'foot-nl-btn': '&#8594;',
-    'foot-copy': '&copy; 2026 J. D&#8217;Costa Andrade &nbsp;&middot;&nbsp; All rights reserved',
-    'foot-ebook': 'E-Book',
-    'foot-print': 'Printed Edition',
-    'foot-audio': 'Audiobook',
-  },
-  es: {
-    'nav-title': 'Un Viaje Culinario',
-    'nav-about': 'El Libro', 'nav-preview': 'Vista Previa', 'nav-editions': 'Ediciones', 'nav-buy': 'Pedir', 'nav-author': 'Autor',
-    'mob-about': 'El Libro', 'mob-preview': 'Vista Previa', 'mob-editions': 'Ediciones', 'mob-buy': 'Pedir', 'mob-author': 'Autor',
-    'hero-eyebrow': 'Un Viaje Culinario · 1ª Edición · Traducción · 2026',
-    'hero-l1': 'Un <em>Viaje Culinario</em>',
-    'hero-l2': 'Historias y Relatos',
-    'hero-l3': 'La Base de Todos los Platos',
-    'hero-desc': 'Historias que cobran vida en las mesas. Sobre la cocina como lenguaje, la memoria como especia y los ingredientes invisibles que completan cada plato.',
-    'pull-quote': '"La comida es memoria. Cada plato cuenta una historia de las manos que lo prepararon y las mesas donde fue compartido."',
-    'pull-attr': '— J. D\'Costa Andrade · Un Viaje Culinario',
-    'about-kicker': 'Sobre el Libro',
-    'about-heading': '"La comida es nuestra <em>Madre,</em><br>que nos cuida de la cuna a la tumba"',
-    'about-p1': 'La historia de un hijo de inmigrantes y el origen de una colección de los platos más icónicos del mundo. El surgimiento de una mesa extraordinaria en Barcelona, a la que acudieron CEOs de Fortune 500, celebrities y gourmets de todo el mundo. Contado con la franqueza sin filtros de un Anthony Bourdain.',
-    'about-p2': 'La comida es más que nutrición. Es memoria, origen e identidad, indisolublemente ligada a la historia de quienes tuvieron que abandonar su hogar y lo reencontraron en sus platos. En la <em>base de todos los platos</em> reside la esencia de la vida.',
-    'prev-kicker': 'Vista Previa', 'prev-heading': 'Lee una <em>Muestra</em>',
-    'prev-card-kicker': 'Vista Previa del Libro', 'prev-card-title': '23 páginas de lectura gratuita',
-    'prev-card-desc': 'Portada, índice, introducción, dos capítulos completos y más en PDF en tu navegador.',
-    'prev-open-btn': 'Abrir Vista Previa ↗',
-    'ed-kicker': 'Disponible como', 'ed-heading': 'Elige tu <em>Edición</em>',
-    'eb-badge': 'Disponible ahora', 'pr-badge': 'Pre-Orden · Mayo 2026', 'au-badge': 'Pre-Orden · Mayo 2026',
-    'ed-ebook-type': 'E-Book', 'ed-ebook-title': 'Edición Digital',
-    'ed-ebook-desc': 'Acceso inmediato en todos los dispositivos. Formato EPUB compatible con todos los lectores.',
-    'ed-print-type': 'Impreso', 'ed-print-title': 'Edición Impresa',
-    'ed-print-desc': 'Sale en mayo de 2026. Reserva ahora y ahorra un 10%.',
-    'ed-audio-type': 'Audiolibro', 'ed-audio-title': 'Edición Audio',
-    'ed-audio-desc': 'Sale en mayo de 2026. Reserva ahora y ahorra un 10%.',
-    'buy-heading': 'Pedir directamente aquí', 'buy-desc': 'Todos los formatos en un solo lugar.',
-    'buy-ebook-h': 'E-Book', 'buy-ebook-p': 'Disponible al instante en todos los dispositivos.',
-    'buy-print-h': 'Edición Impresa', 'buy-print-p': 'Sale mayo 2026. Reserva ahora y ahorra un 10%.',
-    'buy-audio-h': 'Audiolibro', 'buy-audio-p': 'Sale mayo 2026. Reserva ahora y ahorra un 10%.',
-    'buy-print-ribbon': 'Pre-Orden · Mayo 2026 · 10% Descuento',
-    'buy-ribbon': 'Pre-Orden · Mayo 2026 · 10% Descuento',
-    'buy-btn-ebook': 'Comprar', 'buy-btn-print': 'Pre-Orden', 'buy-btn-audio': 'Pre-Orden',
-    'audio-preview-btn': '&#9654; Escuchar muestra',
-    'lang-kicker': 'Disponible en', 'lang-heading': 'Cuatro <em>Idiomas</em>',
-    'lang-avail-de': 'Disponible ahora',
-    'lang-avail-en': 'Pre-Orden · Mayo 2026',
-    'lang-avail-es': 'Pre-Orden · Mayo 2026',
-    'lang-avail-pt': 'Pre-Orden · Mayo 2026',
-    'lang-cta-de': 'Seleccionar ↓', 'lang-cta-en': 'Seleccionar ↓', 'lang-cta-es': 'Seleccionar ↓', 'lang-cta-pt': 'Seleccionar ↓',
-    'btn-order': 'Pedir ahora',
-    'btn-preview': 'Leer Vista Previa',
-    'auth-kicker': 'Sobre el Autor', 'auth-location': 'Barcelona, España',
-    'auth-tags': '<span class="tag">Emprendedor</span><span class="tag">Foodie</span><span class="tag">Autor</span><span class="tag">Pensador</span><span class="tag">Barcelona</span>',
-    'auth-bio': 'Emprendedor, consultor, foodie, autor y pensador: Con Una travesía culinaria, presenta su primera obra. Aunque no nació en Alemania, su libro está escrito deliberadamente en alemán, como un homenaje a la infancia que vivió allí. Poseedor de una mente inquieta, su labor vincula el progreso tecnológico con los interrogantes sociológicos. Al preguntarle, el autor se define a sí mismo con una sonrisa como un hombre del Renacimiento moderno: un polímata con raíces de gitano. En la actualidad, vive y desarrolla su actividad desde España, su país de adopción.',
-    'foot-book-title': 'Un Viaje Culinario',
-    'foot-book-sub': 'Historias y Relatos &nbsp;&middot;&nbsp; La Base de Todos los Platos',
-    'foot-col-editions': 'Ediciones',
-    'foot-col-connect': 'Contacto',
-    'foot-nl-label': 'Boletín',
-    'foot-nl-btn': '&#8594;',
-    'foot-copy': '&copy; 2026 J. D&#8217;Costa Andrade &nbsp;&middot;&nbsp; Todos los derechos reservados',
-    'foot-ebook': 'E-Book',
-    'foot-print': 'Edición Impresa',
-    'foot-audio': 'Audiolibro',
-  },
-  pt: {
-    'nav-title': 'Uma Jornada Culinária',
-    'nav-about': 'O Livro', 'nav-preview': 'Amostra', 'nav-editions': 'Edições', 'nav-buy': 'Encomendar', 'nav-author': 'Autor',
-    'mob-about': 'O Livro', 'mob-preview': 'Amostra', 'mob-editions': 'Edições', 'mob-buy': 'Encomendar', 'mob-author': 'Autor',
-    'hero-eyebrow': 'Uma Jornada Culinária · 1ª Edição · Tradução · 2026',
-    'hero-l1': 'Uma <em>Jornada Culinária</em>',
-    'hero-l2': 'Histórias e Narrativas',
-    'hero-l3': 'A Base de Todos os Pratos',
-    'hero-desc': 'Histórias que ganham vida nas mesas. Sobre a culinária como linguagem, a memória como tempero e os ingredientes invisíveis que completam cada prato.',
-    'pull-quote': '"A comida é memória. Cada prato conta uma história das mãos que o prepararam e das mesas onde foi partilhado."',
-    'pull-attr': '— J. D\'Costa Andrade · Uma Jornada Culinária',
-    'about-kicker': 'Sobre o Livro',
-    'about-heading': '"A comida é a nossa <em>Mãe,</em><br>que nos cuida do berço ao túmulo"',
-    'about-p1': 'A história de uma criança de imigrantes e a origem de uma coleção dos pratos mais icónicos do mundo. O surgimento de uma mesa extraordinária em Barcelona, à qual acorreram CEOs da Fortune 500, celebridades e gourmets de todo o mundo. Contado com a franqueza sem filtros de um Anthony Bourdain.',
-    'about-p2': 'A comida é mais do que nutrição. É memória, origem e identidade, inseparavelmente ligada à história daqueles que tiveram de deixar as suas casas e as reencontraram nos seus pratos. Na <em>base de todos os pratos</em> reside a essência da vida.',
-    'prev-kicker': 'Dentro do Livro', 'prev-heading': 'Leia uma <em>Amostra</em>',
-    'prev-card-kicker': 'Amostra do Livro', 'prev-card-title': '23 páginas de leitura gratuita',
-    'prev-card-desc': 'Capa, índice, introdução, dois capítulos completos e mais em PDF no seu browser.',
-    'prev-open-btn': 'Abrir Amostra ↗',
-    'ed-kicker': 'Disponível como', 'ed-heading': 'Escolha a sua <em>Edição</em>',
-    'eb-badge': 'Disponível agora', 'pr-badge': 'Pré-encomenda · Maio 2026', 'au-badge': 'Pré-encomenda · Maio 2026',
-    'ed-ebook-type': 'E-Book', 'ed-ebook-title': 'Edição Digital',
-    'ed-ebook-desc': 'Acesso imediato em todos os dispositivos. Formato EPUB compatível com todos os leitores.',
-    'ed-print-type': 'Impresso', 'ed-print-title': 'Edição Impressa',
-    'ed-print-desc': 'Lançamento em maio de 2026. Pré-encomende agora com 10% de desconto.',
-    'ed-audio-type': 'Audiolivro', 'ed-audio-title': 'Edição Áudio',
-    'ed-audio-desc': 'Lançamento em maio de 2026. Pré-encomende agora com 10% de desconto.',
-    'buy-heading': 'Encomendar diretamente aqui', 'buy-desc': 'Todos os formatos num só lugar.',
-    'buy-ebook-h': 'E-Book', 'buy-ebook-p': 'Disponível imediatamente em todos os dispositivos.',
-    'buy-print-h': 'Edição Impressa', 'buy-print-p': 'Lançamento maio 2026. Pré-encomende e poupe 10%.',
-    'buy-audio-h': 'Audiolivro', 'buy-audio-p': 'Lançamento maio 2026. Pré-encomende e poupe 10%.',
-    'buy-print-ribbon': 'Pré-encomenda · Maio 2026 · 10% Desconto',
-    'buy-ribbon': 'Pré-encomenda · Maio 2026 · 10% Desconto',
-    'buy-btn-ebook': 'Comprar', 'buy-btn-print': 'Pré-encomenda', 'buy-btn-audio': 'Pré-encomenda',
-    'audio-preview-btn': '&#9654; Ouvir amostra',
-    'lang-kicker': 'Disponível em', 'lang-heading': 'Quatro <em>Idiomas</em>',
-    'lang-avail-de': 'Disponível agora',
-    'lang-avail-en': 'Pré-encomenda · Maio 2026',
-    'lang-avail-es': 'Pré-encomenda · Maio 2026',
-    'lang-avail-pt': 'Pré-encomenda · Maio 2026',
-    'lang-cta-de': 'Selecionar ↓', 'lang-cta-en': 'Selecionar ↓', 'lang-cta-es': 'Selecionar ↓', 'lang-cta-pt': 'Selecionar ↓',
-    'btn-order': 'Encomendar agora',
-    'btn-preview': 'Ler Amostra',
-    'auth-kicker': 'Sobre o Autor', 'auth-location': 'Barcelona, Espanha',
-    'auth-tags': '<span class="tag">Empreendedor</span><span class="tag">Foodie</span><span class="tag">Autor</span><span class="tag">Pensador</span><span class="tag">Barcelona</span>',
-    'auth-bio': 'Empreendedor, consultor, entusiasta da gastronomia, autor e pensador: Com Uma Jornada Culinária, ele apresenta sua obra de estreia. Embora não tenha nascido na Alemanha, seu livro foi deliberadamente escrito em alemão, uma homenagem à infância que passou lá. Como um espírito versátil, ele une em seu trabalho o progresso tecnológico a questões sociológicas. Quando questionado, o autor descreve-se com um sorriso como um homem renascentista moderno: um polímata com raízes de cigano. Hoje, vive e trabalha a partir da Espanha, sua pátria de adoção.',
-    'foot-book-title': 'Uma Jornada Culinária',
-    'foot-book-sub': 'Histórias e Narrativas &nbsp;&middot;&nbsp; A Base de Todos os Pratos',
-    'foot-col-editions': 'Edições',
-    'foot-col-connect': 'Contacto',
-    'foot-nl-label': 'Newsletter',
-    'foot-nl-btn': '&#8594;',
-    'foot-copy': '&copy; 2026 J. D&#8217;Costa Andrade &nbsp;&middot;&nbsp; Todos os direitos reservados',
-    'foot-ebook': 'E-Book',
-    'foot-print': 'Edição Impressa',
-    'foot-audio': 'Audiolivro',
+  PRICES:{
+    ebook_de:{price:"14,99 €",note:""},
+    ebook_en:{price:"13,50 €",note:"Pre-Order · ~10% off"},
+    ebook_es:{price:"13,50 €",note:"Pre-Order · ~10% off"},
+    ebook_pt:{price:"13,50 €",note:"Pre-Order · ~10% off"},
+    print_de:{price:"39,00 €",note:"Pre-Order · ~10% off"},
+    print_en:{price:"39,00 €",note:"Pre-Order · ~10% off"},
+    print_es:{price:"39,00 €",note:"Pre-Order · ~10% off"},
+    print_pt:{price:"39,00 €",note:"Pre-Order · ~10% off"},
+    audio_de:{price:"12,99 €",note:"Pre-Order · 10% off"},
+    audio_en:{price:"12,99 €",note:"Pre-Order · 10% off"},
+    audio_es:{price:"12,99 €",note:"Pre-Order · 10% off"},
+    audio_pt:{price:"12,99 €",note:"Pre-Order · 10% off"}
   }
 };
+const T={
+  de:{
+    nav:{title:"Eine Kulinarische Reise",about:"Das Buch",preview:"Vorschau",editions:"Ausgaben",buy:"Bestellen",author:"Autor"},
+    hero:{eyebrow:"Eine Kulinarische Reise · 1. Auflage · First Edition · 2026",l1:"Eine <em>Kulinarische Reise</em>",l2:"Geschichten &amp; Erzählungen",l3:"die Basis aller Speisen",desc:"Geschichten und Erzählungen, die an Tischen entstehen — über das Kochen als Sprache, Erinnerung als Gewürz und die unsichtbaren Zutaten, die jedes Gericht erst vollenden.",order:"Jetzt bestellen",previewBtn:"Vorschau lesen"},
+    quote:{text:"„Essen ist Erinnerung. Jedes Gericht erzählt eine Geschichte — von Händen, die es zubereitet haben, von Tischen, an denen es geteilt wurde.\"",attr:"— J. D'Costa Andrade · Eine Kulinarische Reise"},
+    about:{kicker:"Über das Buch",heading:"„Essen ist unsere<em> Mutter,</em><br>die uns von der Wiege bis zum Grab umsorgt\"",p1:"Die Geschichte eines Einwandererkindes, die Herkunft einer Sammlung der bekanntesten Gerichte der Welt. Die Entstehung eines außergewöhnlichen Tisches in Barcelona, zu dem Fortune-500-CEOs, Celebrities und Gourmets aus aller Welt pilgerten. Erzählt mit der ungefilterten Direktheit eines Anthony Bourdains.",p2:"Essen ist mehr als Ernährung. Es ist Erinnerung, Herkunft und Identität, untrennbar verbunden mit der Geschichte jener Menschen, die ihre Heimat verlassen mussten und sie in ihren Gerichten wiederfanden. In der <em>Basis aller Speisen</em> liegt die Essenz des Lebens.",tags:["Kulinarische Literatur","Geschichten","Weltküche","Erinnerung","Reise"]},
+    prev:{kicker:"Einblick ins Buch",heading:"Lesen Sie eine <em>Vorschau</em>",cardKicker:"Buchvorschau",cardTitle:"23 Seiten — kostenlos lesen",cardDesc:"Cover, Inhaltsverzeichnis, Einführung, zwei vollständige Kapitel und mehr — als PDF in Ihrem Browser.",openBtn:"Vorschau öffnen ↗"},
+    lang:{kicker:"Erhältlich in",heading:"Vier <em>Sprachen</em>",avail:["Jetzt verfügbar","Pre-Order · May 2026","Pre-Order · Mayo 2026","Pré-encomenda · Maio 2026"],cta:["Auswählen ↓","Select ↓","Seleccionar ↓","Selecionar ↓"]},
+    shop:{kicker:"Verfügbar als",heading:"Wählen Sie Ihre <em>Ausgabe</em>",
+      ebook:{badge:"Jetzt verfügbar",type:"E-Book",title:"Digitale Ausgabe",desc:"Sofortiger Zugriff auf allen Geräten. EPUB-Format, kompatibel mit allen Readern. Erhältlich über Thalia.",btn:"Jetzt kaufen",ribbon:null},
+      print:{badge:"Pre-Order · Mai 2026",type:"Gedruckt",title:"Druckausgabe",desc:"Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.",btn:"Vorbestellen",ribbon:"Pre-Order · Mai 2026 · 10% Rabatt"},
+      audio:{badge:"Pre-Order · Mai 2026",type:"Hörbuch",title:"Audio-Ausgabe",desc:"Erscheint Mai 2026. Jetzt vorbestellen und 10% Rabatt sichern.",btn:"Vorbestellen",sampleBtn:"▶ Hörprobe anhören",ribbon:"Pre-Order · Mai 2026 · 10% Rabatt"}},
+    author:{kicker:"Über den Autor",location:"Barcelona, Spanien",bio:"Entrepreneur, Berater, Foodie, Autor und Denker: Mit „Eine kulinarische Reise\" legt er sein Erstlingswerk vor. Obwohl nicht in Deutschland geboren, ist sein Buch bewusst auf Deutsch verfasst, eine Hommage an seine Kindheit, die er dort verbracht hat. Als vielseitiger Geist verbindet er in seinem Wirken technologischen Fortschritt mit soziologischen Fragestellungen. Der Autor bezeichnet sich selbst, wenn gefragt, schmunzelnd als einen modernen Renaissance-Menschen, einen Polymath mit den Wurzeln eines Zigeuners. Heute lebt und arbeitet er von seiner Wahlheimat Spanien aus.",tags:["Unternehmer","Foodie","Autor","Denker","Barcelona"]},
+    footer:{title:"Eine Kulinarische Reise",sub:"Geschichten &amp; Erzählungen · die Basis aller Speisen",nlLabel:"Stay in the loop",nlPlaceholder:"ihre@email.com",nlConfirm:"Danke! Sie sind dabei.",col1:"Editions",ebook:"E-Book",print:"Druck",audio:"Hörbuch",col2:"Connect",edition:"1. Auflage · First Edition"}
+  },
+  en:{
+    nav:{title:"A Culinary Journey",about:"The Book",preview:"Preview",editions:"Editions",buy:"Order",author:"Author"},
+    hero:{eyebrow:"A Culinary Journey · First Edition · 2026",l1:"A <em>Culinary Journey</em>",l2:"Stories &amp; Tales",l3:"the foundation of all dishes",desc:"Stories and tales born at tables — about cooking as language, memory as spice, and the invisible ingredients that complete every dish.",order:"Order Now",previewBtn:"Read Preview"},
+    quote:{text:"\"Food is memory. Every dish tells a story — of the hands that prepared it, of the tables where it was shared.\"",attr:"— J. D'Costa Andrade · A Culinary Journey"},
+    about:{kicker:"About the Book",heading:"\"Food is our <em>Mother,</em><br>who nurtures us from cradle to grave\"",p1:"The story of an immigrant child, the origins of a collection of the world's most celebrated dishes. The birth of an extraordinary table in Barcelona, to which Fortune-500 CEOs, celebrities and gourmets from around the world made their pilgrimage. Told with the unfiltered directness of an Anthony Bourdain.",p2:"Food is more than nourishment. It is memory, origin and identity, inextricably linked to the story of those who had to leave their homelands and found them again in their dishes. In the <em>foundation of all dishes</em> lies the essence of life.",tags:["Culinary Literature","Stories","World Cuisine","Memory","Journey"]},
+    prev:{kicker:"Inside the Book",heading:"Read a <em>Preview</em>",cardKicker:"Book Preview",cardTitle:"23 pages — free to read",cardDesc:"Cover, table of contents, introduction, two complete chapters and more — as PDF in your browser.",openBtn:"Open Preview ↗"},
+    lang:{kicker:"Available in",heading:"Four <em>Languages</em>",avail:["Available Now","Pre-Order · May 2026","Pre-Order · Mayo 2026","Pré-encomenda · Maio 2026"],cta:["Select ↓","Select ↓","Select ↓","Select ↓"]},
+    shop:{kicker:"Available as",heading:"Choose Your <em>Edition</em>",
+      ebook:{badge:"Pre-Order · May 2026",type:"E-Book",title:"Digital Edition",desc:"Coming May 2026. Pre-order now and save 10%.",btn:"Pre-Order",ribbon:"Pre-Order · May 2026 · 10% Off"},
+      print:{badge:"Pre-Order · May 2026",type:"Print",title:"Printed Edition",desc:"Coming May 2026. Pre-order now and save 10%.",btn:"Pre-Order",ribbon:"Pre-Order · May 2026 · 10% Off"},
+      audio:{badge:"Pre-Order · May 2026",type:"Audiobook",title:"Audio Edition",desc:"Coming May 2026. Pre-order now and save 10%.",btn:"Pre-Order",sampleBtn:"▶ Listen to Sample",ribbon:"Pre-Order · May 2026 · 10% Off"}},
+    author:{kicker:"About the Author",location:"Barcelona, Spain",bio:"Entrepreneur, advisor, foodie, author and thinker: with 'A Culinary Journey' he presents his debut work. Although not born in Germany, his book is deliberately written in German — a tribute to the childhood he spent there. As a versatile mind, he combines technological progress with sociological inquiry. The author describes himself, when asked, with a smile, as a modern Renaissance man, a polymath with the roots of a gypsy. Today he lives and works from his adopted home of Spain.",tags:["Entrepreneur","Foodie","Author","Thinker","Barcelona"]},
+    footer:{title:"A Culinary Journey",sub:"Stories &amp; Tales · the foundation of all dishes",nlLabel:"Stay in the loop",nlPlaceholder:"your@email.com",nlConfirm:"Thank you! You're in.",col1:"Editions",ebook:"E-Book",print:"Print",audio:"Audiobook",col2:"Connect",edition:"First Edition · 2026"}
+  },
+  es:{
+    nav:{title:"Un Viaje Culinario",about:"El Libro",preview:"Vista Previa",editions:"Ediciones",buy:"Pedir",author:"Autor"},
+    hero:{eyebrow:"Un Viaje Culinario · Primera Edición · 2026",l1:"Un <em>Viaje Culinario</em>",l2:"Historias y Relatos",l3:"la base de todos los platos",desc:"Historias y relatos nacidos en las mesas — sobre la cocina como lenguaje, la memoria como especia y los ingredientes invisibles que completan cada plato.",order:"Pedir ahora",previewBtn:"Leer Vista Previa"},
+    quote:{text:"\"La comida es memoria. Cada plato cuenta una historia — de las manos que lo prepararon, de las mesas donde fue compartido.\"",attr:"— J. D'Costa Andrade · Un Viaje Culinario"},
+    about:{kicker:"Sobre el Libro",heading:"\"La comida es nuestra <em>Madre,</em><br>que nos nutre de la cuna a la tumba\"",p1:"La historia de un hijo de inmigrantes, el origen de una colección de los platos más célebres del mundo. El nacimiento de una mesa extraordinaria en Barcelona, a la que peregrinaron CEOs de Fortune 500, celebrities y gourmets de todo el mundo. Narrado con la franqueza sin filtros de un Anthony Bourdain.",p2:"La comida es más que nutrición. Es memoria, origen e identidad, indisolublemente ligada a la historia de quienes tuvieron que abandonar su tierra natal y la encontraron de nuevo en sus platos. En la <em>base de todos los platos</em> reside la esencia de la vida.",tags:["Literatura Culinaria","Historias","Cocina Mundial","Memoria","Viaje"]},
+    prev:{kicker:"Dentro del Libro",heading:"Lee una <em>Vista Previa</em>",cardKicker:"Vista Previa del Libro",cardTitle:"23 páginas — lectura gratuita",cardDesc:"Portada, índice, introducción, dos capítulos completos y más — como PDF en tu navegador.",openBtn:"Abrir Vista Previa ↗"},
+    lang:{kicker:"Disponible en",heading:"Cuatro <em>Idiomas</em>",avail:["Disponible Ya","Pre-Order · May 2026","Pre-Order · Mayo 2026","Pré-encomenda · Maio 2026"],cta:["Seleccionar ↓","Select ↓","Seleccionar ↓","Selecionar ↓"]},
+    shop:{kicker:"Disponible como",heading:"Elige tu <em>Edición</em>",
+      ebook:{badge:"Pre-Order · Mayo 2026",type:"E-Book",title:"Edición Digital",desc:"Disponible en mayo de 2026. Pide ahora y ahorra un 10%.",btn:"Pre-Order",ribbon:"Pre-Order · Mayo 2026 · 10% Dto."},
+      print:{badge:"Pre-Order · Mayo 2026",type:"Impreso",title:"Edición Impresa",desc:"Llega en mayo de 2026. Pide ahora y ahorra un 10%.",btn:"Pre-Order",ribbon:"Pre-Order · Mayo 2026 · 10% Dto."},
+      audio:{badge:"Pre-Order · Mayo 2026",type:"Audiolibro",title:"Edición Audio",desc:"Llega en mayo de 2026. Pide ahora y ahorra un 10%.",btn:"Pre-Order",sampleBtn:"▶ Escuchar Muestra",ribbon:"Pre-Order · Mayo 2026 · 10% Dto."}},
+    author:{kicker:"Sobre el Autor",location:"Barcelona, España",bio:"Emprendedor, asesor, foodie, autor y pensador: con 'Un Viaje Culinario' presenta su primera obra. Aunque no nació en Alemania, su libro está escrito deliberadamente en alemán, un homenaje a la infancia que pasó allí. Como mente versátil, combina el progreso tecnológico con la reflexión sociológica. El autor se describe a sí mismo, cuando se le pregunta, con una sonrisa, como un hombre renacentista moderno, un polímata con raíces de gitano. Hoy vive y trabaja desde su hogar adoptivo en España.",tags:["Emprendedor","Foodie","Autor","Pensador","Barcelona"]},
+    footer:{title:"Un Viaje Culinario",sub:"Historias y Relatos · la base de todos los platos",nlLabel:"Stay in the loop",nlPlaceholder:"tu@email.com",nlConfirm:"¡Gracias! Ya estás dentro.",col1:"Ediciones",ebook:"E-Book",print:"Impreso",audio:"Audiolibro",col2:"Conectar",edition:"Primera Edición · 2026"}
+  },
+  pt:{
+    nav:{title:"Uma Jornada Culinária",about:"O Livro",preview:"Amostra",editions:"Edições",buy:"Encomendar",author:"Autor"},
+    hero:{eyebrow:"Uma Jornada Culinária · Primeira Edição · 2026",l1:"Uma <em>Jornada Culinária</em>",l2:"Histórias e Narrativas",l3:"a base de todos os pratos",desc:"Histórias e narrativas nascidas à mesa — sobre a culinária como linguagem, a memória como especiaria e os ingredientes invisíveis que completam cada prato.",order:"Encomendar agora",previewBtn:"Ler Amostra"},
+    quote:{text:"\"A comida é memória. Cada prato conta uma história — das mãos que o prepararam, das mesas onde foi partilhado.\"",attr:"— J. D'Costa Andrade · Uma Jornada Culinária"},
+    about:{kicker:"Sobre o Livro",heading:"\"A comida é a nossa <em>Mãe,</em><br>que nos cuida do berço à sepultura\"",p1:"A história de um filho de imigrantes, a origem de uma coleção dos pratos mais célebres do mundo. O nascimento de uma mesa extraordinária em Barcelona, à qual peregrinaram CEOs da Fortune 500, celebridades e gourmets de todo o mundo. Narrado com a franqueza sem filtros de um Anthony Bourdain.",p2:"A comida é mais do que nutrição. É memória, origem e identidade, indissociavelmente ligada à história daqueles que tiveram de abandonar a sua terra natal e a reencontraram nos seus pratos. Na <em>base de todos os pratos</em> reside a essência da vida.",tags:["Literatura Culinária","Histórias","Cozinha Mundial","Memória","Viagem"]},
+    prev:{kicker:"Dentro do Livro",heading:"Leia uma <em>Amostra</em>",cardKicker:"Amostra do Livro",cardTitle:"23 páginas — leitura gratuita",cardDesc:"Capa, índice, introdução, dois capítulos completos e mais — como PDF no seu browser.",openBtn:"Abrir Amostra ↗"},
+    lang:{kicker:"Disponível em",heading:"Quatro <em>Línguas</em>",avail:["Disponível Agora","Pre-Order · May 2026","Pre-Order · Mayo 2026","Pré-encomenda · Maio 2026"],cta:["Selecionar ↓","Select ↓","Seleccionar ↓","Selecionar ↓"]},
+    shop:{kicker:"Disponível como",heading:"Escolha a sua <em>Edição</em>",
+      ebook:{badge:"Pré-encomenda · Maio 2026",type:"E-Book",title:"Edição Digital",desc:"Disponível em maio de 2026. Encomende agora e poupe 10%.",btn:"Pré-encomendar",ribbon:"Pré-encomenda · Maio 2026 · 10% Desc."},
+      print:{badge:"Pré-encomenda · Maio 2026",type:"Impresso",title:"Edição Impressa",desc:"Disponível em maio de 2026. Encomende agora e poupe 10%.",btn:"Pré-encomendar",ribbon:"Pré-encomenda · Maio 2026 · 10% Desc."},
+      audio:{badge:"Pré-encomenda · Maio 2026",type:"Audiolivro",title:"Edição Áudio",desc:"Disponível em maio de 2026. Encomende agora e poupe 10%.",btn:"Pré-encomendar",sampleBtn:"▶ Ouvir Amostra",ribbon:"Pré-encomenda · Maio 2026 · 10% Desc."}},
+    author:{kicker:"Sobre o Autor",location:"Barcelona, Espanha",bio:"Empreendedor, consultor, foodie, autor e pensador: com 'Uma Jornada Culinária' apresenta a sua primeira obra. Embora não tenha nascido na Alemanha, o seu livro foi deliberadamente escrito em alemão — uma homenagem à infância que lá passou. Como mente versátil, combina o progresso tecnológico com questões sociológicas. O autor descreve-se a si próprio, quando questionado, com um sorriso, como um homem renascentista moderno, um polímata com raízes de cigano. Hoje vive e trabalha a partir da sua pátria de adoção, Espanha.",tags:["Empreendedor","Foodie","Autor","Pensador","Barcelona"]},
+    footer:{title:"Uma Jornada Culinária",sub:"Histórias e Narrativas · a base de todos os pratos",nlLabel:"Stay in the loop",nlPlaceholder:"seu@email.com",nlConfirm:"Obrigado! Está dentro.",col1:"Edições",ebook:"E-Book",print:"Impresso",audio:"Audiolivro",col2:"Conectar",edition:"Primeira Edição · 2026"}
+  }
+};
+// Map lang code → card aria-label
+const LANG_LABELS={de:'Deutsch',en:'English',es:'Español',pt:'Português'};
+let currentLang='de';
 
-// ============================================================
-// APPLY LANGUAGE-SPECIFIC BUY LINKS
-// ============================================================
-function applyLangLinks(lang) {
-  var L = CONFIG.LINKS;
-  var ebook = L['ebook_' + lang] || L.ebook_de;
-  var print = L['print_' + lang] || L.print_de;
-  var audio = L['audio_' + lang] || L.audio_de;
-  // external store links open in new tab; coming-soon page opens in same tab
-  function setLink(id, url) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.href = url;
-    el.target = url.indexOf('coming-soon') >= 0 ? '_self' : '_blank';
-  }
-  setLink('buy-btn-ebook', ebook);
-  setLink('buy-btn-print', print);
-  setLink('buy-btn-audio', audio);
-  setLink('btn-order',     ebook);
-  setLink('foot-ebook',    ebook);
-  setLink('foot-print',    print);
-  setLink('foot-audio',    audio);
-  // swap audio preview listen button
-  var apBtn = document.getElementById('audio-preview-btn');
-  if (apBtn) {
-    apBtn.href = CONFIG.AUDIO_PREVIEW_URLS[lang] || CONFIG.AUDIO_PREVIEW_URLS.de;
-    apBtn.target = '_blank';
-  }
+function syncLangCard(lang){
+  document.querySelectorAll('.lang-card').forEach(c=>c.classList.remove('active-lang'));
+  const card=document.querySelector('.lang-card[aria-label="'+LANG_LABELS[lang]+'"]');
+  if(card)card.classList.add('active-lang');
 }
 
-function setLang(lang) {
-  var titles = { de: 'Eine Kulinarische Reise', en: 'A Culinary Journey', es: 'Un Viaje Culinario', pt: 'Uma Jornada Culinária' };
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-  var langIndex = { de: 0, en: 1, es: 2, pt: 3 }[lang] || 0;
-  document.querySelectorAll('.lang-btn')[langIndex].classList.add('active');
-  document.documentElement.lang = lang;
-  document.title = titles[lang] || 'A Culinary Journey';
-  var t = T[lang];
-  for (var id in t) {
-    var el = document.getElementById(id);
-    if (el) el.innerHTML = t[id];
+function setLang(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  const t=T[lang];
+  const s=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  const h=(id,v)=>{const el=document.getElementById(id);if(el)el.innerHTML=v};
+  const a=(id,v)=>{const el=document.getElementById(id);if(el)el.href=v};
+  // Nav buttons active state
+  document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent.toLowerCase()===lang)});
+  // Sync lang card highlight
+  syncLangCard(lang);
+  // Nav links
+  s('nav-title',t.nav.title);s('nav-about',t.nav.about);s('nav-preview',t.nav.preview);
+  s('nav-editions',t.nav.editions);s('nav-buy',t.nav.buy);s('nav-author',t.nav.author);
+  s('mob-about',t.nav.about);s('mob-preview',t.nav.preview);s('mob-editions',t.nav.editions);
+  s('mob-buy',t.nav.buy);s('mob-author',t.nav.author);
+  // Hero
+  s('hero-eyebrow',t.hero.eyebrow);h('hero-l1',t.hero.l1);h('hero-l2',t.hero.l2);
+  s('hero-l3',t.hero.l3);s('hero-desc',t.hero.desc);s('btn-order',t.hero.order);
+  s('btn-preview',t.hero.previewBtn);a('btn-preview',CONFIG.PREVIEW_URLS[lang]);
+  document.getElementById('hero-cover-img').src=CONFIG.COVERS[lang];
+  document.getElementById('about-cover-img').src=CONFIG.COVERS[lang];
+  // Quote
+  h('pull-quote',t.quote.text);s('pull-attr',t.quote.attr);
+  // About
+  s('about-kicker',t.about.kicker);h('about-heading',t.about.heading);
+  s('about-p1',t.about.p1);h('about-p2',t.about.p2);
+  document.querySelectorAll('.tag-list .tag').forEach((el,i)=>{if(t.about.tags[i])el.textContent=t.about.tags[i]});
+  // Preview
+  s('prev-kicker',t.prev.kicker);h('prev-heading',t.prev.heading);
+  s('prev-card-kicker',t.prev.cardKicker);s('prev-card-title',t.prev.cardTitle);
+  s('prev-card-desc',t.prev.cardDesc);s('prev-open-btn',t.prev.openBtn);a('prev-open-btn',CONFIG.PREVIEW_URLS[lang]);
+  // Languages section
+  s('lang-kicker',t.lang.kicker);h('lang-heading',t.lang.heading);
+  ['de','en','es','pt'].forEach((l,i)=>{s('lang-avail-'+l,t.lang.avail[i]);s('lang-cta-'+l,t.lang.cta[i])});
+  // Shop header
+  s('shop-kicker',t.shop.kicker);h('shop-heading',t.shop.heading);
+  // Ebook — DE only is available now, all others pre-order
+  s('shop-type-ebook',t.shop.ebook.type);
+  s('shop-title-ebook',t.shop.ebook.title);s('shop-desc-ebook',t.shop.ebook.desc);
+  a('shop-btn-ebook',CONFIG.LINKS['ebook_'+lang]);
+  s('shop-price-ebook',CONFIG.PRICES['ebook_'+lang].price);s('shop-price-note-ebook',CONFIG.PRICES['ebook_'+lang].note);
+  const ebBadge=document.getElementById('badge-ebook');
+  const ebCard=document.getElementById('card-ebook');
+  const ebRibbon=document.getElementById('ribbon-ebook');
+  const ebBtn=document.getElementById('shop-btn-ebook');
+  if(lang==='de'){
+    s('badge-ebook','Jetzt verfügbar');
+    ebBadge.className='shop-badge now';
+    ebRibbon.style.display='none';
+    ebCard.classList.remove('has-ribbon');
+    ebBtn.textContent=t.shop.ebook.btn;
+    ebBtn.className='shop-btn primary';
+  }else{
+    s('badge-ebook',t.shop.ebook.badge);
+    ebBadge.className='shop-badge pre';
+    ebRibbon.textContent=t.shop.ebook.ribbon;
+    ebRibbon.style.display='';
+    ebCard.classList.add('has-ribbon');
+    ebBtn.textContent=t.shop.ebook.btn;
+    ebBtn.className='shop-btn preorder';
   }
-  // restore all buy + footer links after innerHTML loop cleared hrefs
-  var previewUrl = CONFIG.PREVIEW_URLS[lang] || CONFIG.PREVIEW_URLS.de;
-  document.getElementById('btn-preview').href   = previewUrl;
-  document.getElementById('prev-open-btn').href = previewUrl;
-  applyLangLinks(lang);
-  // newsletter placeholder
-  var placeholders = { de: 'Ihre E-Mail-Adresse', en: 'your@email.com', es: 'tu@correo.com', pt: 'o.seu@email.com' };
-  var inp = document.getElementById('foot-nl-input');
-  if (inp) inp.placeholder = placeholders[lang] || 'your@email.com';
-  // newsletter confirm message
-  var confirms = { de: 'Vielen Dank! Wir melden uns.', en: 'Thank you! We will be in touch.', es: '¡Gracias! Estaremos en contacto.', pt: 'Obrigado! Entraremos em contacto.' };
-  var conf = document.getElementById('foot-nl-confirm');
-  if (conf) conf.dataset.ok = confirms[lang] || confirms.en;
+  // Print
+  s('badge-print',t.shop.print.badge);s('shop-type-print',t.shop.print.type);
+  s('shop-title-print',t.shop.print.title);s('shop-desc-print',t.shop.print.desc);
+  s('shop-btn-print',t.shop.print.btn);a('shop-btn-print',CONFIG.LINKS['print_'+lang]);
+  s('ribbon-print',t.shop.print.ribbon);
+  s('shop-price-print',CONFIG.PRICES['print_'+lang].price);s('shop-price-note-print',CONFIG.PRICES['print_'+lang].note);
+  // Audio
+  s('badge-audio',t.shop.audio.badge);s('shop-type-audio',t.shop.audio.type);
+  s('shop-title-audio',t.shop.audio.title);s('shop-desc-audio',t.shop.audio.desc);
+  s('shop-btn-audio',t.shop.audio.btn);a('shop-btn-audio',CONFIG.LINKS['audio_'+lang]);
+  s('shop-btn-audio-sample',t.shop.audio.sampleBtn);a('shop-btn-audio-sample',CONFIG.AUDIO_PREVIEW_URLS[lang]);
+  s('ribbon-audio',t.shop.audio.ribbon);
+  s('shop-price-audio',CONFIG.PRICES['audio_'+lang].price);s('shop-price-note-audio',CONFIG.PRICES['audio_'+lang].note);
+  // Author
+  s('author-kicker',t.author.kicker);s('author-location',t.author.location);s('author-bio',t.author.bio);
+  document.querySelectorAll('.author-tags .tag').forEach((el,i)=>{if(t.author.tags[i])el.textContent=t.author.tags[i]});
+  // Footer — fix: correct ID is 'foot-col-connect', not 'ft-col2-title'
+  s('ft-title',t.footer.title);h('ft-sub',t.footer.sub);s('ft-nl-label',t.footer.nlLabel);
+  document.getElementById('ft-nl-input').placeholder=t.footer.nlPlaceholder;
+  s('ft-col1-title',t.footer.col1);s('ft-ebook',t.footer.ebook);s('ft-print',t.footer.print);
+  s('ft-audio',t.footer.audio);s('foot-col-connect',t.footer.col2);s('ft-edition',t.footer.edition);
 }
 
+// selectLang: called from lang cards — switches language AND scrolls to shop
+function selectLang(lang){
+  setLang(lang);
+  navScrollTo('buy');
+}
+function navScrollTo(id){
+  const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});
+  document.getElementById('mobile-drawer').classList.remove('is-open');
+  document.getElementById('drawer-overlay').classList.remove('is-open');
+  document.getElementById('hamburger').classList.remove('is-open');
+}
 // ============================================================
 // NEWSLETTER — posts to Google Sheets via fetch
 // ============================================================
@@ -1538,7 +822,7 @@ function submitNewsletter(e) {
   btn.disabled = true;
   btn.textContent = '…';
   // Replace SHEET_URL with your Google Apps Script web app URL
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbx6D9kugECOjWSNCRK9UIrcg6IMNUroKnbE4Vb1eE8ibcXCIsMrAoOz34aE8yoKwsug/exec';
+  var SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
   fetch(SHEET_URL, {
     method: 'POST',
     mode: 'no-cors',
@@ -1558,7 +842,27 @@ function submitNewsletter(e) {
     btn.textContent = '→';
   });
 }
-</script>
+// Hamburger
+document.getElementById('hamburger').addEventListener('click',function(){
+  this.classList.toggle('is-open');
+  document.getElementById('mobile-drawer').classList.toggle('is-open');
+  document.getElementById('drawer-overlay').classList.toggle('is-open');
+});
+document.getElementById('drawer-overlay').addEventListener('click',function(){
+  document.getElementById('hamburger').classList.remove('is-open');
+  document.getElementById('mobile-drawer').classList.remove('is-open');
+  this.classList.remove('is-open');
+});
+// Scroll reveal
+const revealSections=document.querySelectorAll('.quote-band,.about,.preview,.languages,.shop,.author');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}});
+},{threshold:0.08});
+revealSections.forEach(el=>{el.classList.add('will-animate');observer.observe(el);});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>observer.observe(el));
+// Init: run setLang on page load so all dynamic elements render correctly from the start
+setLang('de');
 
+</script>
 </body>
 </html>
